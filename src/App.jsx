@@ -1,9 +1,21 @@
+/* eslint-disable no-unused-vars */
 import "@mantine/core/styles.css";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, createTheme, Button } from "@mantine/core";
 import { Dashboard } from "./Components/Dashboard";
 
 export default function App() {
-	return <MantineProvider>
-		<Dashboard/>
+	const theme = createTheme({
+		defaultRadius: 'md',
+		components: {
+			Button: Button.extend({
+				defaultProps: {
+					color: 'blue.8',
+				},
+			}),
+		},
+	});
+
+	return <MantineProvider theme={theme} >
+		<Dashboard />
 	</MantineProvider>;
 }
