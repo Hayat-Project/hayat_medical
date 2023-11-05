@@ -1,5 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
-import { AppShell, Burger } from '@mantine/core';
+import { AppShell } from '@mantine/core';
+import Header from './Header';
 
 export function Dashboard() {
   const [opened, { toggle }] = useDisclosure();
@@ -10,10 +11,8 @@ export function Dashboard() {
       navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
       padding="md"
     >
-      <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-		<h3>Logo</h3>
-      </AppShell.Header>
+
+      <Header toggle={toggle} opened={opened}/>
 		
       <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
 
