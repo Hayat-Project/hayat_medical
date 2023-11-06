@@ -2,8 +2,10 @@ import { useDisclosure } from '@mantine/hooks';
 import { AppShell } from '@mantine/core';
 import Header from './Header';
 
+
 export function Dashboard() {
-  const [opened, { toggle }] = useDisclosure();
+	const [opened, { toggle }] = useDisclosure();
+	
 
   return (
     <AppShell
@@ -16,7 +18,7 @@ export function Dashboard() {
 		
       <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
 
-      <AppShell.Main>Main</AppShell.Main>
-    </AppShell>
-  );
+			<AppShell.Main>Main</AppShell.Main>
+		</AppShell>
+	);
 }
