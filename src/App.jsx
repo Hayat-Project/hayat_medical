@@ -18,4 +18,5 @@ export default function App() {
 	return <MantineProvider theme={theme} >
 		<Dashboard />
 	</MantineProvider>;
+
 }
