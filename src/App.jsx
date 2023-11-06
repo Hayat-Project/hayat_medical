@@ -13,10 +13,12 @@ export default function App() {
 				},
 			}),
 		},
+	
 	});
 
-	return <MantineProvider theme={theme} >
-		<Dashboard />
-	</MantineProvider>;
+	return (
+		<MantineProvider theme={theme} >
+			<Dashboard />
+		</MantineProvider>);
 
 }

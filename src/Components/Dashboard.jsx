@@ -1,7 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
 import { AppShell } from '@mantine/core';
 import Header from './Header';
-import ThemeSwitcher from './ThemeSwitcher'
 
 export function Dashboard() {
 	const [opened, { toggle }] = useDisclosure();
@@ -20,9 +19,8 @@ export function Dashboard() {
 
 			<AppShell.Main>
 				Main
-				<ThemeSwitcher />
 			</AppShell.Main>
-			
+
 		</AppShell>
 	);
 }
