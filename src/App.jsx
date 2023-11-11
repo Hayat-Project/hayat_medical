@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import "@mantine/core/styles.css";
 import { MantineProvider, createTheme, Button } from "@mantine/core";
-import { Dashboard } from "./Components/Dashboard";
+import Dashboard from "./Components/Dashboard";
 
-export default function App() {
+function App() {
 	const theme = createTheme({
 		defaultRadius: 'md',
 		components: {
@@ -22,3 +22,5 @@ export default function App() {
 		</MantineProvider>);
 
 }
+
+export default App;

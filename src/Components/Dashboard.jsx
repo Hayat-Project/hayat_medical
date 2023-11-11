@@ -1,8 +1,9 @@
 import { useDisclosure } from '@mantine/hooks';
 import { AppShell } from '@mantine/core';
 import Header from './Header';
+import Navbar from './Navbar';
 
-export function Dashboard() {
+function Dashboard() {
 	const [opened, { toggle }] = useDisclosure();
 
 
@@ -15,8 +16,7 @@ export function Dashboard() {
 
 			<Header toggle={toggle} opened={opened} />
 
-			<AppShell.Navbar p="md">Navbar</AppShell.Navbar>
-
+			<Navbar/>
 			<AppShell.Main>
 				Main
 			</AppShell.Main>
@@ -24,3 +24,5 @@ export function Dashboard() {
 		</AppShell>
 	);
 }
+
+export default Dashboard;

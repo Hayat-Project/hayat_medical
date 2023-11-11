@@ -2,7 +2,7 @@ import { Switch, rem, useMantineTheme, useMantineColorScheme } from '@mantine/co
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import { useState } from 'react';
 
-export default function ThemeSwitcher() {
+function ThemeSwitcher() {
 
 	const [checked, setChecked] = useState(false);
 	const { setColorScheme } = useMantineColorScheme();
@@ -26,11 +26,14 @@ export default function ThemeSwitcher() {
 
 	return (
 		<Switch size="lg" color="dark.4"
+			visibleFrom='xs'
 			onLabel={sunIcon} offLabel={moonIcon} checked={checked}
 			onChange={(event) => {
 				setChecked(event.currentTarget.checked);
-				setColorScheme(checked ? 'light' : 'dark');
+				setColorScheme('auto');
 			}}
 		/>
 	);
 }
+
+export default ThemeSwitcher;
