@@ -1,8 +1,7 @@
-function Messages (){
-    return (
-        <div>Messages</div>
-    );
+import FilterBar from "./FilterBar";
 
+function Messages() {
+  return <></>;
 }
 
 export default Messages;
