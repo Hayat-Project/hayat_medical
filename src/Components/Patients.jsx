@@ -16,133 +16,13 @@ function Patients() {
     return (
         <Grid grow>
             <Grid.Col span={12}>
-            <FilterBar />
+                <FilterBar />
             </Grid.Col>
             <Grid.Col span={3}>
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Group justify='center'>
                         <Card.Section>
-                            <Avatar size={70} src={data.src}/>
-                        </Card.Section>
-                    </Group>
-                    <Group justify="center" mt="md" mb="xs">
-                        <Text size="lg">
-                            {data.name}
-                        </Text>
-                    </Group>
-                    <Group mt="md" mb="xs">
-                        <Stack
-                            align="flex-start"
-                            justify="flex-start"
-                            gap="xs"
-                        >
-                            <Text size="sm">
-                                <b>ID</b>: {data.id}
-                            </Text>
-                            <Text size="sm">
-                                <b>DOB</b>: {data.dob}
-                            </Text>
-                            <Text size="sm">
-                                <b>Age</b>: {data.age}
-                            </Text>
-                            <Text size="sm">
-                                <b>Gender</b>: {data.gender}
-                            </Text>
-                            <Text size="sm">
-                                <b>Nationality</b>: {data.nationality}
-                            </Text>
-                        </Stack>
-                    </Group>
-                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-                        View Patient
-                    </Button>
-                </Card>
-            </Grid.Col>
-            <Grid.Col span={3}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder>
-                    <Group justify='center'>
-                        <Card.Section>
-                            <Avatar size={70} src={data.src}/>
-                        </Card.Section>
-                    </Group>
-                    <Group justify="center" mt="md" mb="xs">
-                        <Text size="lg">
-                            {data.name}
-                        </Text>
-                    </Group>
-                    <Group mt="md" mb="xs">
-                        <Stack
-                            align="flex-start"
-                            justify="flex-start"
-                            gap="xs"
-                        >
-                            <Text size="sm">
-                                <b>ID</b>: {data.id}
-                            </Text>
-                            <Text size="sm">
-                                <b>DOB</b>: {data.dob}
-                            </Text>
-                            <Text size="sm">
-                                <b>Age</b>: {data.age}
-                            </Text>
-                            <Text size="sm">
-                                <b>Gender</b>: {data.gender}
-                            </Text>
-                            <Text size="sm">
-                                <b>Nationality</b>: {data.nationality}
-                            </Text>
-                        </Stack>
-                    </Group>
-                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-                        View Patient
-                    </Button>
-                </Card>
-            </Grid.Col>
-            <Grid.Col span={3}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder>
-                    <Group justify='center'>
-                        <Card.Section>
-                            <Avatar size={70} src={data.src}/>
-                        </Card.Section>
-                    </Group>
-                    <Group justify="center" mt="md" mb="xs">
-                        <Text size="lg">
-                            {data.name}
-                        </Text>
-                    </Group>
-                    <Group mt="md" mb="xs">
-                        <Stack
-                            align="flex-start"
-                            justify="flex-start"
-                            gap="xs"
-                        >
-                            <Text size="sm">
-                                <b>ID</b>: {data.id}
-                            </Text>
-                            <Text size="sm">
-                                <b>DOB</b>: {data.dob}
-                            </Text>
-                            <Text size="sm">
-                                <b>Age</b>: {data.age}
-                            </Text>
-                            <Text size="sm">
-                                <b>Gender</b>: {data.gender}
-                            </Text>
-                            <Text size="sm">
-                                <b>Nationality</b>: {data.nationality}
-                            </Text>
-                        </Stack>
-                    </Group>
-                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-                        View Patient
-                    </Button>
-                </Card>
-            </Grid.Col>
-            <Grid.Col span={3}>
-                <Card shadow="sm" padding="lg" radius="md" withBorder>
-                    <Group justify='center'>
-                        <Card.Section>
-                            <Avatar size={70} src={data.src}/>
+                            <Avatar size={70} src={data.src} />
                         </Card.Section>
                     </Group>
                     <Group justify="center" mt="md" mb="xs">
@@ -222,7 +102,7 @@ function Patients() {
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Group justify='center'>
                         <Card.Section>
-                            <Avatar size={70} src={data.src}/>
+                            <Avatar size={70} src={data.src} />
                         </Card.Section>
                     </Group>
                     <Group justify="center" mt="md" mb="xs">
@@ -262,7 +142,7 @@ function Patients() {
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Group justify='center'>
                         <Card.Section>
-                            <Avatar size={70} src={data.src}/>
+                            <Avatar size={70} src={data.src} />
                         </Card.Section>
                     </Group>
                     <Group justify="center" mt="md" mb="xs">
@@ -302,7 +182,127 @@ function Patients() {
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Group justify='center'>
                         <Card.Section>
-                            <Avatar size={70} src={data.src}/>
+                            <Avatar size={70} src={data.src} />
+                        </Card.Section>
+                    </Group>
+                    <Group justify="center" mt="md" mb="xs">
+                        <Text size="lg">
+                            {data.name}
+                        </Text>
+                    </Group>
+                    <Group mt="md" mb="xs">
+                        <Stack
+                            align="flex-start"
+                            justify="flex-start"
+                            gap="xs"
+                        >
+                            <Text size="sm">
+                                <b>ID</b>: {data.id}
+                            </Text>
+                            <Text size="sm">
+                                <b>DOB</b>: {data.dob}
+                            </Text>
+                            <Text size="sm">
+                                <b>Age</b>: {data.age}
+                            </Text>
+                            <Text size="sm">
+                                <b>Gender</b>: {data.gender}
+                            </Text>
+                            <Text size="sm">
+                                <b>Nationality</b>: {data.nationality}
+                            </Text>
+                        </Stack>
+                    </Group>
+                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+                        View Patient
+                    </Button>
+                </Card>
+            </Grid.Col>
+            <Grid.Col span={3}>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                    <Group justify='center'>
+                        <Card.Section>
+                            <Avatar size={70} src={data.src} />
+                        </Card.Section>
+                    </Group>
+                    <Group justify="center" mt="md" mb="xs">
+                        <Text size="lg">
+                            {data.name}
+                        </Text>
+                    </Group>
+                    <Group mt="md" mb="xs">
+                        <Stack
+                            align="flex-start"
+                            justify="flex-start"
+                            gap="xs"
+                        >
+                            <Text size="sm">
+                                <b>ID</b>: {data.id}
+                            </Text>
+                            <Text size="sm">
+                                <b>DOB</b>: {data.dob}
+                            </Text>
+                            <Text size="sm">
+                                <b>Age</b>: {data.age}
+                            </Text>
+                            <Text size="sm">
+                                <b>Gender</b>: {data.gender}
+                            </Text>
+                            <Text size="sm">
+                                <b>Nationality</b>: {data.nationality}
+                            </Text>
+                        </Stack>
+                    </Group>
+                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+                        View Patient
+                    </Button>
+                </Card>
+            </Grid.Col>
+            <Grid.Col span={3}>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                    <Group justify='center'>
+                        <Card.Section>
+                            <Avatar size={70} src={data.src} />
+                        </Card.Section>
+                    </Group>
+                    <Group justify="center" mt="md" mb="xs">
+                        <Text size="lg">
+                            {data.name}
+                        </Text>
+                    </Group>
+                    <Group mt="md" mb="xs">
+                        <Stack
+                            align="flex-start"
+                            justify="flex-start"
+                            gap="xs"
+                        >
+                            <Text size="sm">
+                                <b>ID</b>: {data.id}
+                            </Text>
+                            <Text size="sm">
+                                <b>DOB</b>: {data.dob}
+                            </Text>
+                            <Text size="sm">
+                                <b>Age</b>: {data.age}
+                            </Text>
+                            <Text size="sm">
+                                <b>Gender</b>: {data.gender}
+                            </Text>
+                            <Text size="sm">
+                                <b>Nationality</b>: {data.nationality}
+                            </Text>
+                        </Stack>
+                    </Group>
+                    <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+                        View Patient
+                    </Button>
+                </Card>
+            </Grid.Col>
+            <Grid.Col span={3}>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                    <Group justify='center'>
+                        <Card.Section>
+                            <Avatar size={70} src={data.src} />
                         </Card.Section>
                     </Group>
                     <Group justify="center" mt="md" mb="xs">
