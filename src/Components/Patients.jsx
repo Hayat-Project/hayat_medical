@@ -1,4 +1,5 @@
-import { Card, Image, Text, Badge, Button, Group, Grid, Avatar, Stack } from '@mantine/core';
+import { Card, Text, Button, Group, Grid, Avatar, Stack } from '@mantine/core';
+import FilterBar from "./FilterBar";
 
 const data = {
     name: 'Khaled Albaz',
@@ -14,6 +15,9 @@ function Patients() {
     // const { name, id, dob, age, gender, nationality } = data;
     return (
         <Grid grow>
+            <Grid.Col span={12}>
+            <FilterBar />
+            </Grid.Col>
             <Grid.Col span={3}>
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Group justify='center'>
