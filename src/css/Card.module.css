@@ -1,4 +1,5 @@
 .card {
+    /* background-color: brown; */
     border-radius: 6px;
-    width: 50%;
+    width: 100%;
 }

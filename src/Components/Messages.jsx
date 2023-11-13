@@ -1,7 +1,8 @@
-import FilterBar from "./FilterBar";
+import { Group } from "@mantine/core";
 
 function Messages() {
-  return <></>;
+  const [value, setValue] = useState(0);
+  return <Group></Group>;
 }
 
 export default Messages;

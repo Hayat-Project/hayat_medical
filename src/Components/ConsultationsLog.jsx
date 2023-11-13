@@ -140,7 +140,7 @@ function ConsultationsLog() {
   return (
     <>
       <Flex mih={50} gap="xs" direction="column" wrap="wrap">
-        <Flex mih={50} gap="50" direction="column" wrap="wrap">
+        <Flex mih={50} direction="column" wrap="wrap">
           <Group mt={5}>
             <Text fw={500}>Consultations Log</Text>
             <Badge variant="light" color="rgba(138, 74, 212, 0.97)" size="xs">
@@ -148,7 +148,7 @@ function ConsultationsLog() {
             </Badge>
           </Group>
         </Flex>
-        <Flex mih={50} gap="50" direction="column" wrap="wrap">
+        <Flex mih={50} gap="20" direction="column" wrap="wrap">
           <FilterBar />
 
           <Table.ScrollContainer minWidth={1000} type="native">

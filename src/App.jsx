@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { MantineProvider, createTheme, Button } from "@mantine/core";
 import Dashboard from "./Components/Dashboard";
 
