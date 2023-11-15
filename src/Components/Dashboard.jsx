@@ -16,13 +16,13 @@ function Dashboard() {
 	return (
 		<BrowserRouter>
 			<AppShell
+				padding="md"
 				header={{ height: 60 }}
 				navbar={{
 					width: 300,
 					breakpoint: "sm",
 					collapsed: { mobile: !opened },
 				}}
-				padding="md"
 			>
 				<Header toggle={toggle} opened={opened} />
 

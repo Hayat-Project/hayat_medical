@@ -4,10 +4,12 @@ import { MantineLogo } from "@mantine/ds";
 import SearchBarFilter from "./SearchBarFilter.jsx";
 import ThemeSwitcher from "./ThemeSwitcher.jsx";
 import { IoMailOutline, IoNotificationsOutline } from "react-icons/io5";
+import { useState } from "react";
 
 function Header({ toggle, opened }) {
 	const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 	const iconsStyle = { width: rem(30), height: rem(30) };
+	const [isDarkMode, setChecked] = useState(false);
 
 	return (
 		<AppShell.Header>
@@ -23,7 +25,9 @@ function Header({ toggle, opened }) {
 					justify="space-between"
 					style={{ width: rem(isMobile ? 120 : 200) }}
 				>
-					<ThemeSwitcher />
+					<ThemeSwitcher
+						onChange={(event) => setChecked(event.currentTarget.isDarkMode)}
+						isDarkMode={isDarkMode} />
 					<IoMailOutline style={iconsStyle} />
 					<IoNotificationsOutline style={iconsStyle} />
 					<Image
