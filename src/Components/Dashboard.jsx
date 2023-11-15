@@ -3,10 +3,10 @@ import { AppShell } from "@mantine/core";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import ConsultationsLog from "./Consultations Log Component/ConsultationsLog";
+import ConsultationsLog from "./ConsultationsView/ConsultationsLog";
 import Overview from "./Overview";
 import Appointments from "./Appointments";
-import Patients from "./Patients";
+import Patients from "../Components/PatientsView/Patients";
 import Messages from "./Messages";
 import Setting from "./Setting";
 
