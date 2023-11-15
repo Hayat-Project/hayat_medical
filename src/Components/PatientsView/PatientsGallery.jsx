@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Text, Button, Group, Grid, Avatar, Stack } from '@mantine/core';
-import patientsData from '../mockdata/patientsData.json'; // Import the JSON file
+import patientsData from '../../mockdata/patientsData.json'; // Import the JSON file
 
-function Patients() {
+function PatientsGallery() {
   return (
     <Grid grow>
       {patientsData.map((patient, index) => (
@@ -45,4 +45,4 @@ function Patients() {
   );
 }
 
-export default Patients;
+export default PatientsGallery;
