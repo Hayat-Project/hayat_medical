@@ -8,7 +8,7 @@ import { IoMailOutline, IoNotificationsOutline } from "react-icons/io5";
 function Header({ toggle, opened }) {
 	const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 	const iconsStyle = { width: rem(30), height: rem(30) }
-	
+
 	return (
 		<AppShell.Header>
 			<Flex justify="space-between" align="center" style={{ padding: '10px 20px' }}>

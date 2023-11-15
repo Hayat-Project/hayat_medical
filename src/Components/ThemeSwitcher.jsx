@@ -7,7 +7,7 @@ function ThemeSwitcher() {
 	const [checked, setChecked] = useState(false);
 	const { colorScheme, setColorScheme } = useMantineColorScheme();
 	const theme = useMantineTheme();
-  	const computedColorScheme = useComputedColorScheme('light');
+	const computedColorScheme = useComputedColorScheme('light');
 
 	const sunIcon = (
 		<IconSun
@@ -25,7 +25,7 @@ function ThemeSwitcher() {
 		/>
 	);
 
-	
+
 
 	return (
 		<Switch size="lg" color="dark.4"
