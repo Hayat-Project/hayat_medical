@@ -1,5 +1,5 @@
 function Messages() {
-  return <div></div>;
+  return <div>Messages</div>;
 }
 
 export default Messages;

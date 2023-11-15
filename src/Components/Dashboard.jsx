@@ -11,37 +11,37 @@ import Messages from "./Messages";
 import Setting from "./Setting";
 
 function Dashboard() {
-  const [opened, { toggle }] = useDisclosure();
+	const [opened, { toggle }] = useDisclosure();
 
-  return (
-    <BrowserRouter>
-      <AppShell
-        header={{ height: 60 }}
-        navbar={{
-          width: 300,
-          breakpoint: "sm",
-          collapsed: { mobile: !opened },
-        }}
-        padding="md"
-      >
-        <Header toggle={toggle} opened={opened} />
+	return (
+		<BrowserRouter>
+			<AppShell
+				header={{ height: 60 }}
+				navbar={{
+					width: 300,
+					breakpoint: "sm",
+					collapsed: { mobile: !opened },
+				}}
+				padding="md"
+			>
+				<Header toggle={toggle} opened={opened} />
 
-        <Navbar />
+				<Navbar />
 
-        <AppShell.Main>
-          <Routes>
-            <Route path="/Overview" element={<Overview />} />
-            <Route path="/Appointments" element={<Appointments />} />
-            <Route path="/Patients" element={<Patients />} />
-            <Route path="/Consultationslog" element={<ConsultationsLog />} />
-            <Route path="/Messages" element={<Messages />} />
-            <Route path="/Setting" element={<Setting />} />
-            {/* <Route path="/Logout" element={<ConsultationsLog />} /> */}
-          </Routes>
-        </AppShell.Main>
-      </AppShell>
-    </BrowserRouter>
-  );
+				<AppShell.Main>
+					<Routes>
+						<Route path="/Overview" element={<Overview />} />
+						<Route path="/Appointments" element={<Appointments />} />
+						<Route path="/Patients" element={<Patients />} />
+						<Route path="/Consultationslog" element={<ConsultationsLog />} />
+						<Route path="/Messages" element={<Messages />} />
+						<Route path="/Setting" element={<Setting />} />
+						{/* <Route path="/Logout" element={<ConsultationsLog />} /> */}
+					</Routes>
+				</AppShell.Main>
+			</AppShell>
+		</BrowserRouter>
+	);
 }
 
 export default Dashboard;
