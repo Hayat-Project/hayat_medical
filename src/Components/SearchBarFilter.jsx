@@ -9,7 +9,7 @@ function SearchBarFilter(props) {
       leftSectionPointerEvents="none"
       leftSection={icon}
       radius="md"
-      style={{ width: 500 }}
+      style={{ width: 300 }}
       placeholder="Type to search"
       visibleFrom="xs"
       onChange={(event) => props.filterTable(event.currentTarget.value)}
