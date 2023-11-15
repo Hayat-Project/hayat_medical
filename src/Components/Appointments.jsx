@@ -1,7 +1,7 @@
-function Appointments (){
-    return (
-        <div>Appointments</div>
-    );
+function Appointments() {
+	return (
+		<div>Appointments</div>
+	);
 
 }
 

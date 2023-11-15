@@ -1,8 +1,5 @@
-function Messages (){
-    return (
-        <div>Messages</div>
-    );
-
+function Messages() {
+  return <div>Messages</div>;
 }
 
 export default Messages;
