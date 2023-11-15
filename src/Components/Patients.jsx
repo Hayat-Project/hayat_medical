@@ -4,7 +4,7 @@ import patientsData from '../mockdata/patientsData.json'; // Import the JSON fil
 
 function Patients() {
   return (
-    <Grid>
+    <Grid grow>
       {patientsData.map((patient, index) => (
         <Grid.Col key={index} span={3}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
