@@ -1,0 +1,21 @@
+[
+	{
+	  "name": "Khaled Albaz",
+	  "id": "253735",
+	  "dob": "23 June 2003",
+	  "age": "20",
+	  "gender": "Male",
+	  "nationality": "Palestine",
+	  "src": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
+	},
+	{
+	  "name": "Another Patient",
+	  "id": "123456",
+	  "dob": "15 May 1990",
+	  "age": "32",
+	  "gender": "Female",
+	  "nationality": "USA",
+	  "src": "https://example.com/another-image.jpg"
+	}
+  ]
+  
