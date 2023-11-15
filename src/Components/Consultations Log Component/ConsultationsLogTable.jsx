@@ -1,4 +1,6 @@
-import { Text, Table, Avatar, Group, Badge } from "@mantine/core";
+import { Text, Table, Avatar, Group, Badge, ActionIcon } from "@mantine/core";
+import { IconArrowsSort } from "@tabler/icons-react";
+import { useState } from "react";
 
 const elements = [
   {
@@ -103,7 +105,7 @@ const elements = [
     key: 7,
     avatar:
       "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-    name: "Olivia Rhye",
+    name: "Zlivia Rhye",
     date: "Dec 30 2023",
     stime: "09:42 PM",
     etime: "10:50 PM",
@@ -145,7 +147,7 @@ const elements = [
     key: 10,
     avatar:
       "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-    name: "Olivia Rhye",
+    name: "Baraa",
     date: "Dec 30 2023",
     stime: "09:42 PM",
     etime: "10:50 PM",
@@ -355,8 +357,30 @@ const elements = [
 
 function ConsultationsLogTable(props) {
   const searchWord = props.searchWord;
+  const [sort, setSort] = useState("");
+  const [defaultSort, setDefaultSort] = useState("");
+  const [changeIcone, setChangeIcone] = useState("");
+
+  function sortByName(a, b) {
+    return defaultSort
+      ? sort
+        ? a.name > b.name
+          ? 1
+          : -1
+        : a.name < b.name
+        ? 1
+        : -1
+      : null;
+  }
+
+  function sortName() {
+    setDefaultSort(true);
+    sort ? setSort(false) : setSort(true);
+    changeIcone ? setChangeIcone(false) : setChangeIcone(true);
+  }
 
   const rows = elements
+    .sort(sortByName)
     .filter((item) => {
       return searchWord.toLowerCase() === ""
         ? item
@@ -389,7 +413,19 @@ function ConsultationsLogTable(props) {
     >
       <Table.Thead>
         <Table.Tr>
-          <Table.Th>Patient Name</Table.Th>
+          <Table.Th>
+            Patient Name{" "}
+            <ActionIcon
+              variant="transparent"
+              aria-label="Settings"
+              onClick={sortName}
+            >
+              <IconArrowsSort
+                style={{ width: "70%", height: "70%" }}
+                stroke={1.5}
+              />
+            </ActionIcon>
+          </Table.Th>
           <Table.Th>Date</Table.Th>
           <Table.Th>Starting Time</Table.Th>
           <Table.Th>End Time</Table.Th>
