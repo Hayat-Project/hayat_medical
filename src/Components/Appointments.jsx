@@ -1,4 +1,4 @@
-import { Grid, Card, Text, Title, TextInput, Checkbox } from '@mantine/core';
+import { Grid, Card, Text, Title, TextInput, Checkbox, Group } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 
 function Appointments() {
@@ -13,7 +13,9 @@ function Appointments() {
 				<Grid>
 					<Grid.Col>
 						<Card shadow="sm" padding="lg" radius="md" withBorder>
-							<Calendar size='xl' />
+							<Group justify='center'>
+								<Calendar size='xl' />
+							</Group>
 						</Card>
 					</Grid.Col>
 					<Grid.Col>
