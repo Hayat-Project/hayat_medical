@@ -12,8 +12,8 @@ function PatientsGallery(props) {
             ? item
             : item.name.toLowerCase().includes(searchWord);
         })
-        .map((patient, index) => (
-          <Grid.Col key={index} span={3}>
+        .map((patient) => (
+          <Grid.Col key={patient.id} span={3}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <Group justify="center">
                 <Card.Section>
