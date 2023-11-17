@@ -1,9 +1,11 @@
-import { Text, Badge, Group } from "@mantine/core";
+import { Badge, Group, Title } from "@mantine/core";
 
 function MainHeader(props) {
 	return (
-		<Group mt={5}>
-			<Text fw={500}>{props.text}</Text>
+		<Group>
+			<Title size="h3">
+				{props.text}
+			</Title>
 			<Badge variant="light" color="rgba(138, 74, 212, 0.97)" size="xs">
 				{props.dataSize} patients
 			</Badge>
