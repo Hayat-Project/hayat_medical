@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ConsultationsLog from "./ConsultationsView/ConsultationsLog";
 import Overview from "./Overview";
-import Appointments from "./Appointments";
+import Appointments from "./AppointmentsView/Appointments";
 import Patients from "../Components/PatientsView/Patients";
 import Messages from "./Messages";
 import Setting from "./Setting";

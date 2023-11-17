@@ -1,12 +1,16 @@
-import { Grid, Card, Text, Title, TextInput, Checkbox, Group } from '@mantine/core';
+import { Grid, Card, Flex, Title, TextInput, Checkbox, Group } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
+import MainHeader from '../MainHeader';
 
 function Appointments() {
 	return (
-		<Grid>
+	<>
+		<Flex direction="column" mb={20}>
+			<MainHeader header="Appointments" subheader="View Your Schedule!" badge='false'/>
+		</Flex>
+		<Grid grow>
 			<Grid.Col span={8}>
 				<Card shadow="sm" padding="lg" radius="md" withBorder h={715}>
-
 				</Card>
 			</Grid.Col>
 			<Grid.Col span={4}>
@@ -45,6 +49,7 @@ function Appointments() {
 				</Grid>
 			</Grid.Col>
 		</Grid>
+		</>
 	);
 
 }
