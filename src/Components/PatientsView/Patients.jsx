@@ -23,6 +23,7 @@ function Patients(props) {
       </Flex>
     </Flex>
   );
+
 }
 
 export default Patients;

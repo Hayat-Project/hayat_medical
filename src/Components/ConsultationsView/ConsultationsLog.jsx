@@ -2,7 +2,7 @@ import { Flex } from "@mantine/core";
 import { useState } from "react";
 import MainHeader from "../MainHeader";
 import SearchBarFilter from "../SearchBarFilter";
-import ConsultationsLogTable from "./ConsultationsLogTable";
+import ConsultationsLogTable from "./ConsultationsLogView";
 
 function ConsultationsLog() {
   const [search, setSearch] = useState("");

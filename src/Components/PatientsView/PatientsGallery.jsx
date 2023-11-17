@@ -56,6 +56,7 @@ function PatientsGallery(props) {
         ))}
     </Grid>
   );
+
 }
 
 export default PatientsGallery;

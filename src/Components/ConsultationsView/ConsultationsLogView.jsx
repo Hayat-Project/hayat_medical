@@ -2,7 +2,7 @@ import { Text, Table, Avatar, Group, Badge, ActionIcon } from "@mantine/core";
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
 
-import elements from "../../data.json";
+import elements from "../../mockdata/data.json";
 
 function ConsultationsLogTable(props) {
   const searchWord = props.searchWord;
