@@ -11,7 +11,7 @@ function SearchBarFilter(props) {
       radius="md"
       style={{ width: props.width }}
       placeholder={props.placeholder}
-	  visibleFrom={props.visibleFrom}
+      visibleFrom={props.visibleFrom}
       onChange={(event) => props.filterTable(event.currentTarget.value)}
     />
   );

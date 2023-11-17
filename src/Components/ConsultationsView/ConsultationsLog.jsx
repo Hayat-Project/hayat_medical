@@ -6,7 +6,6 @@ import ConsultationsLogTable from "./ConsultationsLogTable";
 
 function ConsultationsLog() {
   const [search, setSearch] = useState("");
-
   return (
     <Flex mih={50} gap="xl" direction="column" wrap="wrap">
       <Flex mih={50} direction="column" wrap="wrap">
@@ -20,7 +19,7 @@ function ConsultationsLog() {
           width={300}
         />
 
-        <ConsultationsLogTable searchWord={search} />
+        <ConsultationsLogTable searchWord={search.toLowerCase()} />
       </Flex>
     </Flex>
   );

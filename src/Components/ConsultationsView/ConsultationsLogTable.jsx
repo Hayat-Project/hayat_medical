@@ -8,7 +8,6 @@ function ConsultationsLogTable(props) {
   const searchWord = props.searchWord;
   const [sort, setSort] = useState("");
   const [defaultSort, setDefaultSort] = useState("");
-  const [changeIcone, setChangeIcone] = useState("");
 
   function sortByName(a, b) {
     return defaultSort
@@ -25,13 +24,12 @@ function ConsultationsLogTable(props) {
   function sortName() {
     setDefaultSort(true);
     sort ? setSort(false) : setSort(true);
-    changeIcone ? setChangeIcone(false) : setChangeIcone(true);
   }
 
   const rows = elements
     .sort(sortByName)
     .filter((item) => {
-      return searchWord.toLowerCase() === ""
+      return searchWord === ""
         ? item
         : item.name.toLowerCase().includes(searchWord);
     })
