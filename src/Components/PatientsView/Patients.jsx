@@ -9,7 +9,7 @@ function Patients(props) {
   return (
     <Flex mih={50} gap="xl" direction="column" wrap="wrap">
       <Flex mih={50} direction="column" wrap="wrap">
-        <MainHeader text="patient" />
+	  <MainHeader header="Patients" subheader="View Your Patients!" type='patients' dataSize='10' />
       </Flex>
 
       <Flex mih={50} gap="20" direction="column" wrap="wrap">
