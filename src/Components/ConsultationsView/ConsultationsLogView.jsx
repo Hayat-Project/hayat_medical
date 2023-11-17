@@ -48,7 +48,12 @@ function ConsultationsLogTable(props) {
         <Table.Td>{row.etime}</Table.Td>
         <Table.Td>
           {
-            <Badge variant="light" color="red" size="sm" radius="lg">
+            <Badge
+              variant="light"
+              color={row.status === "Done" ? "green" : "red"}
+              size="sm"
+              radius="lg"
+            >
               {row.status}
             </Badge>
           }
