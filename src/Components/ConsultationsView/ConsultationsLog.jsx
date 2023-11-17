@@ -10,7 +10,7 @@ function ConsultationsLog() {
   return (
     <Flex mih={50} gap="xl" direction="column" wrap="wrap">
       <Flex mih={50} direction="column" wrap="wrap">
-        <MainHeader text="Consultations Log" />
+        <MainHeader header="Consultations Log" subheader="Find Recent Consulatation Status Here!" type='patients' dataSize='50' />
       </Flex>
 
       <Flex mih={50} gap="20" direction="column" wrap="wrap">
