@@ -5,7 +5,7 @@ function Appointments() {
 	return (
 		<Grid>
 			<Grid.Col span={8}>
-				<Card shadow="sm" padding="lg" radius="md" withBorder h={1000}>
+				<Card shadow="sm" padding="lg" radius="md" withBorder h={715}>
 
 				</Card>
 			</Grid.Col>
