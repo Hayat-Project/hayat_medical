@@ -1,7 +1,6 @@
 import { Text, Table, Avatar, Group, Badge, ActionIcon } from "@mantine/core";
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
-
 import elements from "../../mockdata/data.json";
 
 function ConsultationsLogTable(props) {
