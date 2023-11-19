@@ -1,9 +1,12 @@
 import React from "react";
 import { Card, Text, Button, Group, Grid, Avatar, Stack } from "@mantine/core";
-import patientsData from "../../mockdata/patientsData.json"; // Import the JSON file
+import { useMediaQuery } from "@mantine/hooks";
+import patientsData from "../../mockdata/patientsData.json"; 
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord;
+  const isLargeDisplay = useMediaQuery(`(max-width: 1920px)`);
+
   return (
     <Grid grow>
       {patientsData
