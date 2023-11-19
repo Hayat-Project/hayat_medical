@@ -58,41 +58,40 @@ function UpcomingAppointments(props) {
 
 	return (
 		<ScrollArea style={{ height: "100%", width: "100%" }}>
-
-		<Table
-			verticalSpacing="sm"
-			highlightOnHover
-			withColumnBorders
-			withRowBorders={false}
-			striped
-			style={{ overflowY: "auto" }}
-		>
-			<Table.Thead>
-				<Table.Tr>
-					<Table.Th>
-						Patient Name{" "}
-						<ActionIcon
-							variant="transparent"
-							aria-label="Settings"
-							onClick={sortName}
-						>
-							<IconArrowsSort
-								style={{ width: "70%", height: "70%" }}
-								stroke={1.5}
-							/>
-						</ActionIcon>
-					</Table.Th>
-					<Table.Th>Date</Table.Th>
-					<Table.Th>Starting Time</Table.Th>
-					<Table.Th>End Time</Table.Th>
-					<Table.Th>Status</Table.Th>
-				</Table.Tr>
-			</Table.Thead>
-			<Table.Tbody>
-				{rows}
-			</Table.Tbody>
-		</Table>
-        </ScrollArea>
+			<Table
+				verticalSpacing="sm"
+				highlightOnHover
+				withColumnBorders
+				withRowBorders={false}
+				striped
+				style={{ overflowY: "auto" }}
+			>
+				<Table.Thead>
+					<Table.Tr>
+						<Table.Th>
+							Patient Name{" "}
+							<ActionIcon
+								variant="transparent"
+								aria-label="Settings"
+								onClick={sortName}
+							>
+								<IconArrowsSort
+									style={{ width: "70%", height: "70%" }}
+									stroke={1.5}
+								/>
+							</ActionIcon>
+						</Table.Th>
+						<Table.Th>Date</Table.Th>
+						<Table.Th>Starting Time</Table.Th>
+						<Table.Th>End Time</Table.Th>
+						<Table.Th>Status</Table.Th>
+					</Table.Tr>
+				</Table.Thead>
+				<Table.Tbody>
+					{rows}
+				</Table.Tbody>
+			</Table>
+		</ScrollArea>
 
 	);
 }

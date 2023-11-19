@@ -21,8 +21,8 @@ function Appointments() {
 					<Card shadow="sm" padding="lg" withBorder h={isLongDisplay ? 800 : 1100}>
 						<Group>
 							<Title order={4} >Upcoming Patients</Title>
-							<UpcomingAppointments searchWord={search.toLowerCase()} />
 						</Group>
+							<UpcomingAppointments searchWord={search.toLowerCase()} />
 					</Card>
 				</Grid.Col>
 				<Grid.Col span={4}>
