@@ -19,13 +19,10 @@ function Appointments() {
 				<Grid.Col span={8}>
 					{/* Upcoming Patients*/}
 					<Card shadow="sm" padding="lg" withBorder h={isLongDisplay ? 800 : 1100}>
-						<Flex
-							justify="flex-start"
-							align="flex-start"
-						>
+						<Group>
 							<Title order={4} >Upcoming Patients</Title>
-						</Flex>
-						<UpcomingAppointments searchWord={search.toLowerCase()} />
+							<UpcomingAppointments searchWord={search.toLowerCase()} />
+						</Group>
 					</Card>
 				</Grid.Col>
 				<Grid.Col span={4}>
