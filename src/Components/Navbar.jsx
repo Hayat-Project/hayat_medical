@@ -13,10 +13,12 @@ import { Box, NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
 
-
-
 function Navbar() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(
+    localStorage.getItem("activeIndex")
+      ? parseInt(localStorage.getItem("activeIndex"))
+      : 0
+  );
   var isLongDisplay = useMediaQuery(`(max-height: 1100px)`);
   const data = [
     {
@@ -94,7 +96,10 @@ function Navbar() {
         label={item.label}
         leftSection={item.leftSection}
         mt={item.mt}
-        onClick={() =>setActive(index)}
+        onClick={() => {
+          setActive(index);
+          localStorage.setItem("activeIndex", index);
+        }}
         color={item.color}
       />
     </div>
