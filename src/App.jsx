@@ -14,11 +14,6 @@ function App() {
 					color: "blue.8",
 				},
 			}),
-			// AppShell: AppShell.extend({
-			// 	styles: {
-			// 		header: { backgroundColor:  "white"},
-			// 	},
-			// }),
 		},
 	});
 
