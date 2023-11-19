@@ -89,6 +89,7 @@ function Navbar() {
     <div key={item.key}>
       {item.headingText}
       <NavLink
+        style={{borderRadius: 8}}
         component={Link}
         variant="link"
         to={item.path}
