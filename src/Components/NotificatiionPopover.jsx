@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Popover, ActionIcon, rem, Notification, Stack, Text } from "@mantine/core";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "@mantine/hooks";
 
 function NotificationPopover() {
   const [opened, setOpened] = useState(false);
   const iconsStyle = { width: rem(28.5), height: rem(28.5) };
+  const isSmallScreen = useMediaQuery("(min-width: 608px)");
   const notificationsList = [
     {
       id: 1,
@@ -52,6 +54,7 @@ function NotificationPopover() {
     setNotifications([]); 
   };
 
+
   return (
     <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
@@ -65,7 +68,7 @@ function NotificationPopover() {
         </ActionIcon>
       </Popover.Target>
 
-      <Popover.Dropdown>
+      <Popover.Dropdown w={isSmallScreen ? 580 : 350}>
         {notifications.length > 0 ? (
           <Text component={Link} onClick={() => handleClearAllNotifications()}> Clear All </Text>
         ) : (

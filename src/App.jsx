@@ -1,13 +1,13 @@
-/* eslint-disable no-unused-vars */
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "./css/global.css"
-import { MantineProvider, createTheme, Button, AppShell } from "@mantine/core";
+import { MantineProvider, createTheme, Button } from "@mantine/core";
 import Dashboard from "./Components/Dashboard";
 
 function App() {
 	const theme = createTheme({
 		defaultRadius: "md",
+		
 		components: {
 			Button: Button.extend({
 				defaultProps: {
