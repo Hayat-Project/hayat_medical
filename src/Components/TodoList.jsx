@@ -1,6 +1,7 @@
 import {
   Checkbox,
   TextInput,
+  Text,
   ScrollArea,
   Group,
   ActionIcon,
@@ -10,6 +11,7 @@ import { IconPlaylistAdd } from "@tabler/icons-react";
 function TodoList() {
   return (
     <>
+      <Text>Todo List</Text>
       <Group>
         <TextInput
           w="90%"
@@ -27,7 +29,7 @@ function TodoList() {
         />
       </Group>
 
-      <ScrollArea h={90}>
+      <ScrollArea h={202}>
         <Checkbox mt={20} label="This is a task" />
         <Checkbox mt={20} label="This is a task" />
         <Checkbox mt={20} label="This is a task" />

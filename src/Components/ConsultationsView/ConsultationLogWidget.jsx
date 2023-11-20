@@ -11,7 +11,7 @@ import {
 import elements from "../../mockdata/data.json";
 
 function ConsulatationLogWidget() {
-  const rows = elements.slice(0, 5).map((row) => (
+  const rows = elements.slice(0, 4).map((row) => (
     <Table.Tr key={row.key}>
       <Table.Td>
         <Group gap="sm">

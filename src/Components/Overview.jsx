@@ -10,6 +10,7 @@ import {
   IconBroadcast,
   IconUsers,
 } from "@tabler/icons-react";
+import DoctorProfileCard from "./DoctorProfileCard";
 const child = <Skeleton height={140} radius="md" animate={false} />;
 
 function Overview() {
@@ -78,6 +79,17 @@ function Overview() {
             />
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 4 }}>
+            <Card shadow="sm" padding="23" radius="md">
+              <DoctorProfileCard />
+            </Card>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, xs: 8 }}>
+            <Card shadow="sm" padding="lg" radius="md">
+              <ConsulatationLogWidget />
+            </Card>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, xs: 4 }}>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <TodoList />
             </Card>
@@ -89,16 +101,10 @@ function Overview() {
             </Card>
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 4 }}>
-            <Card shadow="sm" padding="xl" radius="md">
+            <Card shadow="sm" padding="8" radius="md">
               <Group justify="center">
                 <Calendar size="md" />
               </Group>
-            </Card>
-          </Grid.Col>
-
-          <Grid.Col span={{ base: 12, xs: 8 }}>
-            <Card shadow="sm" padding="lg" radius="md">
-              <ConsulatationLogWidget />
             </Card>
           </Grid.Col>
         </Grid>
