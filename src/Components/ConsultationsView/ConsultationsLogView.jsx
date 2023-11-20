@@ -43,6 +43,7 @@ function ConsultationsLogTable(props) {
             </Text>
           </Group>
         </Table.Td>
+        <Table.Td>{row.consultaion}</Table.Td>
         <Table.Td>{row.date}</Table.Td>
         <Table.Td>{row.stime}</Table.Td>
         <Table.Td>{row.etime}</Table.Td>
@@ -84,6 +85,7 @@ function ConsultationsLogTable(props) {
               />
             </ActionIcon>
           </Table.Th>
+          <Table.Th>Online/Offline </Table.Th>
           <Table.Th>Date</Table.Th>
           <Table.Th>Starting Time</Table.Th>
           <Table.Th>End Time</Table.Th>
