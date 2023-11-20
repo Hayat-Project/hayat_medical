@@ -21,6 +21,7 @@ function ConsulatationLogWidget() {
           </Text>
         </Group>
       </Table.Td>
+      <Table.Td>{row.consultaion}</Table.Td>
       <Table.Td>{row.date}</Table.Td>
       <Table.Td>{row.stime}</Table.Td>
       <Table.Td>{row.etime}</Table.Td>
@@ -39,14 +40,6 @@ function ConsulatationLogWidget() {
     </Table.Tr>
   ));
 
-  const ths = (
-    <Table.Tr>
-      <Table.Th>Date</Table.Th>
-      <Table.Th>Starting Time</Table.Th>
-      <Table.Th>End Time</Table.Th>
-      <Table.Th>Status</Table.Th>
-    </Table.Tr>
-  );
   return (
     <Flex mih={50} gap="20" direction="column">
       <Grid>
@@ -61,6 +54,7 @@ function ConsulatationLogWidget() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Patient Name</Table.Th>
+                <Table.Th>Online/Offline </Table.Th>
                 <Table.Th>Date</Table.Th>
                 <Table.Th>Starting Time</Table.Th>
                 <Table.Th>End Time</Table.Th>
