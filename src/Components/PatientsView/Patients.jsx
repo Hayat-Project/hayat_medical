@@ -4,12 +4,12 @@ import { useState } from "react";
 import MainHeader from "../MainHeader";
 import SearchBarFilter from "../SearchBarFilter";
 
-function Patients(props) {
+function Patients() {
   const [search, setSearch] = useState("");
   return (
     <Flex mih={50} gap="xl" direction="column" wrap="wrap">
       <Flex mih={50} direction="column" wrap="wrap">
-	  <MainHeader header="Patients" subheader="View Your Patients!" type='patients' dataSize='10' />
+        <MainHeader header="Patients" subheader="View Your Patients!" type='patient' />
       </Flex>
 
       <Flex mih={50} gap="20" direction="column" wrap="wrap">

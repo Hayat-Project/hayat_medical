@@ -27,7 +27,6 @@ function ThemeSwitcher({  isDarkMode }) {
 
 	return (
 		<Switch size="lg" color="dark.4"
-			visibleFrom='xs'
 			onLabel={sunIcon} offLabel={moonIcon} checked={computedColorScheme === 'dark' ? true : false}
 			onChange={(event) => {
 				setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');

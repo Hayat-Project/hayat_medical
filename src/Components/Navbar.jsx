@@ -9,81 +9,87 @@ import {
   IconLogout2,
   IconPlus,
 } from "@tabler/icons-react";
-import { Box, NavLink, Text, AppShell, Group, Button } from "@mantine/core";
+import { Box, NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
-
-const data = [
-  {
-    key: 0,
-    label: "Overview",
-    leftSection: <IconHome2 size="1rem" stroke={1.5} />,
-    mt: 35,
-    color: "blue",
-    path: "/",
-  },
-  {
-    key: 1,
-    headingText: (
-      <Text c="gray" size="xs" mt={20}>
-        PATIENT RELATION
-      </Text>
-    ),
-    label: "Appointments",
-    leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
-    mt: 11,
-    color: "blue",
-    path: "/Appointments",
-  },
-  {
-    key: 2,
-    label: "Patients",
-    leftSection: <IconUser size="1rem" stroke={1.5} />,
-    color: "blue",
-    path: "/Patients",
-  },
-  {
-    key: 3,
-    label: "Consultations Log",
-    leftSection: <IconArticle size="1rem" stroke={1.5} />,
-    color: "blue",
-    path: "/Consultationslog",
-  },
-  {
-    key: 4,
-    headingText: (
-      <Text c="gray" size="xs" mt={20}>
-        SUPPORT
-      </Text>
-    ),
-    label: "Messages",
-    leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
-    mt: 11,
-    color: "blue",
-    path: "/Messages",
-  },
-  {
-    key: 5,
-    label: "Setting",
-    leftSection: <IconSettings size="1rem" stroke={1.5} />,
-    mt: 400,
-    color: "blue",
-    path: "/Setting",
-  },
-  {
-    key: 6,
-    label: "Logout",
-    leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
-    color: "red",
-  },
-];
+import { useMediaQuery } from "@mantine/hooks";
 
 function Navbar() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(
+    localStorage.getItem("activeIndex")
+      ? parseInt(localStorage.getItem("activeIndex"))
+      : 0
+  );
+  var isLongDisplay = useMediaQuery(`(max-height: 1100px)`);
+  const data = [
+    {
+      key: 0,
+      label: "Overview",
+      leftSection: <IconHome2 size="1rem" stroke={1.5} />,
+      mt: 35,
+      color: "blue",
+      path: "/",
+    },
+    {
+      key: 1,
+      headingText: (
+        <Text c="gray" size="xs" mt={20}>
+          PATIENT RELATION
+        </Text>
+      ),
+      label: "Appointments",
+      leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
+      mt: 11,
+      color: "blue",
+      path: "/Appointments",
+    },
+    {
+      key: 2,
+      label: "Patients",
+      leftSection: <IconUser size="1rem" stroke={1.5} />,
+      color: "blue",
+      path: "/Patients",
+    },
+    {
+      key: 3,
+      label: "Consultations Log",
+      leftSection: <IconArticle size="1rem" stroke={1.5} />,
+      color: "blue",
+      path: "/Consultationslog",
+    },
+    {
+      key: 4,
+      headingText: (
+        <Text c="gray" size="xs" mt={20}>
+          SUPPORT
+        </Text>
+      ),
+      label: "Messages",
+      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
+      mt: 11,
+      color: "blue",
+      path: "/Messages",
+    },
+    {
+      key: 5,
+      label: "Setting",
+      leftSection: <IconSettings size="1rem" stroke={1.5} />,
+      mt: isLongDisplay ? '8vh' : '52vh',
+      color: "blue",
+      path: "/Setting",
+    },
+    {
+      key: 6,
+      label: "Logout",
+      leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
+      color: "red",
+    },
+  ];
 
   const items = data.map((item, index) => (
     <div key={item.key}>
       {item.headingText}
       <NavLink
+        style={{borderRadius: 8}}
         component={Link}
         variant="link"
         to={item.path}
@@ -93,6 +99,7 @@ function Navbar() {
         mt={item.mt}
         onClick={() => {
           setActive(index);
+          localStorage.setItem("activeIndex", index);
         }}
         color={item.color}
       />
@@ -106,7 +113,7 @@ function Navbar() {
           New Video Consultation
         </Button>
       </Group>
-      <Box w="100%">{items}</Box>
+      <Flex justify="space-between" direction="column" w="100%">{items}</Flex>
     </AppShell.Navbar>
   );
 }
