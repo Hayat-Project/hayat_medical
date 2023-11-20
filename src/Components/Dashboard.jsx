@@ -30,7 +30,7 @@ function Dashboard() {
 
 				<AppShell.Main>
 					<Routes>
-						<Route path="/Overview" element={<Overview />} />
+						<Route path="/" element={<Overview />} />
 						<Route path="/Appointments" element={<Appointments />} />
 						<Route path="/Patients" element={<Patients />} />
 						<Route path="/Consultationslog" element={<ConsultationsLog />} />

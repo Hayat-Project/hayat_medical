@@ -19,7 +19,7 @@ const data = [
     leftSection: <IconHome2 size="1rem" stroke={1.5} />,
     mt: 35,
     color: "blue",
-    path: "/Overview",
+    path: "/",
   },
   {
     key: 1,
