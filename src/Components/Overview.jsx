@@ -78,23 +78,29 @@ function Overview() {
             />
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md">
-              <Group justify="center">
-                <Calendar size="lg" />
-              </Group>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <TodoList />
             </Card>
           </Grid.Col>
+
           <Grid.Col span={{ base: 12, xs: 8 }}>
             <Card shadow="sm" padding="lg" radius="md">
               <ConsulatationLogWidget />
             </Card>
           </Grid.Col>
-
-          {/* <Grid.Col span={{ base: 12, xs: 4 }}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <TodoList />
+          <Grid.Col span={{ base: 12, xs: 4 }}>
+            <Card shadow="sm" padding="xl" radius="md">
+              <Group justify="center">
+                <Calendar size="md" />
+              </Group>
             </Card>
-          </Grid.Col> */}
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, xs: 8 }}>
+            <Card shadow="sm" padding="lg" radius="md">
+              <ConsulatationLogWidget />
+            </Card>
+          </Grid.Col>
         </Grid>
       </Flex>
     </Flex>
