@@ -1,4 +1,5 @@
 import { Flex, Grid, Skeleton, Card, Group } from "@mantine/core";
+import { Calendar } from "@mantine/dates";
 import MainHeader from "./MainHeader";
 import ConsulatationLogWidget from "./ConsultationsView/ConsultationLogWidget";
 const child = <Skeleton height={140} radius="md" animate={false} />;
@@ -18,13 +19,19 @@ function Overview() {
 
       <Flex mih={50} gap="20" direction="column" wrap="wrap">
         <Grid>
+          <Grid.Col span={{ base: 12, xs: 12 }}>{child}</Grid.Col>
           <Grid.Col span={{ base: 12, xs: 8 }}>
             <Card shadow="sm" padding="lg" radius="md">
               <ConsulatationLogWidget />
             </Card>
           </Grid.Col>
-          <Grid.Col span={{ base: 12, xs: 4 }}></Grid.Col>
-          <Grid.Col span={{ base: 12, xs: 12 }}>{child}</Grid.Col>
+          <Grid.Col span={{ base: 12, xs: 4 }}>
+            <Card shadow="sm" padding="lg" radius="md">
+              <Group justify="center">
+                <Calendar size="lg" />
+              </Group>
+            </Card>
+          </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 12 }}>{child}</Grid.Col>
         </Grid>
       </Flex>
