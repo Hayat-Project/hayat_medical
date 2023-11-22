@@ -1,8 +1,9 @@
 import { Text, Table, Avatar, Group, Badge, ActionIcon, ScrollArea } from "@mantine/core";
-import { IconArrowsSort } from "@tabler/icons-react";
+import { IconArrowsSort, IconInfoCircle } from "@tabler/icons-react";
 import { useState } from "react";
 import elements from "../../mockdata/upcomingAppointments.json";
 import { useMediaQuery } from "@mantine/hooks";
+import InfoIconWithProps from "../InfoIconWithProps";
 
 function UpcomingAppointments(props) {
 	const searchWord = props.searchWord;
@@ -45,7 +46,7 @@ function UpcomingAppointments(props) {
 					{
 						<Badge
 							variant="light"
-							color={row.status === "Done" ? "green" : "red" | row.status === "Waiting" ? "red" : "blue"}
+							color={row.status === "Confirmed" ? "green" : "red" | row.status === "Waiting" ? "red" : "blue"}
 							size="sm"
 							radius="lg"
 						>
@@ -72,7 +73,6 @@ function UpcomingAppointments(props) {
 							Patient Name{" "}
 							<ActionIcon
 								variant="transparent"
-								aria-label="Settings"
 								onClick={sortName}
 							>
 								<IconArrowsSort
@@ -84,7 +84,18 @@ function UpcomingAppointments(props) {
 						<Table.Th>Date</Table.Th>
 						<Table.Th>Starting Time</Table.Th>
 						<Table.Th>End Time</Table.Th>
-						<Table.Th>Status</Table.Th>
+						<Table.Th>
+							<Group gap={5}>Status
+								<InfoIconWithProps
+									badges={[
+										{ name: 'Waiting', color: 'red', description: 'Patient is outside and waiting' },
+										{ name: 'Scheduled', color: 'blue', description: 'Patient not arived yet' },
+										{ name: 'Confirmed', color: 'green', description: 'Patient confirmed appointment' },
+									]}
+									width={322}
+								/>
+							</Group>
+						</Table.Th>
 					</Table.Tr>
 				</Table.Thead>
 				<Table.Tbody>
