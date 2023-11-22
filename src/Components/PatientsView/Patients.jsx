@@ -5,12 +5,21 @@ import MainHeader from "../MainHeader";
 import SearchBarFilter from "../SearchBarFilter";
 
 function Patients() {
+<<<<<<< HEAD
 	const [search, setSearch] = useState("");
 	return (
 		<Flex mih={50} gap="lg" direction="column" wrap="wrap">
 			<Flex mih={50} direction="column" wrap="wrap">
 				<MainHeader header="Patients" subheader="View Your Patients!" type='patients' dataSize='10' />
 			</Flex>
+=======
+  const [search, setSearch] = useState("");
+  return (
+    <Flex mih={50} gap="xl" direction="column" wrap="wrap">
+      <Flex mih={50} direction="column" wrap="wrap">
+        <MainHeader header="Patients" subheader="View Your Patients!" type='patient' />
+      </Flex>
+>>>>>>> main
 
 			<Flex mih={50} gap="sm" direction="column" wrap="wrap">
 				<SearchBarFilter
