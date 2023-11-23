@@ -1,5 +1,5 @@
 .card {
-  background-color: var(--mantine-color-body);
+  background-color: var(--mantine-color-card);
 }
 
 .label {
@@ -17,7 +17,7 @@
 
 .inner {
   display: flex;
-
+  
   @media (max-width: $mantine-breakpoint-xs) {
     flex-direction: column;
   }

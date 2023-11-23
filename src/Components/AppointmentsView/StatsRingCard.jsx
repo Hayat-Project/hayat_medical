@@ -1,4 +1,4 @@
-import { Text, Card, RingProgress, Group, useMantineTheme } from '@mantine/core';
+import { Text, RingProgress, Group, useMantineTheme } from '@mantine/core';
 import classes from '../../css/StatsRingCard.module.css';
 
 const stats = [
@@ -19,43 +19,41 @@ function StatsRingCard() {
 	));
 
 	return (
-		<Card p="xl" radius="md" className={classes.card}>
-			<div className={classes.inner}>
+		<div className={classes.inner}>
+			<div>
+				<Text fz="xl" className={classes.label}>
+					Appointments Counter
+				</Text>
 				<div>
-					<Text fz="xl" className={classes.label}>
-						Appointments Counter
+					<Text className={classes.lead} mt={30}>
+						{completed}
 					</Text>
-					<div>
-						<Text className={classes.lead} mt={30}>
-							{completed}
-						</Text>
-						<Text fz="xs" c="dimmed">
-							Completed
-						</Text>
-					</div>
-					<Group mt="lg">{items}</Group>
+					<Text fz="xs" c="dimmed">
+						Completed
+					</Text>
 				</div>
-
-				<div className={classes.ring}>
-					<RingProgress
-						roundCaps
-						thickness={6}
-						size={150}
-						sections={[{ value: (completed / total) * 100, color: theme.primaryColor }]}
-						label={
-							<div>
-								<Text ta="center" fz="lg" className={classes.label}>
-									{((completed / total) * 100).toFixed(0)}%
-								</Text>
-								<Text ta="center" fz="xs" c="dimmed">
-									Completed
-								</Text>
-							</div>
-						}
-					/>
-				</div>
+				<Group mt="lg">{items}</Group>
 			</div>
-		</Card>
+
+			<div className={classes.ring}>
+				<RingProgress
+					roundCaps
+					thickness={6}
+					size={150}
+					sections={[{ value: (completed / total) * 100, color: theme.primaryColor }]}
+					label={
+						<div>
+							<Text ta="center" fz="lg" className={classes.label}>
+								{((completed / total) * 100).toFixed(0)}%
+							</Text>
+							<Text ta="center" fz="xs" c="dimmed">
+								Completed
+							</Text>
+						</div>
+					}
+				/>
+			</div>
+		</div>
 	);
 }
 

@@ -14,7 +14,7 @@ function Appointments() {
 	return (
 		<>
 			<Flex direction="column" mb={20}>
-				<MainHeader header="Appointments" subheader="View Your Schedule!" badge='false' />
+				<MainHeader header="Appointments" subheader="View Your Schedule!" badge={false}/>
 			</Flex>
 			<Grid grow>
 				<Grid.Col span={8}>
