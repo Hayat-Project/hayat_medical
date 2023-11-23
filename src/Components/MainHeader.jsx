@@ -8,7 +8,7 @@ function MainHeader(props) {
           <Title size="h2">{props.header}</Title>
         </Group>
 
-        {props.badge !== false && (
+        {props.badge !== false  && (
           <Badge variant="light" color="rgba(138, 74, 212, 0.97)" size="xs">
             {props.dataSize} {props.type}
           </Badge>

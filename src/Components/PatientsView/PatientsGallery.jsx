@@ -1,9 +1,12 @@
 import React from "react";
+import { useMediaQuery } from "@mantine/hooks";
+import patientsData from "../../mockdata/patientsData.json"; 
 import { SimpleGrid, Card, Text, Button, Group, Avatar, Stack } from "@mantine/core";
-import patientsData from "../../mockdata/patientsData.json"; // Import the JSON file
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord;
+  const isLargeDisplay = useMediaQuery(`(max-width: 1920px)`);
+
   return (
     <SimpleGrid
       cols={{ base: 1, sm: 2, lg: 4 }}
