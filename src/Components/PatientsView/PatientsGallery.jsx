@@ -1,12 +1,7 @@
 import React from "react";
-<<<<<<< HEAD
-import { Card, Text, Button, Group, Grid, Avatar, Stack } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import patientsData from "../../mockdata/patientsData.json"; 
-=======
 import { SimpleGrid, Card, Text, Button, Group, Avatar, Stack } from "@mantine/core";
-import patientsData from "../../mockdata/patientsData.json"; // Import the JSON file
->>>>>>> main
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord;

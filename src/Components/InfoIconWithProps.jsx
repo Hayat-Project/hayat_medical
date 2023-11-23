@@ -10,7 +10,7 @@ function InfoIconWithProps(props) {
             <HoverCard.Dropdown>
                 <Group>
                     {props.badges.map((badge) => (
-                        <Group>
+                        <Group key={badge.name}>
                             <Badge variant="light"
                                 key={badge.name} color={badge.color} size="sm">
                                 {badge.name}

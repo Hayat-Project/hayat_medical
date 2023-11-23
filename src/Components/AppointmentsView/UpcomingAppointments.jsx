@@ -1,5 +1,5 @@
 import { Text, Table, Avatar, Group, Badge, ActionIcon, ScrollArea } from "@mantine/core";
-import { IconArrowsSort, IconInfoCircle } from "@tabler/icons-react";
+import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
 import elements from "../../mockdata/upcomingAppointments.json";
 import { useMediaQuery } from "@mantine/hooks";

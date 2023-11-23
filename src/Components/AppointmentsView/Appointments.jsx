@@ -4,6 +4,7 @@ import MainHeader from '../MainHeader';
 import UpcomingAppointments from './UpcomingAppointments';
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
+import StatsRingCard from './StatsRingCard';
 
 function Appointments() {
 	const [search, setSearch] = useState("");
@@ -18,27 +19,27 @@ function Appointments() {
 			<Grid grow>
 				<Grid.Col span={8}>
 					{/* Upcoming Patients*/}
-					<Card shadow="sm" padding="lg" withBorder h={isLongDisplay ? 800 : 1100}>
+					<Card shadow="sm" padding="lg" withBorder h={isLongDisplay ? 780 : 1100}>
 						<Group>
 							<Title order={4} >Upcoming Patients</Title>
 						</Group>
-							<UpcomingAppointments searchWord={search.toLowerCase()} />
+						<UpcomingAppointments searchWord={search.toLowerCase()} />
 					</Card>
 				</Grid.Col>
 				<Grid.Col span={4}>
 					<Grid>
 						<Grid.Col>
 							{/* Calendar Card */}
-							<Card shadow="sm" padding="lg" radius="md" withBorder>
+							<Card shadow="sm" padding="xl" radius="md" withBorder>
 								<Group justify='center'>
-									<Calendar size={isMobile ? 'sm' : 'xl'} />
+									<StatsRingCard />
 								</Group>
 							</Card>
 						</Grid.Col>
 						<Grid.Col>
 							<Card shadow="sm" padding="lg" radius="md" withBorder>
-								<Group>
-									<Text> Add something here </Text>
+								<Group justify='center'>
+									<Calendar size={isMobile ? 'sm' : 'xl'} />
 								</Group>
 							</Card>
 						</Grid.Col>
