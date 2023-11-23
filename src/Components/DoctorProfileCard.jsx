@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text, Button, Group, Grid, Avatar, Stack } from "@mantine/core";
+import { Text, Group, Avatar, Stack } from "@mantine/core";
 
 function DoctorProfileCard() {
   return (

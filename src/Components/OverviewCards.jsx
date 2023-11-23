@@ -1,5 +1,4 @@
-import { Card, Image, Text, Center, Container, Group } from "@mantine/core";
-import { IconUser, IconClock } from "@tabler/icons-react";
+import { Card, Text, Center } from "@mantine/core";
 
 function OverviewCards(props) {
   return (

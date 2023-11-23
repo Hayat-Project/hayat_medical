@@ -1,4 +1,4 @@
-import { Flex, Grid, Skeleton, Card, Group, Stack } from "@mantine/core";
+import { Flex, Grid, Skeleton, Card, Group } from "@mantine/core";
 import { Calendar } from "@mantine/dates";
 import MainHeader from "./MainHeader";
 import ConsulatationLogWidget from "./ConsultationsView/ConsultationLogWidget";
