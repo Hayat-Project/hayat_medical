@@ -1,14 +1,15 @@
-import { Menu, Avatar, rem } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Menu, Avatar, rem } from "@mantine/core";
+import { Link } from "react-router-dom";
 
-import {
-	IconSettings,
-	IconUserCircle,
-	IconLogout,
-} from '@tabler/icons-react';
+import { IconSettings, IconUserCircle, IconLogout } from "@tabler/icons-react";
 import { IoMailOutline } from "react-icons/io5";
 
 function ProfileAvatar() {
+	const handleClickMessages = (index) => {
+		localStorage.setItem("activeIndex", index);
+		setActive(index);
+	};
+
 	return (
 		<Menu offset={20} withArrow shadow="md" width={250}>
 			<Menu.Target>
@@ -22,24 +23,44 @@ function ProfileAvatar() {
 
 			<Menu.Dropdown>
 				<Menu.Label>General</Menu.Label>
-				<Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
+				<Menu.Item
+					// component="a"
+					// href="/Profile"
+					leftSection={
+						<IconUserCircle style={{ width: rem(14), height: rem(14) }} />
+					}
+					onClick={() => handleClickMessages(3)}
+				>
+					View My Profile
+				</Menu.Item>
+				<Menu.Item
+					component="a"
+					href="/Setting"
+					leftSection={
+						<IconSettings style={{ width: rem(14), height: rem(14) }} />
+					}
+					onClick={() => handleClickMessages(5)}
+				>
 					Settings
 				</Menu.Item>
-				<Menu.Item leftSection={<IoMailOutline style={{ width: rem(14), height: rem(14) }} />}>
+				<Menu.Item
+					component="a"
+					href="/Messages"
+					leftSection={
+						<IoMailOutline style={{ width: rem(14), height: rem(14) }} />
+					}
+					onClick={() => handleClickMessages(4)}
+				>
 					Messages
 				</Menu.Item>
 
 				<Menu.Divider />
 
-				<Menu.Label>Profile</Menu.Label>
-				<Menu.Item
-					leftSection={<IconUserCircle style={{ width: rem(14), height: rem(14) }} />}
-				>
-					View My Profile
-				</Menu.Item>
 				<Menu.Item
 					color="red"
-					leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+					leftSection={
+						<IconLogout style={{ width: rem(14), height: rem(14) }} />
+					}
 				>
 					Log out
 				</Menu.Item>
