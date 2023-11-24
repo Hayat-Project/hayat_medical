@@ -37,7 +37,16 @@ function binaryToString(binary) {
     throw new Error('Invalid binary string');
   }
 
-  return chunks.map(chunk => String.fromCharCode(parseInt(chunk, 2))).join('');
+  const extractedString = chunks
+    .map(chunk => String.fromCharCode(parseInt(chunk, 2)))
+    .join('');
+
+  const endIndex = extractedString.indexOf('##END##');
+  if (endIndex !== -1) {
+    return extractedString.slice(0, endIndex);
+  }
+
+  return extractedString;
 }
 
 async function main() {

@@ -54,7 +54,7 @@ function stringToBinary(str) {
 
 async function main() {
   try {
-    const myString = 'Ahmad nasser and Khaled Albaz';
+    const myString = 'Ahmad nasser and Khaled Albaz ##END##';
     const binaryString = stringToBinary(myString);
     const { redPixels, greenPixels, bluePixels } = await extractPixels(imagePath);
 
