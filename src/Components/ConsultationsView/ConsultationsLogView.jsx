@@ -3,7 +3,7 @@ import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
 import elements from "../../mockdata/data.json";
 
-function ConsultationsLogTable(props) {
+function ConsultationsLogView(props) {
   const searchWord = props.searchWord;
   const [sort, setSort] = useState("");
   const [defaultSort, setDefaultSort] = useState("");
@@ -96,4 +96,4 @@ function ConsultationsLogTable(props) {
   );
 }
 
-export default ConsultationsLogTable;
+export default ConsultationsLogView;

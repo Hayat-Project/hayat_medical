@@ -1,7 +1,6 @@
-import { Grid, Card, Group, SimpleGrid } from "@mantine/core";
+import { Grid, Card, Group, SimpleGrid, Title } from "@mantine/core";
 import { Calendar } from "@mantine/dates";
 import MainHeader from "../MainHeader";
-import ConsulatationLogWidget from "../ConsultationsView/ConsultationLogWidget";
 import TodoList from "./TodoList";
 import OverviewCards from "./OverviewCards";
 import { useMediaQuery } from "@mantine/hooks";
@@ -12,6 +11,8 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import DoctorProfileCard from "./DoctorProfileCard";
+import UpcomingAppointments from "../AppointmentsView/UpcomingAppointments";
+import ConsulatationLogWidget from "../ConsultationsView/ConsultationLogWidget";
 
 function Overview() {
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
@@ -73,11 +74,14 @@ function Overview() {
                 }
               />
             </SimpleGrid>
-            <Card shadow="sm" padding="lg" radius="md">
-              <ConsulatationLogWidget />
+            <Card shadow="sm" padding="lg" h={316} radius="md">
+              <Title order={4}>Upcoming Patients</Title>
+              <UpcomingAppointments />
             </Card>
-            <Card shadow="sm" padding="lg" radius="md">
-              <ConsulatationLogWidget />
+            <Card shadow="sm" padding="lg" h={316} radius="md">
+              <Title order={4}>Consulatations Log</Title>
+              {/* ToDo: Change to  ConsulatationsLogView, replace this and then delete it*/}
+              <ConsulatationLogWidget/>
             </Card>
           </SimpleGrid>
         </Grid.Col>
