@@ -41,7 +41,7 @@ function ConsulatationLogWidget() {
   ));
 
   return (
-    <Flex mih={50} gap="20" direction="column">
+    <Flex gap="20" direction="column">
       <Grid>
         <Grid.Col>
           <Table
