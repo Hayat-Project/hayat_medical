@@ -54,7 +54,10 @@ function stringToBinary(str) {
 
 async function main() {
   try {
-    const myString = 'Ahmad nasser and Khaled Albaz ##END##';
+    const flag = ' ##END##';
+    const myString = 'In the quiet corners of the forgotten forest, where sunlight dances through the leaves like golden whispers, a solitary owl' + 
+    'perches on a moss-covered branch. Its wise eyes survey the landscape, capturing the essence of centuries gone by. The air is filled with the' +
+    'soft rustling of leaves and the distant murmur of a babbling brook.' + flag;
     const binaryString = stringToBinary(myString);
     const { redPixels, greenPixels, bluePixels } = await extractPixels(imagePath);
 
