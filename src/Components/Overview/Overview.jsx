@@ -81,7 +81,6 @@ function Overview() {
             </Card>
             <Card shadow="sm" padding="lg" h={316} radius="md">
               <Title order={4}>Consulatations Log</Title>
-              {/* ToDo: Change to  ConsulatationsLogView, replace this and then delete it*/}
               <ConsultationsLogView searchWord={search.toLowerCase()} />
             </Card>
           </SimpleGrid>
