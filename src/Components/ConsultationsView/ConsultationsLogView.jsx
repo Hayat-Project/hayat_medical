@@ -1,4 +1,13 @@
-import { Text, Table, Avatar, Group, Badge, ActionIcon } from "@mantine/core";
+import {
+  Text,
+  Table,
+  Avatar,
+  Group,
+  Badge,
+  ActionIcon,
+  ScrollArea,
+} from "@mantine/core";
+import InfoIconWithProps from "../InfoIconWithProps";
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
 import elements from "../../mockdata/data.json";
@@ -62,37 +71,58 @@ function ConsultationsLogView(props) {
     ));
 
   return (
-    <Table
-      verticalSpacing="sm"
-      highlightOnHover
-      withColumnBorders
-      withRowBorders={false}
-      striped
-    >
-      <Table.Thead>
-        <Table.Tr>
-          <Table.Th>
-            Patient Name{" "}
-            <ActionIcon
-              variant="transparent"
-              aria-label="Settings"
-              onClick={sortName}
-            >
-              <IconArrowsSort
-                style={{ width: "70%", height: "70%" }}
-                stroke={1.5}
-              />
-            </ActionIcon>
-          </Table.Th>
-          <Table.Th>Online/Offline </Table.Th>
-          <Table.Th>Date</Table.Th>
-          <Table.Th>Starting Time</Table.Th>
-          <Table.Th>End Time</Table.Th>
-          <Table.Th>Status</Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
-    </Table>
+    <ScrollArea style={{ height: "100%", width: "100%" }}>
+      <Table
+        verticalSpacing="sm"
+        highlightOnHover
+        withColumnBorders
+        withRowBorders={false}
+        striped
+      >
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>
+              Patient Name{" "}
+              <ActionIcon
+                variant="transparent"
+                aria-label="Settings"
+                onClick={sortName}
+              >
+                <IconArrowsSort
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Table.Th>
+            <Table.Th>Online/Offline </Table.Th>
+            <Table.Th>Date</Table.Th>
+            <Table.Th>Starting Time</Table.Th>
+            <Table.Th>End Time</Table.Th>
+            <Table.Th>
+              <Group gap={5}>
+                Status
+                <InfoIconWithProps
+                  badges={[
+                    {
+                      name: "Canceled",
+                      color: "red",
+                      description: "IDK WHAT TO WRITE ",
+                    },
+                    {
+                      name: "Done",
+                      color: "green",
+                      description: "IDK WHAT TO WRITE ",
+                    },
+                  ]}
+                  width={322}
+                />
+              </Group>
+            </Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
+      </Table>
+    </ScrollArea>
   );
 }
 

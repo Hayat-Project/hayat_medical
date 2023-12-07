@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Group, Avatar, Stack } from "@mantine/core";
 
-function DoctorProfileCard() {
+function DoctorProfileCard(props) {
   return (
     <Group>
       <Group justify="center">
@@ -12,23 +12,23 @@ function DoctorProfileCard() {
       </Group>
       <Group justify="center" mt="md" mb="xs">
         <Stack gap="0">
-          <Text size="xl">Dr.Ahmad Aljaghbeir</Text>
+          <Text size="xl">{props.name}</Text>
           <Text c="dimmed" size="sm">
-            Head of general Surgery
+            {props.position}
           </Text>
           <Group justify="center" mt="md" mb="xs">
             <Text size="md" fw={700}>
               Overall Rating
             </Text>
             <Text c="blue" size="md">
-              4.7
+              {props.rate}
             </Text>
             <Text size="md">-</Text>
             <Text size="md" fw={700}>
               Total Patients
             </Text>
             <Text c="blue" size="md">
-              2,8K
+              {props.Patients}
             </Text>
           </Group>
         </Stack>

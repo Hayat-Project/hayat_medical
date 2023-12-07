@@ -4,6 +4,7 @@ import MainHeader from "../MainHeader";
 import TodoList from "./TodoList";
 import OverviewCards from "./OverviewCards";
 import { useMediaQuery } from "@mantine/hooks";
+import { useState } from "react";
 import {
   IconUser,
   IconClock,
@@ -12,11 +13,11 @@ import {
 } from "@tabler/icons-react";
 import DoctorProfileCard from "./DoctorProfileCard";
 import UpcomingAppointments from "../AppointmentsView/UpcomingAppointments";
-import ConsulatationLogWidget from "../ConsultationsView/ConsultationLogWidget";
+import ConsultationsLogView from "../ConsultationsView/ConsultationsLogView";
 
 function Overview() {
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
-
+  const [search, setSearch] = useState("");
   return (
     <>
       <MainHeader
@@ -26,7 +27,7 @@ function Overview() {
       />
 
       <Grid mt={15}>
-        <Grid.Col span={isMobile ? 12 : 8} >
+        <Grid.Col span={isMobile ? 12 : 8}>
           <SimpleGrid>
             <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }}>
               <OverviewCards
@@ -80,8 +81,7 @@ function Overview() {
             </Card>
             <Card shadow="sm" padding="lg" h={316} radius="md">
               <Title order={4}>Consulatations Log</Title>
-              {/* ToDo: Change to  ConsulatationsLogView, replace this and then delete it*/}
-              <ConsulatationLogWidget/>
+              <ConsultationsLogView searchWord={search.toLowerCase()} />
             </Card>
           </SimpleGrid>
         </Grid.Col>
@@ -89,7 +89,12 @@ function Overview() {
         <Grid.Col span={isMobile ? 12 : 4}>
           <SimpleGrid cols={1}>
             <Card shadow="sm" padding="23" radius="md">
-              <DoctorProfileCard />
+              <DoctorProfileCard
+                name="Dr. Ahmad Aljaghbeir"
+                position="Head of general Surgery"
+                rate="4.7"
+                Patients="2,8k"
+              />
             </Card>
             <Card shadow="sm" padding="lg" radius="md" withBorder>
               <TodoList />
