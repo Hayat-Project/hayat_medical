@@ -15,10 +15,11 @@ function PatientProfileCard(props) {
           <Group justify="center">
             <Text size="xl">{props.name}</Text>
           </Group>
-
-          <Text c="dimmed" size="sm">
-            {props.email}
-          </Text>
+          <Group justify="center">
+            <Text c="dimmed" size="sm">
+              {props.email}
+            </Text>
+          </Group>
         </Stack>
       </Group>
 

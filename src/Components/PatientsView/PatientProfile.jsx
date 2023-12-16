@@ -37,7 +37,7 @@ function PatientProfile(props) {
           <SimpleGrid>
             <PatientProfileCard
               name={selectedPatient.name}
-              email="ahmadnajjagbeer@gmail.com"
+              email={selectedPatient.email}
               avatar={selectedPatient.src}
             />
           </SimpleGrid>
