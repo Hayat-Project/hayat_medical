@@ -2,26 +2,24 @@ import { Card, Tabs, rem } from "@mantine/core";
 import { IconBodyScan, IconReportMedical } from "@tabler/icons-react";
 import ReportTable from "./ReportTable";
 const reports = [
-  { id: 1, reportName: "CheckUP Result", date: "Mar 24 2023", view: "view" },
+  { id: 1, reportName: "CheckUP Result", date: "Mar 24 2023" },
   {
     id: 2,
     reportName: "Medicine Prescription",
     date: "Sep 8 2022",
-    view: "view",
   },
-  { id: 3, reportName: "CheckUp Result", date: "Jan 12 2023", view: "view" },
+  { id: 3, reportName: "CheckUp Result", date: "Jan 12 2023" },
   {
     id: 4,
     reportName: "Root Cleaning Report",
     date: "Jan 12 2023",
-    view: "view",
   },
 ];
 const Screening = [
-  { id: 1, reportName: "Mass", date: "Mar 24 2023", view: "view" },
-  { id: 2, reportName: "multiphasic", date: "Sep 8 2022", view: "view" },
-  { id: 3, reportName: "opportunistic", date: "Jan 12 2023", view: "view" },
-  { id: 4, reportName: "Targeted", date: "Jan 12 2023", view: "view" },
+  { id: 1, reportName: "Mass", date: "Mar 24 2023" },
+  { id: 2, reportName: "multiphasic", date: "Sep 8 2022" },
+  { id: 3, reportName: "opportunistic", date: "Jan 12 2023" },
+  { id: 4, reportName: "Targeted", date: "Jan 12 2023" },
 ];
 
 function ReportsTabs() {

@@ -1,4 +1,5 @@
-import { Table, ScrollArea } from "@mantine/core";
+import { Table, Button } from "@mantine/core";
+import { IconEye } from "@tabler/icons-react";
 
 function ReportTable(props) {
   const elements = props.data;
@@ -6,7 +7,11 @@ function ReportTable(props) {
     <Table.Tr key={element.id}>
       <Table.Td>{element.reportName}</Table.Td>
       <Table.Td>{element.date}</Table.Td>
-      <Table.Td>{element.view}</Table.Td>
+      <Table.Td>
+        <Button rightSection={<IconEye size={14} />} size="xs">
+          View
+        </Button>
+      </Table.Td>
     </Table.Tr>
   ));
 
