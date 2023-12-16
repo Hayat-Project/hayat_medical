@@ -10,10 +10,12 @@ import {
   Avatar,
   Stack,
 } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord;
   const isLargeDisplay = useMediaQuery(`(max-width: 1920px)`);
+  const navigate = useNavigate();
 
   return (
     <SimpleGrid
@@ -68,7 +70,9 @@ function PatientsGallery(props) {
               fullWidth
               mt="md"
               radius="md"
-              onClick={() => props.handleClick(patient.id)}
+              onClick={() =>
+                navigate(`/Patients/Patient Profile/${patient.id}`)
+              }
             >
               View Patient
             </Button>

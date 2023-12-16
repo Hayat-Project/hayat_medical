@@ -35,7 +35,7 @@ function Dashboard() {
             <Route path="/Appointments" element={<Appointments />} />
             <Route path="/Patients" element={<Patients />} />
             <Route
-              path="/Patients/Patient Profile"
+              path="/Patients/Patient Profile/:selectedPatientId"
               element={<PatientProfile />}
             />
             <Route path="/Consultationslog" element={<ConsultationsLog />} />

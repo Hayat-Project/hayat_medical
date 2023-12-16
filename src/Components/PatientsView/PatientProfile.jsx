@@ -9,13 +9,13 @@ import {
   Avatar,
   Stack,
 } from "@mantine/core";
+import { useParams } from "react-router-dom";
 
 function PatientProfile(props) {
-  const selectedPatientId = 253735;
+  const { selectedPatientId } = useParams();
   const selectedPatient = patientsData.find(
     (patient) => patient.id === selectedPatientId
   );
-  console.log(selectedPatient);
 
   if (!selectedPatient) {
     // Handle the case where the patient with the specified ID is not found

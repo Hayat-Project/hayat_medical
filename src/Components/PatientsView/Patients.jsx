@@ -3,16 +3,11 @@ import { Flex } from "@mantine/core";
 import { useState } from "react";
 import MainHeader from "../MainHeader";
 import SearchBarFilter from "../SearchBarFilter";
-import PatientProfile from "./PatientProfile";
 
 function Patients() {
   const [search, setSearch] = useState("");
-  const [showPatientProfile, setShowPatientProfile] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState(null);
 
-  return showPatientProfile ? (
-    <PatientProfile />
-  ) : (
+  return (
     <Flex mih={50} gap="lg" direction="column" wrap="wrap">
       <Flex mih={50} direction="column" wrap="wrap">
         <MainHeader
