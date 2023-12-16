@@ -6,6 +6,8 @@
       "age": "20",
       "gender": "Male",
       "nationality": "Palestine",
+      "phone": "058 5654 888",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
     },
     {
@@ -15,6 +17,8 @@
       "age": "32",
       "gender": "Female",
       "nationality": "USA",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1616268164880-673b3ba611bb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3Mzk3&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -24,6 +28,8 @@
       "age": "37",
       "gender": "Male",
       "nationality": "Canada",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NDIz&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -33,6 +39,8 @@
       "age": "27",
       "gender": "Female",
       "nationality": "Australia",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NDk4&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -42,6 +50,8 @@
       "age": "22",
       "gender": "Male",
       "nationality": "Egypt",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1600603405959-6d623e92445c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTIw&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -51,6 +61,8 @@
       "age": "34",
       "gender": "Female",
       "nationality": "Spain",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1575632312417-71da8ed4992d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTM1&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -60,6 +72,8 @@
       "age": "30",
       "gender": "Male",
       "nationality": "India",
+      "phone": "058 5654 887",
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTUw&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -69,6 +83,8 @@
       "age": "42",
       "gender": "Female",
       "nationality": "United Kingdom",
+      "phone": "058 5654 887",  
+      "insurance": "Daman",
       "src": "https://images.unsplash.com/photo-1530785602389-07594beb8b73?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTc1&ixlib=rb-4.0.3&q=80&w=250"
     }
   ]

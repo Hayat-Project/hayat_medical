@@ -1,18 +1,16 @@
 import MainHeader from "../MainHeader";
 import patientsData from "../../mockdata/patientsData.json";
-import {
-  SimpleGrid,
-  Card,
-  Text,
-  Button,
-  Group,
-  Avatar,
-  Stack,
-} from "@mantine/core";
+import { SimpleGrid, Grid } from "@mantine/core";
 import { useParams } from "react-router-dom";
+import PatientProfileCard from "./PatientProfileCard";
+import { useMediaQuery } from "@mantine/hooks";
+import PatientInfoCard from "./PatientInfoCard";
+import ReportsTable from "./ReportsTabs";
 
 function PatientProfile(props) {
   const { selectedPatientId } = useParams();
+  const isMobile = useMediaQuery(`(max-width: 1200px)`);
+
   const selectedPatient = patientsData.find(
     (patient) => patient.id === selectedPatientId
   );
@@ -34,47 +32,35 @@ function PatientProfile(props) {
         dataSize="10"
         badge={false}
       />
-      <SimpleGrid
-        cols={{ base: 1, sm: 2, lg: 4 }}
-        spacing={{ base: 10, sm: "lg" }}
-        verticalSpacing={{ base: "md", sm: "lg" }}
-      >
-        <Card
-          key={selectedPatient.id}
-          shadow="sm"
-          padding="lg"
-          radius="md"
-          withBorder
-        >
-          <Group justify="center">
-            <Card.Section>
-              <Avatar size={70} src={selectedPatient.src} />
-            </Card.Section>
-          </Group>
-          <Group justify="center" mt="md" mb="xs">
-            <Text size="lg">{selectedPatient.name}</Text>
-          </Group>
-          <Group mt="md" mb="xs">
-            <Stack align="flex-start" justify="flex-start" gap="xs">
-              <Text size="sm">
-                <b>ID</b>: {selectedPatient.id}
-              </Text>
-              <Text size="sm">
-                <b>DOB</b>: {selectedPatient.dob}
-              </Text>
-              <Text size="sm">
-                <b>Age</b>: {selectedPatient.age}
-              </Text>
-              <Text size="sm">
-                <b>Gender</b>: {selectedPatient.gender}
-              </Text>
-              <Text size="sm">
-                <b>Nationality</b>: {selectedPatient.nationality}
-              </Text>
-            </Stack>
-          </Group>
-        </Card>
-      </SimpleGrid>
+      <Grid mt={15}>
+        <Grid.Col span={isMobile ? 12 : 3}>
+          <SimpleGrid>
+            <PatientProfileCard
+              name={selectedPatient.name}
+              email="ahmadnajjagbeer@gmail.com"
+              avatar={selectedPatient.src}
+            />
+          </SimpleGrid>
+        </Grid.Col>
+        <Grid.Col span={isMobile ? 12 : 4}>
+          <SimpleGrid>
+            <PatientInfoCard
+              id={selectedPatient.id}
+              age={selectedPatient.age}
+              gender={selectedPatient.gender}
+              dob={selectedPatient.dob}
+              nationality={selectedPatient.nationality}
+              phone={selectedPatient.phone}
+              insurance={selectedPatient.insurance}
+            />
+          </SimpleGrid>
+        </Grid.Col>
+        <Grid.Col span={isMobile ? 12 : 5}>
+          <SimpleGrid>
+            <ReportsTable />
+          </SimpleGrid>
+        </Grid.Col>
+      </Grid>
     </>
   );
 }
