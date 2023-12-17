@@ -10,6 +10,7 @@ import Patients from "../Components/PatientsView/Patients";
 import Messages from "./Messages";
 import Setting from "./Setting";
 import PatientProfile from "./PatientsView/PatientProfile";
+import NewConsultation from "./PatientsView/NewConsultation";
 
 function Dashboard() {
   const [opened, { toggle }] = useDisclosure();
@@ -37,6 +38,10 @@ function Dashboard() {
             <Route
               path="/Patients/Patient Profile/:selectedPatientId"
               element={<PatientProfile />}
+            />
+            <Route
+              path="/Patients/Patient Profile/New Consultation"
+              element={<NewConsultation />}
             />
             <Route path="/Consultationslog" element={<ConsultationsLog />} />
             <Route path="/Messages" element={<Messages />} />

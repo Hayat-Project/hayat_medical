@@ -1,10 +1,8 @@
-import { Badge, Button, Group, Table, Title } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { Badge, Button, Group, Table } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../InfoIconWithProps";
 
 function AppointmentHistoryCard(props) {
-  const isMobile = useMediaQuery(`(max-width: 1200px)`);
   const elements = props.data;
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>

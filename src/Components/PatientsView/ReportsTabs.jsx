@@ -1,8 +1,9 @@
 import { Card, Tabs, rem } from "@mantine/core";
 import { IconBodyScan, IconReportMedical } from "@tabler/icons-react";
 import ReportTable from "./ReportTable";
+
 const reports = [
-  { id: 1, reportName: "CheckUP Result", date: "Mar 24 2023" },
+  { id: 1, reportName: "CheckUp Result", date: "Mar 24 2023" },
   {
     id: 2,
     reportName: "Medicine Prescription",

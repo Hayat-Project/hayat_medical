@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import PatientProfileCard from "./PatientProfileCard";
 import { useMediaQuery } from "@mantine/hooks";
 import PatientInfoCard from "./PatientInfoCard";
-import ReportsTable from "./ReportsTabs";
+import ReportsTabs from "./ReportsTabs";
 
 import AppointmentHistoryTabs from "./AppointmentHistoryTabs";
 
@@ -62,7 +62,7 @@ function PatientProfile(props) {
         </Grid.Col>
         <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
-            <ReportsTable />
+            <ReportsTabs />
           </SimpleGrid>
         </Grid.Col>
       </Grid>
