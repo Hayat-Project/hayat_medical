@@ -1,6 +1,6 @@
-import { Card, Tabs, rem, Title } from "@mantine/core";
+import { Card, Tabs, rem, Title, Group, Button } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { IconReportMedical, IconBodyScan } from "@tabler/icons-react";
+import { IconPlus, IconPhoto } from "@tabler/icons-react";
 import AppointmentHistoryCard from "./AppointmentHistoryCard";
 const elements = [
   {
@@ -88,9 +88,15 @@ function AppointmentHistoryTabs(props) {
 
   return (
     <>
-      <Title mt={7} order={3}>
-        Appointments
-      </Title>
+      <Group justify="space-between">
+        <Title mt={7} order={3}>
+          Appointments
+        </Title>
+        <Button variant="subtle" leftSection={<IconPlus size={14} />}>
+          Add Appointment
+        </Button>
+      </Group>
+
       <Card mt={7} shadow="sm" h={520} withBorder>
         <Tabs radius="md" defaultValue="Appointment">
           <Tabs.List>
