@@ -1,17 +1,11 @@
-import React from "react";
 import {
-  Text,
-  Group,
-  Avatar,
-  Stack,
-  Button,
   Card,
   Grid,
   SimpleGrid,
 } from "@mantine/core";
 
 import { useMediaQuery } from "@mantine/hooks";
-import TextCompounant from "./TextCompounant";
+import TextComponent from "./TextComponent";
 
 function PatientInfoCard(props) {
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
@@ -20,18 +14,18 @@ function PatientInfoCard(props) {
       <Grid>
         <Grid.Col span={isMobile ? 12 : 4}>
           <SimpleGrid>
-            <TextCompounant header="ID" text={props.id} />
-            <TextCompounant header="Age" text={props.age} />
-            <TextCompounant header="Insurance" text={props.insurance} />
-            <TextCompounant header="Allergies" text={props.allergies} />
+            <TextComponent header="ID" text={props.id} />
+            <TextComponent header="Age" text={props.age} />
+            <TextComponent header="Insurance" text={props.insurance} />
+            <TextComponent header="Allergies" text={props.allergies} />
           </SimpleGrid>
         </Grid.Col>
 
         <Grid.Col span={isMobile ? 12 : 4}>
           <SimpleGrid>
-            <TextCompounant header="Gender" text={props.gender} />
-            <TextCompounant header="Nationality Day" text={props.nationality} />
-            <TextCompounant
+            <TextComponent header="Gender" text={props.gender} />
+            <TextComponent header="Nationality Day" text={props.nationality} />
+            <TextComponent
               header="Last Appointment"
               text={props.lastAppointment}
             />
@@ -40,9 +34,9 @@ function PatientInfoCard(props) {
 
         <Grid.Col span={isMobile ? 12 : 4}>
           <SimpleGrid>
-            <TextCompounant header="Birth Day" text={props.dob} />
-            <TextCompounant header="Mobile Number" text={props.phone} />
-            <TextCompounant header="National ID" text={props.nationalid} />
+            <TextComponent header="Birth Day" text={props.dob} />
+            <TextComponent header="Mobile Number" text={props.phone} />
+            <TextComponent header="National ID" text={props.nationalid} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>

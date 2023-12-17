@@ -1,8 +1,9 @@
 import { Card, Tabs, rem } from "@mantine/core";
 import { IconBodyScan, IconReportMedical } from "@tabler/icons-react";
 import ReportTable from "./ReportTable";
+
 const reports = [
-  { id: 1, reportName: "CheckUP Result", date: "Mar 24 2023" },
+  { id: 1, reportName: "CheckUp Result", date: "Mar 24 2023" },
   {
     id: 2,
     reportName: "Medicine Prescription",
@@ -16,10 +17,10 @@ const Screening = [
   { id: 3, reportName: "opportunistic", date: "Jan 12 2023" },
 ];
 
-function ReportsTabs() {
+function ReportsTabs(props) {
   const iconStyle = { width: rem(19), height: rem(19) };
   return (
-    <Card shadow="sm" h={263} withBorder>
+    <Card shadow="sm" h={props.height} withBorder>
       <Tabs radius="md" defaultValue="Screening">
         <Tabs.List>
           <Tabs.Tab
