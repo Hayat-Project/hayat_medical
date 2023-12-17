@@ -62,7 +62,7 @@ function PatientProfile(props) {
         </Grid.Col>
         <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
-            <ReportsTabs />
+            <ReportsTabs height={263} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>
