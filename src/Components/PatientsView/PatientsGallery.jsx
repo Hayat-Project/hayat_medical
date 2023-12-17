@@ -1,11 +1,21 @@
 import React from "react";
 import { useMediaQuery } from "@mantine/hooks";
-import patientsData from "../../mockdata/patientsData.json"; 
-import { SimpleGrid, Card, Text, Button, Group, Avatar, Stack } from "@mantine/core";
+import patientsData from "../../mockdata/patientsData.json";
+import {
+  SimpleGrid,
+  Card,
+  Text,
+  Button,
+  Group,
+  Avatar,
+  Stack,
+} from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord;
   const isLargeDisplay = useMediaQuery(`(max-width: 1920px)`);
+  const navigate = useNavigate();
 
   return (
     <SimpleGrid
@@ -20,7 +30,13 @@ function PatientsGallery(props) {
             : item.name.toLowerCase().includes(searchWord);
         })
         .map((patient) => (
-          <Card key={patient.id} shadow="sm" padding="lg" radius="md" withBorder>
+          <Card
+            key={patient.id}
+            shadow="sm"
+            padding="lg"
+            radius="md"
+            withBorder
+          >
             <Group justify="center">
               <Card.Section>
                 <Avatar size={70} src={patient.src} />
@@ -54,8 +70,9 @@ function PatientsGallery(props) {
               fullWidth
               mt="md"
               radius="md"
-              component="a"
-              href="/Patients"
+              onClick={() =>
+                navigate(`/Patients/Patient Profile/${patient.id}`)
+              }
             >
               View Patient
             </Button>
