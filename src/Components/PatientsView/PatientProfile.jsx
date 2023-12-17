@@ -33,7 +33,7 @@ function PatientProfile(props) {
         badge={false}
       />
       <Grid mt={15}>
-        <Grid.Col span={isMobile ? 12 : 3}>
+        <Grid.Col span={isMobile ? 12 : 2}>
           <SimpleGrid>
             <PatientProfileCard
               name={selectedPatient.name}
@@ -42,7 +42,7 @@ function PatientProfile(props) {
             />
           </SimpleGrid>
         </Grid.Col>
-        <Grid.Col span={isMobile ? 12 : 4}>
+        <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
             <PatientInfoCard
               id={selectedPatient.id}
@@ -52,6 +52,7 @@ function PatientProfile(props) {
               nationality={selectedPatient.nationality}
               phone={selectedPatient.phone}
               insurance={selectedPatient.insurance}
+              lastAppointment={selectedPatient.lastAppointment}
             />
           </SimpleGrid>
         </Grid.Col>

@@ -28,15 +28,18 @@ function PatientInfoCard(props) {
         </Grid.Col>
 
         <Grid.Col span={isMobile ? 12 : 4}>
-          <SimpleGrid verticalSpacing="sm">
+          <SimpleGrid>
             <TextCompounant header="Gender" text={props.gender} />
             <TextCompounant header="Nationality Day" text={props.nationality} />
-            <TextCompounant header="???" text={props.phone} />
+            <TextCompounant
+              header="Last Appointment"
+              text={props.lastAppointment}
+            />
           </SimpleGrid>
         </Grid.Col>
 
         <Grid.Col span={isMobile ? 12 : 4}>
-          <SimpleGrid verticalSpacing="sm">
+          <SimpleGrid>
             <TextCompounant header="Birth Day" text={props.dob} />
             <TextCompounant header="Mobile Number" text={props.phone} />
             <TextCompounant header="???" text={props.phone} />

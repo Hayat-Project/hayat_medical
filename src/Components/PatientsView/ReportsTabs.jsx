@@ -9,17 +9,11 @@ const reports = [
     date: "Sep 8 2022",
   },
   { id: 3, reportName: "CheckUp Result", date: "Jan 12 2023" },
-  {
-    id: 4,
-    reportName: "Root Cleaning Report",
-    date: "Jan 12 2023",
-  },
 ];
 const Screening = [
   { id: 1, reportName: "Mass", date: "Mar 24 2023" },
   { id: 2, reportName: "multiphasic", date: "Sep 8 2022" },
   { id: 3, reportName: "opportunistic", date: "Jan 12 2023" },
-  { id: 4, reportName: "Targeted", date: "Jan 12 2023" },
 ];
 
 function ReportsTabs() {
