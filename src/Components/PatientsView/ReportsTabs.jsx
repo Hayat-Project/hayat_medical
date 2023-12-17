@@ -19,7 +19,7 @@ const Screening = [
 function ReportsTabs() {
   const iconStyle = { width: rem(19), height: rem(19) };
   return (
-    <Card shadow="sm" padding="18" h={263} radius="md" withBorder>
+    <Card shadow="sm" h={263} withBorder>
       <Tabs radius="md" defaultValue="Screening">
         <Tabs.List>
           <Tabs.Tab

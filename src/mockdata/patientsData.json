@@ -10,6 +10,8 @@
       "phone": "058 5654 888",
       "insurance": "Daman",
       "lastAppointment": "January 19 2020",
+      "allergies": "No Known Allergies",
+      "nationalid": "784-1999-157634-1",
       "src": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80"
     },
     {
@@ -23,6 +25,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "June 7 2021",
+      "allergies": "No Known Allergies",
+      "nationalid": "789-0123-456789-9",
       "src": "https://images.unsplash.com/photo-1616268164880-673b3ba611bb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3Mzk3&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -36,6 +40,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "February 11 2023",
+      "allergies": "No Known Allergies",
+      "nationalid": "234-5678-901234-8",
       "src": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NDIz&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -49,6 +55,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "October 18 2020",
+      "allergies": "No Known Allergies",
+      "nationalid": "987-6543-210987-7",
       "src": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NDk4&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -62,6 +70,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "March 8 2022",
+      "allergies": "No Known Allergies",
+      "nationalid": "654-3210-876543-6",
       "src": "https://images.unsplash.com/photo-1600603405959-6d623e92445c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTIw&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -75,6 +85,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "July 30 2020",
+      "allergies": "No Known Allergies",
+      "nationalid": "321-9876-345678-5",
       "src": "https://images.unsplash.com/photo-1575632312417-71da8ed4992d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTM1&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -88,6 +100,8 @@
       "phone": "058 5654 887",
       "insurance": "Daman",
       "lastAppointment": "September 5 2023",
+      "allergies": "No Known Allergies",
+      "nationalid": "876-5432-987654-4",
       "src": "https://images.unsplash.com/photo-1529111290557-82f6d5c6cf85?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTUw&ixlib=rb-4.0.3&q=80&w=250"
     },
     {
@@ -101,6 +115,8 @@
       "phone": "058 5654 887",  
       "insurance": "Daman",
       "lastAppointment": "March 13 2023",
+      "allergies": "No Known Allergies",
+      "nationalid": "456-7890-123456-3",
       "src": "https://images.unsplash.com/photo-1530785602389-07594beb8b73?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTc1&ixlib=rb-4.0.3&q=80&w=250"
     }
   ]

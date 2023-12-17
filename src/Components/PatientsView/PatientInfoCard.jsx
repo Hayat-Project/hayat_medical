@@ -16,14 +16,14 @@ import TextCompounant from "./TextCompounant";
 function PatientInfoCard(props) {
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
   return (
-    <Card shadow="sm" padding="md" radius="md" withBorder>
+    <Card shadow="sm" withBorder>
       <Grid>
         <Grid.Col span={isMobile ? 12 : 4}>
           <SimpleGrid>
             <TextCompounant header="ID" text={props.id} />
             <TextCompounant header="Age" text={props.age} />
             <TextCompounant header="Insurance" text={props.insurance} />
-            <TextCompounant header="Allergies" text="No Known Allergies" />
+            <TextCompounant header="Allergies" text={props.allergies} />
           </SimpleGrid>
         </Grid.Col>
 
@@ -42,7 +42,7 @@ function PatientInfoCard(props) {
           <SimpleGrid>
             <TextCompounant header="Birth Day" text={props.dob} />
             <TextCompounant header="Mobile Number" text={props.phone} />
-            <TextCompounant header="???" text={props.phone} />
+            <TextCompounant header="National ID" text={props.nationalid} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>

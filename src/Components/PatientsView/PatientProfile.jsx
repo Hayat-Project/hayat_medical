@@ -6,6 +6,7 @@ import PatientProfileCard from "./PatientProfileCard";
 import { useMediaQuery } from "@mantine/hooks";
 import PatientInfoCard from "./PatientInfoCard";
 import ReportsTable from "./ReportsTabs";
+import AppointmentHistory from "./AppointmentHistory";
 
 function PatientProfile(props) {
   const { selectedPatientId } = useParams();
@@ -53,12 +54,22 @@ function PatientProfile(props) {
               phone={selectedPatient.phone}
               insurance={selectedPatient.insurance}
               lastAppointment={selectedPatient.lastAppointment}
+              allergies={selectedPatient.allergies}
+              nationalid={selectedPatient.nationalid}
             />
           </SimpleGrid>
         </Grid.Col>
         <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
             <ReportsTable />
+          </SimpleGrid>
+        </Grid.Col>
+      </Grid>
+
+      <Grid mt={15}>
+        <Grid.Col span={isMobile ? 12 : 12}>
+          <SimpleGrid>
+            <AppointmentHistory />
           </SimpleGrid>
         </Grid.Col>
       </Grid>

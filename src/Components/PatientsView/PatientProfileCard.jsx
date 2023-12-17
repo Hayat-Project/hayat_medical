@@ -3,7 +3,7 @@ import { Text, Group, Avatar, Stack, Button, Card } from "@mantine/core";
 
 function PatientProfileCard(props) {
   return (
-    <Card shadow="sm" padding="md" radius="md" withBorder>
+    <Card shadow="sm" withBorder>
       <Card.Section mt={5}>
         <Group justify="center">
           <Avatar size={100} src={props.avatar} />
