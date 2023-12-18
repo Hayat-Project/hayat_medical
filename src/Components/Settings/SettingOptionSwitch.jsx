@@ -1,7 +1,6 @@
 import {
     Text,
     Title,
-    Button,
     Switch,
     Stack,
     Group,
