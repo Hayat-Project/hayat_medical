@@ -39,8 +39,8 @@ function Setting() {
       />
 
       <Card shadow="sm" withBorder mt={10}>
-        <Grid>
-          <Grid.Col span="content">
+        <Grid mt={30} mb={30} mr={30}>
+          <Grid.Col span={{ base: "content", md: "content", lg: "content"}}>
             <SimpleGrid>
               <Stack align="flex-start">
                 <Button
@@ -71,9 +71,9 @@ function Setting() {
             </SimpleGrid>
           </Grid.Col>
 
-          <Divider orientation="vertical" mr={15} />
+          <Divider orientation="vertical" mr={15} visibleFrom="sm"/>
 
-          <Grid.Col span="auto">
+          <Grid.Col span={{ base: "auto", md: "auto", lg: "auto" }}>
             <SimpleGrid verticalSpacing="1">
               {showInfo && <AccountInformation />}
               {showNotifi && <Notification />}
