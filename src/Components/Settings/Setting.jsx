@@ -11,7 +11,8 @@ import {
   Stack,
   Group,
 } from "@mantine/core";
-import SettingOption from "./SettingOption";
+import SettingOptionButton from "./SettingOptionButton";
+import SettingOptionSwitch from "./SettingOptionSwitch";
 
 function Setting() {
   return (
@@ -22,8 +23,8 @@ function Setting() {
         badge={false}
       />
 
-      <Card shadow="sm" padding="lg" radius="md" withBorder mt={10}>
-        <Grid>
+      <Card shadow="sm" withBorder mt={10}>
+        <Grid grow>
           <Grid.Col span={2}>
             <SimpleGrid>
               <Stack align="flex-start">
@@ -42,7 +43,7 @@ function Setting() {
 
           <Divider orientation="vertical" mr={15} />
 
-          <Grid.Col span={9}>
+          <Grid.Col span={8}>
             <SimpleGrid verticalSpacing="1">
               <Title order={3}>Account Security</Title>
               <Text size="md" c="dimmed">
@@ -50,11 +51,33 @@ function Setting() {
               </Text>
               <Divider my="md" />
               <Text size="lg" td="underline">
-              Verification Management
+                Verification Management
               </Text>
-             <SettingOption title="Two Factor Authentication" text="Use a second device to varify access to your account" button="Configure"/>
+              <SettingOptionButton
+                title="Two Factor Authentication"
+                text="Use a second device to varify access to your account"
+                button="Configure"
+              />
+              <SettingOptionSwitch
+                title="2FA via Email"
+                text="Weather to verify using email verification"
+              />
+              <SettingOptionSwitch
+                title="2FA via SMS"
+                text="Weather to verify using SMS verification"
+              />
+              <Divider my="md" />
+              <Text size="lg" td="underline">
+                Password Security
+              </Text>
+              <SettingOptionButton
+                title="Change Password"
+                text="Change the password of your account access"
+                button="Change Password"
+              />
             </SimpleGrid>
           </Grid.Col>
+         
         </Grid>
       </Card>
     </>
