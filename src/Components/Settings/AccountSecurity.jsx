@@ -7,7 +7,7 @@ function AccountSecurity() {
     <>
       <Title order={3}>Account Security</Title>
       <Text size="md" c="dimmed">
-        Update your security preferences
+        Manage your security preferences
       </Text>
       <Divider my="md" />
       <Text size="lg" td="underline">

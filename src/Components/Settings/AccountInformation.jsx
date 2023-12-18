@@ -1,39 +1,43 @@
 import { Divider, Text, Title } from "@mantine/core";
 import SettingOptionButton from "./SettingOptionButton";
-import SettingOptionSwitch from "./SettingOptionSwitch";
+import SettingOptionText from "./SettingOptionText";
 
 function AccountInformation() {
   return (
     <>
       <Title order={3}>Account Information</Title>
       <Text size="md" c="dimmed">
-        Update your security preferences
+        Manage your account information
       </Text>
       <Divider my="md" />
       <Text size="lg" td="underline">
-        Verification Management
+        General Information
       </Text>
-      <SettingOptionButton
-        title="Two Factor Authentication"
-        text="Use a second device to varify access to your account"
-        button="Configure"
+      <SettingOptionText
+        title="Data of Birth"
+        text="January 9th 1977"
       />
-      <SettingOptionSwitch
-        title="2FA via Email"
-        text="Weather to verify using email verification"
+      <SettingOptionText
+        title="Gender"
+        text="Male"
       />
-      <SettingOptionSwitch
-        title="2FA via SMS"
-        text="Weather to verify using SMS verification"
+      <SettingOptionText
+        title="Nationality"
+        text="Palestine"
       />
       <Divider my="md" />
       <Text size="lg" td="underline">
-        Password Security
+        Contact Information
       </Text>
       <SettingOptionButton
-        title="Change Password"
-        text="Change the password of your account access"
-        button="Change Password"
+        title="Phone Number"
+        text="+971501234567"
+        button="Change"
+      />
+      <SettingOptionButton
+        title="Email Address"
+        text="khaled@gmail.com"
+        button="Change"
       />
     </>
   );

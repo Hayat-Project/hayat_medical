@@ -7,34 +7,41 @@ function Notification() {
     <>
       <Title order={3}>Notification</Title>
       <Text size="md" c="dimmed">
-        Update your security preferences
+        Manage your notification settings
       </Text>
       <Divider my="md" />
       <Text size="lg" td="underline">
-        Verification Management
+        General
       </Text>
-      <SettingOptionButton
-        title="Two Factor Authentication"
-        text="Use a second device to varify access to your account"
-        button="Configure"
+      <SettingOptionSwitch
+        title="Email Notification"
+        text="Receive notification via email"
       />
       <SettingOptionSwitch
-        title="2FA via Email"
-        text="Weather to verify using email verification"
-      />
-      <SettingOptionSwitch
-        title="2FA via SMS"
-        text="Weather to verify using SMS verification"
+        title="SMS Notification"
+        text="Receive notification via SMS"
       />
       <Divider my="md" />
       <Text size="lg" td="underline">
-        Password Security
+        Alerts
       </Text>
-      <SettingOptionButton
-        title="Change Password"
-        text="Change the password of your account access"
-        button="Change Password"
+      <SettingOptionSwitch
+        title="Security Alerts"
+        text="Receive notification about security alerts"
       />
+      <SettingOptionSwitch
+        title="Logins Alerts"
+        text="Receive notification about logins alerts"
+      />
+      <Divider my="md" />
+      <Text size="lg" td="underline">
+        Consultation
+      </Text>
+      <SettingOptionSwitch
+        title="Messages Alerts"
+        text="Receive notification about messages alerts"
+      />
+    
     </>
   );
 }
