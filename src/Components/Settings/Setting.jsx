@@ -40,7 +40,7 @@ function Setting() {
 
       <Card shadow="sm" withBorder mt={10}>
         <Grid mt={30} mb={30} mr={30}>
-          <Grid.Col span={{ base: "content", md: "content", lg: "content"}}>
+          <Grid.Col span={{ base: 12, md: "content", lg: "content",}}>
             <SimpleGrid>
               <Stack align="flex-start">
                 <Button
