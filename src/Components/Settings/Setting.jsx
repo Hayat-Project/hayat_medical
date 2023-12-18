@@ -13,6 +13,11 @@ import {
 } from "@mantine/core";
 import SettingOptionButton from "./SettingOptionButton";
 import SettingOptionSwitch from "./SettingOptionSwitch";
+import {
+  IconAlertCircle,
+  IconBell,
+  IconShieldHalfFilled,
+} from "@tabler/icons-react";
 
 function Setting() {
   return (
@@ -24,17 +29,29 @@ function Setting() {
       />
 
       <Card shadow="sm" withBorder mt={10}>
-        <Grid grow>
+        <Grid>
           <Grid.Col span={2}>
             <SimpleGrid>
               <Stack align="flex-start">
-                <Button variant="subtle" size="md">
+                <Button
+                  variant="subtle"
+                  size="md"
+                  leftSection={<IconAlertCircle size={16} />}
+                >
                   Account Information
                 </Button>
-                <Button variant="subtle" size="md">
+                <Button
+                  variant="subtle"
+                  size="md"
+                  leftSection={<IconBell size={16} />}
+                >
                   Notification
                 </Button>
-                <Button variant="subtle" size="md">
+                <Button
+                  variant="subtle"
+                  size="md"
+                  leftSection={<IconShieldHalfFilled size={16} />}
+                >
                   Account Security
                 </Button>
               </Stack>
@@ -77,7 +94,6 @@ function Setting() {
               />
             </SimpleGrid>
           </Grid.Col>
-         
         </Grid>
       </Card>
     </>
