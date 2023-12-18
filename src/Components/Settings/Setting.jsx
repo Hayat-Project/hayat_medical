@@ -11,6 +11,7 @@ import {
   Stack,
   Group,
 } from "@mantine/core";
+import SettingOption from "./SettingOption";
 
 function Setting() {
   return (
@@ -41,7 +42,7 @@ function Setting() {
 
           <Divider orientation="vertical" mr={15} />
 
-          <Grid.Col span={6}>
+          <Grid.Col span={9}>
             <SimpleGrid verticalSpacing="1">
               <Title order={3}>Account Security</Title>
               <Text size="md" c="dimmed">
@@ -49,17 +50,9 @@ function Setting() {
               </Text>
               <Divider my="md" />
               <Text size="lg" td="underline">
-                Varification Management
+              Verification Management
               </Text>
-              <Group justify="space-between" mt={20}>
-                <Stack align="flex-start" gap="1">
-                  <Title order={5}>Two Factor Authentication</Title>
-                  <Text size="md" c="dimmed">
-                    Use a second device to varify access to your account
-                  </Text>
-                </Stack>
-                <Button variant="filled">Configur</Button>
-              </Group>
+             <SettingOption title="Two Factor Authentication" text="Use a second device to varify access to your account" button="Configure"/>
             </SimpleGrid>
           </Grid.Col>
         </Grid>
