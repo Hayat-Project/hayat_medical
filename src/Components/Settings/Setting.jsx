@@ -1,25 +1,35 @@
 import MainHeader from "../MainHeader";
-import {
-  Card,
-  Grid,
-  Divider,
-  SimpleGrid,
-  Text,
-  Title,
-  Button,
-  Switch,
-  Stack,
-  Group,
-} from "@mantine/core";
-import SettingOptionButton from "./SettingOptionButton";
-import SettingOptionSwitch from "./SettingOptionSwitch";
+import { Card, Grid, Divider, SimpleGrid, Button, Stack } from "@mantine/core";
 import {
   IconAlertCircle,
   IconBell,
   IconShieldHalfFilled,
 } from "@tabler/icons-react";
+import AccountInformation from "./AccountInformation";
+import Notification from "./Notification";
+import AccountSecurity from "./AccountSecurity";
+import { useState } from "react";
 
 function Setting() {
+  const [showInfo, setShowInfo] = useState(true);
+  const [showNotifi, setShowNotifi] = useState(false);
+  const [showSecurity, setShowSecurity] = useState(false);
+
+  function showAccountInformation() {
+    setShowInfo(true);
+    setShowNotifi(false);
+    setShowSecurity(false);
+  }
+  function showNotification() {
+    setShowNotifi(true);
+    setShowInfo(false);
+    setShowSecurity(false);
+  }
+  function showAccountSecurity() {
+    setShowSecurity(true);
+    setShowInfo(false);
+    setShowNotifi(false);
+  }
   return (
     <>
       <MainHeader
@@ -30,10 +40,11 @@ function Setting() {
 
       <Card shadow="sm" withBorder mt={10}>
         <Grid>
-          <Grid.Col span={2}>
+          <Grid.Col span="content">
             <SimpleGrid>
               <Stack align="flex-start">
                 <Button
+                  onClick={showAccountInformation}
                   variant="subtle"
                   size="md"
                   leftSection={<IconAlertCircle size={16} />}
@@ -41,6 +52,7 @@ function Setting() {
                   Account Information
                 </Button>
                 <Button
+                  onClick={showNotification}
                   variant="subtle"
                   size="md"
                   leftSection={<IconBell size={16} />}
@@ -48,6 +60,7 @@ function Setting() {
                   Notification
                 </Button>
                 <Button
+                  onClick={showAccountSecurity}
                   variant="subtle"
                   size="md"
                   leftSection={<IconShieldHalfFilled size={16} />}
@@ -60,38 +73,11 @@ function Setting() {
 
           <Divider orientation="vertical" mr={15} />
 
-          <Grid.Col span={8}>
+          <Grid.Col span="auto">
             <SimpleGrid verticalSpacing="1">
-              <Title order={3}>Account Security</Title>
-              <Text size="md" c="dimmed">
-                Update your security preferences
-              </Text>
-              <Divider my="md" />
-              <Text size="lg" td="underline">
-                Verification Management
-              </Text>
-              <SettingOptionButton
-                title="Two Factor Authentication"
-                text="Use a second device to varify access to your account"
-                button="Configure"
-              />
-              <SettingOptionSwitch
-                title="2FA via Email"
-                text="Weather to verify using email verification"
-              />
-              <SettingOptionSwitch
-                title="2FA via SMS"
-                text="Weather to verify using SMS verification"
-              />
-              <Divider my="md" />
-              <Text size="lg" td="underline">
-                Password Security
-              </Text>
-              <SettingOptionButton
-                title="Change Password"
-                text="Change the password of your account access"
-                button="Change Password"
-              />
+              {showInfo && <AccountInformation />}
+              {showNotifi && <Notification />}
+              {showSecurity && <AccountSecurity />}
             </SimpleGrid>
           </Grid.Col>
         </Grid>
