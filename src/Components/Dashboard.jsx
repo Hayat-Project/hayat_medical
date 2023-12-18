@@ -8,7 +8,7 @@ import Overview from "./Overview/Overview";
 import Appointments from "./AppointmentsView/Appointments";
 import Patients from "../Components/PatientsView/Patients";
 import Messages from "./Messages";
-import Setting from "./Setting";
+import Setting from "./Settings/Setting";
 import PatientProfile from "./PatientsView/PatientProfile";
 import NewConsultation from "./PatientsView/NewConsultation";
 
