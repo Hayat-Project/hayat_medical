@@ -47,12 +47,5 @@
         "id": "888999",
         "message": "I will schedule an appointment soon.",
         "notify": "3" 
-     },
-     {
-        "image": "https://images.unsplash.com/photo-1575632312417-71da8ed4992d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=250&ixid=MnwxfDB8MXxyYW5kb218MHx8cG9ydHJhaXR8fHx8fHwxNzAwMTg3NTM1&ixlib=rb-4.0.3&q=80&w=250",
-        "name": "Olivia Garcia",
-        "id": "444555",
-        "message": "Good morning doctor.",
-        "notify": "2"
      }
 ]
