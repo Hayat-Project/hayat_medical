@@ -11,9 +11,12 @@ import Messages from "././MessagesView/Messages";
 import Setting from "./Settings/Setting";
 import PatientProfile from "./PatientsView/PatientProfile";
 import NewConsultation from "./PatientsView/NewConsultation";
+import {BrowserRouter } from "react-router-dom";
+import Routing from "./Routing";
 
-function Dashboard() {
+function Dashboard(props) {
   const [opened, { toggle }] = useDisclosure();
+  const dashboard = props.dashboardSelected
 
   return (
     <BrowserRouter>
@@ -28,27 +31,10 @@ function Dashboard() {
       >
         <Header toggle={toggle} opened={opened} />
 
-        <Navbar />
+        <Navbar selectNavbar={dashboard}/>
 
-        <AppShell.Main>
-          <Routes>
-            <Route path="/" element={<Overview />} />
-            <Route path="/Appointments" element={<Appointments />} />
-            <Route path="/Patients" element={<Patients />} />
-            <Route
-              path="/Patients/Patient Profile/:selectedPatientId"
-              element={<PatientProfile />}
-            />
-            <Route
-              path="/Patients/Patient Profile/New Consultation"
-              element={<NewConsultation />}
-            />
-            <Route path="/Consultationslog" element={<ConsultationsLog />} />
-            <Route path="/Messages" element={<Messages />} />
-            <Route path="/Setting" element={<Setting />} />
-            {/* <Route path="/Logout" element={<ConsultationsLog />} /> */}
-          </Routes>
-        </AppShell.Main>
+        <Routing selectDashboard={dashboard}/>
+
       </AppShell>
     </BrowserRouter>
   );

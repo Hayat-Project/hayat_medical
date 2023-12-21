@@ -9,18 +9,18 @@ import {
   IconLogout2,
   IconPlus,
 } from "@tabler/icons-react";
-import { Box, NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
+import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
 
-function Navbar() {
+function Navbar(props) {
   const [active, setActive] = useState(
     localStorage.getItem("activeIndex")
       ? parseInt(localStorage.getItem("activeIndex"))
       : 0
   );
   var isLongDisplay = useMediaQuery(`(max-height: 1100px)`);
-  const data = [
+  const doctorData = [
     {
       key: 0,
       label: "Overview",
@@ -84,8 +84,95 @@ function Navbar() {
       color: "red",
     },
   ];
+  const adminData = [
+    {
+      key: 0,
+      label: "Overview",
+      leftSection: <IconHome2 size="1rem" stroke={1.5} />,
+      mt: 35,
+      color: "blue",
+      path: "/",
+    },
+    {
+      key: 1,
+      headingText: (
+        <Text c="gray" size="xs" mt={20}>
+          USERS
+        </Text>
+      ),
+      label: "Users",
+      leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
+      mt: 11,
+      color: "blue",
+      path: "/Users",
+    },
+    {
+      key: 2,
+      label: "Departments",
+      leftSection: <IconUser size="1rem" stroke={1.5} />,
+      color: "blue",
+      path: "/Departments",
+    },
+    {
+      key: 3,
+      label: "Customization",
+      leftSection: <IconArticle size="1rem" stroke={1.5} />,
+      color: "blue",
+      path: "/Customization",
+    },
+    {
+      key: 4,
+      headingText: (
+        <Text c="gray" size="xs" mt={20}>
+          SECURITY
+        </Text>
+      ),
+      label: "Permission",
+      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
+      mt: 11,
+      color: "blue",
+      path: "/Permission",
+    },
+    {
+      key: 5,
+      headingText: (
+        <Text c="gray" size="xs" mt={20}>
+          SUPPORT
+        </Text>
+      ),
+      label: "Messages",
+      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
+      mt: 11,
+      color: "blue",
+      path: "/Messages",
+    },
+    {
+      key: 6,
+      label: "Setting",
+      leftSection: <IconSettings size="1rem" stroke={1.5} />,
+      mt: isLongDisplay ? '8vh' : '52vh',
+      color: "blue",
+      path: "/Setting",
+    },
+    {
+      key: 7,
+      label: "Logout",
+      leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
+      color: "red",
+    },
+  ];
 
-  const items = data.map((item, index) => (
+  let navbar;
+  switch (props.selectNavbar) {
+    case 'doctor':
+      navbar = doctorData;
+      break;
+    case 'admin':
+      navbar = adminData;
+      break;
+  }
+
+  const items = navbar.map((item, index) => (
     <div key={item.key}>
       {item.headingText}
       <NavLink
