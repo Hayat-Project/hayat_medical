@@ -1,0 +1,23 @@
+[
+    {
+        "image": "",
+        "name": "Dr. Saif Mohammed",
+        "id": "22131",
+        "message": "Lets schedule a meeting today.",
+        "notify": "2"
+    },
+    {
+        "image": "",
+        "name": "Dr. Alia Haddad",
+        "id": "34676",
+        "message": "I will arrange with Dr. Hiba Nabil.",
+        "notify": "1"
+    },
+    {
+        "image": "",
+        "name": "Dr. Roaa Alsaadi",
+        "id": "12354",
+        "message": "I will meet with the committee",
+        "notify": "2"
+    }
+]
