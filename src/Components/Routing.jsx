@@ -4,12 +4,10 @@ import ConsultationsLog from "./ConsultationsView/ConsultationsLog";
 import Overview from "./Overview/Overview";
 import Appointments from "./AppointmentsView/Appointments";
 import Patients from "./PatientsView/Patients";
-import Messages from "./Messages";
+import Messages from "./MessagesView/Messages";
 import Setting from "./Settings/Setting";
 import PatientProfile from "./PatientsView/PatientProfile";
 import NewConsultation from "./PatientsView/NewConsultation";
-
-
 
 function Routing(props) {
 

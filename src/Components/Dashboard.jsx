@@ -11,7 +11,6 @@ import Messages from "././MessagesView/Messages";
 import Setting from "./Settings/Setting";
 import PatientProfile from "./PatientsView/PatientProfile";
 import NewConsultation from "./PatientsView/NewConsultation";
-import {BrowserRouter } from "react-router-dom";
 import Routing from "./Routing";
 
 function Dashboard(props) {
