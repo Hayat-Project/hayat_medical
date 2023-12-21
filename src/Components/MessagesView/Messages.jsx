@@ -3,7 +3,7 @@ import { IconUser, IconUsersGroup, IconPhone, IconVideo, IconSend, IconPaperclip
 import MainHeader from "../MainHeader";
 import patientMessages from "../../mockdata/patientMessages.json";
 import staffMessages from "../../mockdata/staffMessages.json"
-import UserList from "./userList";
+import UserList from "./UserList";
 
 function Messages() {
 
@@ -53,7 +53,7 @@ function Messages() {
             </Group>
           </Card>
         <Card shadow="sm" withBorder h="70%">
-          {/* //Message content */}
+          {/* Message content */}
         </Card>
         <Card shadow="sm" withBorder> 
           <Group>
