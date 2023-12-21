@@ -1,6 +1,6 @@
 import { Grid, Card, Group, SimpleGrid, Title } from "@mantine/core";
 import { Calendar } from "@mantine/dates";
-import MainHeader from "../MainHeader";
+import MainHeader from '../../MainHeader';
 import TodoList from "./TodoList";
 import OverviewCards from "./OverviewCards";
 import { useMediaQuery } from "@mantine/hooks";

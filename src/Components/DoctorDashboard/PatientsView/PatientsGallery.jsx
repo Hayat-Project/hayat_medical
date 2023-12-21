@@ -1,6 +1,6 @@
 import React from "react";
 import { useMediaQuery } from "@mantine/hooks";
-import patientsData from "../../mockdata/patientsData.json";
+import patientsData from "../../../mockdata/patientsData.json";
 import {
   SimpleGrid,
   Card,

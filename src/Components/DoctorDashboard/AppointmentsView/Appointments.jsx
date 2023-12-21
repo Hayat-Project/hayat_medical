@@ -1,6 +1,6 @@
 import { Grid, Card, Flex, Group, Title, Text } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
-import MainHeader from '../MainHeader';
+import MainHeader from '../../MainHeader';
 import UpcomingAppointments from './UpcomingAppointments';
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
