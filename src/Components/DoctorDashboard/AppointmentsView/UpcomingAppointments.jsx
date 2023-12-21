@@ -1,9 +1,8 @@
 import { Text, Table, Avatar, Group, Badge, ActionIcon, ScrollArea } from "@mantine/core";
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
-import elements from "../../mockdata/upcomingAppointments.json";
-import { useMediaQuery } from "@mantine/hooks";
-import InfoIconWithProps from "../InfoIconWithProps";
+import elements from "../../../mockdata/upcomingAppointments.json";
+import InfoIconWithProps from "../../InfoIconWithProps";
 
 function UpcomingAppointments(props) {
 	const searchWord = props.searchWord;

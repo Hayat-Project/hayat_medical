@@ -97,7 +97,7 @@ function Navbar(props) {
       key: 1,
       headingText: (
         <Text c="gray" size="xs" mt={20}>
-          USERS
+          GENERAL
         </Text>
       ),
       label: "Users",

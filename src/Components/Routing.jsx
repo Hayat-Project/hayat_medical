@@ -1,13 +1,17 @@
 import { AppShell } from "@mantine/core";
 import { Routes, Route} from "react-router-dom";
-import ConsultationsLog from "./ConsultationsView/ConsultationsLog";
-import Overview from "./Overview/Overview";
-import Appointments from "./AppointmentsView/Appointments";
-import Patients from "./PatientsView/Patients";
+import ConsultationsLog from "./DoctorDashboard/ConsultationsView/ConsultationsLog";
+import Overview from "./DoctorDashboard/Overview/Overview";
+import Appointments from "./DoctorDashboard/AppointmentsView/Appointments";
+import Patients from "./DoctorDashboard/PatientsView/Patients";
 import Messages from "./Messages";
-import Setting from "./Settings/Setting";
-import PatientProfile from "./PatientsView/PatientProfile";
-import NewConsultation from "./PatientsView/NewConsultation";
+import Setting from "./DoctorDashboard/Settings/Setting";
+import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
+import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
+import Users from "./AdminDashboard/Users";
+import Departments from "./AdminDashboard/Departments";
+import Customization from "./AdminDashboard/Customization";
+import Permissions from "./AdminDashboard/Permissions";
 
 
 
@@ -26,10 +30,10 @@ function Routing(props) {
 
   const adminRoutes = [
     { path: "/", element: <Overview /> },
-    { path: "/Users", element: <Appointments /> },
-    { path: "/Departments", element: <Patients /> },
-    { path: "/Customization", element: <ConsultationsLog /> },
-    { path: "/Permission", element: <ConsultationsLog /> },
+    { path: "/Users", element: <Users/> },
+    { path: "/Departments", element: <Departments/> },
+    { path: "/Customization", element: <Customization/>},
+    { path: "/Permission", element: <Permissions/> },
     { path: "/Messages", element: <Messages /> },
     { path: "/Setting", element: <Setting /> },
   ];
