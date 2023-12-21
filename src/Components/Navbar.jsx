@@ -171,8 +171,7 @@ function Navbar(props) {
       navbar = adminData;
       break;
   }
-  console.log("Navbar " + navbar);
-  console.log("Navbar " + props.selectNavbar);
+
   const items = navbar.map((item, index) => (
     <div key={item.key}>
       {item.headingText}

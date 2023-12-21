@@ -43,8 +43,7 @@ function Routing(props) {
       dashboard = adminRoutes;
       break;
   }
-console.log("Route " + dashboard);
-console.log("Route " + props.selectDashboard);
+
   return (
     <AppShell.Main>
       <Routes>
