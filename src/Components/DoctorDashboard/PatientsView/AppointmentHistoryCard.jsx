@@ -1,6 +1,6 @@
 import { Badge, Button, Group, Table } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
-import InfoIconWithProps from "../InfoIconWithProps";
+import InfoIconWithProps from "../../InfoIconWithProps";
 
 function AppointmentHistoryCard(props) {
   const elements = props.data;

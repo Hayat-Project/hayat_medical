@@ -1,5 +1,5 @@
-import MainHeader from "../MainHeader";
-import patientsData from "../../mockdata/patientsData.json";
+import MainHeader from '../../MainHeader'
+import patientsData from "../../../mockdata/patientsData.json";
 import { SimpleGrid, Grid } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import PatientProfileCard from "./PatientProfileCard";

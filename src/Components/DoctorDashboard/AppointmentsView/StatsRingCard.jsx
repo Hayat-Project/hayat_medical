@@ -1,5 +1,5 @@
 import { Text, RingProgress, Group, useMantineTheme } from '@mantine/core';
-import classes from '../../css/StatsRingCard.module.css';
+import classes from '../../../css/StatsRingCard.module.css';
 
 const stats = [
 	{ value: 3, label: 'Upcoming Appointments', color: '#007bff' },

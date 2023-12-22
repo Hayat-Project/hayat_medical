@@ -7,10 +7,10 @@ import {
   ActionIcon,
   ScrollArea,
 } from "@mantine/core";
-import InfoIconWithProps from "../InfoIconWithProps";
+import InfoIconWithProps from "../../InfoIconWithProps";
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState } from "react";
-import elements from "../../mockdata/data.json";
+import elements from "../../../mockdata/data.json";
 
 function ConsultationsLogView(props) {
   const searchWord = props.searchWord;

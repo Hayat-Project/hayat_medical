@@ -1,7 +1,7 @@
 import { Flex } from "@mantine/core";
 import { useState } from "react";
-import MainHeader from "../MainHeader";
-import SearchBarFilter from "../SearchBarFilter";
+import MainHeader from "../../MainHeader";
+import SearchBarFilter from "../../SearchBarFilter";
 import ConsultationsLogTable from "./ConsultationsLogView";
 
 function ConsultationsLog() {

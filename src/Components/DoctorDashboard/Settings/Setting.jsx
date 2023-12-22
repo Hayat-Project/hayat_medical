@@ -1,4 +1,4 @@
-import MainHeader from "../MainHeader";
+import MainHeader from "../../MainHeader";
 import { Card, Grid, Divider, SimpleGrid, Button, Stack } from "@mantine/core";
 import {
   IconAlertCircle,

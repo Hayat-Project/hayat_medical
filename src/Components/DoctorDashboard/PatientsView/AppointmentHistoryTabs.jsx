@@ -1,7 +1,7 @@
 import { Card, Tabs, Title, Group, Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import AppointmentHistoryCard from "./AppointmentHistoryCard";
-import elements from "../../mockdata/appointmentsData.json"
+import elements from "../../../mockdata/appointmentsData.json"
 import { useNavigate } from "react-router-dom";
 
 function AppointmentHistoryTabs() {

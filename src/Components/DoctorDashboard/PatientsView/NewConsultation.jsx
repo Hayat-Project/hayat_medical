@@ -1,6 +1,6 @@
 import { Card, Title, Select, SimpleGrid, Button, ScrollArea, TextInput, Table, ActionIcon, Flex, Group } from "@mantine/core";
-import MainHeader from '../MainHeader'
-import elements from "../../mockdata/prescriptionDrugs.json";
+import MainHeader from '../../MainHeader'
+import elements from "../../../mockdata/prescriptionDrugs.json";
 import { IconTrash } from '@tabler/icons-react';
 import ReportsTabs from "./ReportsTabs";
 import SessionSummary from "./SessionSummary";
