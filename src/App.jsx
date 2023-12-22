@@ -9,18 +9,18 @@ function App() {
 	const [adminDashboard, setAdminDashboard] = useState(false);
 	const [doctorDashboard, setDoctorDashboard] = useState(false);
 
-	function openAdmin(){
+	function openAdmin() {
 		setAdminDashboard(true);
 		setDoctorDashboard(false);
 	}
 
-	function openDoctor(){
+	function openDoctor() {
 		setDoctorDashboard(true);
 		setAdminDashboard(false);
 	}
 	const theme = createTheme({
 		defaultRadius: "md",
-		
+
 		components: {
 			Button: Button.extend({
 				defaultProps: {
@@ -33,12 +33,12 @@ function App() {
 	return (
 		<MantineProvider theme={theme}>
 			<Group>
-				<Button variant="filled" onClick={openDoctor}>Doctor Dashboard</Button>
-				<Button variant="filled" onClick={openAdmin}>Admin Dashboard</Button>
+				<Button onClick={openDoctor}>Doctor Dashboard</Button>
+				<Button onClick={openAdmin}>Admin Dashboard</Button>
 			</Group>
-			
-			{doctorDashboard && <Dashboard dashboardSelected="doctor"/>}
-			{adminDashboard && <Dashboard dashboardSelected="admin"/>}
+
+			{doctorDashboard && <Dashboard dashboardSelected="doctor" />}
+			{adminDashboard && <Dashboard dashboardSelected="admin" />}
 		</MantineProvider>
 	);
 }
