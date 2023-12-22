@@ -4,7 +4,7 @@ import ConsultationsLog from "./DoctorDashboard/ConsultationsView/ConsultationsL
 import Overview from "./DoctorDashboard/Overview/Overview";
 import Appointments from "./DoctorDashboard/AppointmentsView/Appointments";
 import Patients from "./DoctorDashboard/PatientsView/Patients";
-import Messages from "./Messages";
+import Messages from "../Components/MessagesView/Messages"
 import Setting from "./DoctorDashboard/Settings/Setting";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
