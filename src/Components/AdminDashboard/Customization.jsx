@@ -46,6 +46,11 @@ function Customization() {
                     <Stack>
                         <Title order={4}>Theming Options</Title>
                         <Select
+                            label="Default Theme"
+                            placeholder="Select Theme"
+                            data={["Light", "Dark"]}
+                        />
+                        <Select
                             label="Buttons Color"
                             placeholder="Select Color"
                             data={["Gray", "Red", "Blue", "Pink", "Green", "Indigo", "Teal", "Cyan", "Yellow", "Orange"]}
