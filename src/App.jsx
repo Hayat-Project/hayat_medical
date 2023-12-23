@@ -4,6 +4,7 @@ import "./css/global.css"
 import { MantineProvider, createTheme, Button, Group } from "@mantine/core";
 import Dashboard from "./Components/Dashboard";
 import { useState } from "react";
+import LandPage from "./Components/LandPage/LandPage";
 
 function App() {
 	const [adminDashboard, setAdminDashboard] = useState(false);
@@ -32,13 +33,14 @@ function App() {
 
 	return (
 		<MantineProvider theme={theme}>
-			<Group>
+			{/* <Group>
 				<Button variant="filled" onClick={openDoctor}>Doctor Dashboard</Button>
 				<Button variant="filled" onClick={openAdmin}>Admin Dashboard</Button>
 			</Group>
 			
 			{doctorDashboard && <Dashboard dashboardSelected="doctor"/>}
-			{adminDashboard && <Dashboard dashboardSelected="admin"/>}
+			{adminDashboard && <Dashboard dashboardSelected="admin"/>} */}
+			<LandPage/>
 		</MantineProvider>
 	);
 }
