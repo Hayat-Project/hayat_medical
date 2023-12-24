@@ -1,23 +1,26 @@
-import MainHeader from "../MainHeader";
-import departmentsData from "../../mockdata/departmentsData.json";
-import { Table, ActionIcon, Card, Flex, Button, Group } from "@mantine/core";
+import MainHeader from "../../MainHeader";
+import departmentsData from "../../../mockdata/departmentsData.json";
+import { Table, ActionIcon, Card, Modal, Button, Group } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 import { FaRegEdit } from "react-icons/fa";
-import SearchBarFilter from "../SearchBarFilter";
+import SearchBarFilter from "../../SearchBarFilter";
+import { useDisclosure } from "@mantine/hooks";
+import AddDepartment from "./AddDepartment";
 
 function Departments() {
+  const [opened, { open, close }] = useDisclosure(false);
   const data = departmentsData.map((department) => (
     <Table.Tr key={department.id}>
       <Table.Td>{department.name}</Table.Td>
       <Table.Td>{department.description}</Table.Td>
       <Table.Td>
         <Group justify="center" gap="1">
-        <ActionIcon color="blue" variant="outline">
-          <FaRegEdit size={14} />
-        </ActionIcon>
-        <ActionIcon color="red" variant="outline" ml={10}>
-          <IconTrash size={14} />
-        </ActionIcon>
+          <ActionIcon color="blue" variant="outline">
+            <FaRegEdit size={14} />
+          </ActionIcon>
+          <ActionIcon color="red" variant="outline" ml={10}>
+            <IconTrash size={14} />
+          </ActionIcon>
         </Group>
       </Table.Td>
     </Table.Tr>
@@ -31,7 +34,9 @@ function Departments() {
           placeholder="Search for department"
           width={300}
         />
-        <Button variant="filled">Add Department</Button>
+        <Button variant="transparent" onClick={open}>
+          + Add Department
+        </Button>
       </Group>
 
       <Card shadow="sm" withBorder mt={20}>
@@ -52,6 +57,9 @@ function Departments() {
           <Table.Tbody>{data}</Table.Tbody>
         </Table>
       </Card>
+      <Modal opened={opened} onClose={close} title="Add Department">
+        <AddDepartment />
+      </Modal>
     </>
   );
 }
