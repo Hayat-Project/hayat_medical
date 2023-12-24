@@ -14,7 +14,7 @@ import Patients from "./DoctorDashboard/PatientsView/Patients";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import Users from "./AdminDashboard/UsersView/Users";
-import Departments from "./AdminDashboard/Departments";
+import Departments from "./AdminDashboard/Department/Departments";
 import Customization from "./AdminDashboard/Customization";
 import Permissions from "./AdminDashboard/Permissions";
 import AdminOverview from './AdminDashboard/AdminOverview'
