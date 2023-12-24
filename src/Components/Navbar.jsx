@@ -8,6 +8,12 @@ import {
   IconSettings,
   IconLogout2,
   IconPlus,
+  IconUsers,
+  IconBuildingSkyscraper,
+  IconAdjustmentsAlt,
+  IconShieldHalfFilled,
+  
+
 } from "@tabler/icons-react";
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
@@ -102,7 +108,7 @@ function Navbar(props) {
         </Text>
       ),
       label: "Users",
-      leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
+      leftSection: <IconUsers size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
       path: "/adminDashboard/Users",
@@ -110,14 +116,14 @@ function Navbar(props) {
     {
       key: 2,
       label: "Departments",
-      leftSection: <IconUser size="1rem" stroke={1.5} />,
+      leftSection: <IconBuildingSkyscraper size="1rem" stroke={1.5} />,
       color: "blue",
       path: "/adminDashboard/Departments",
     },
     {
       key: 3,
       label: "Customization",
-      leftSection: <IconArticle size="1rem" stroke={1.5} />,
+      leftSection: <IconAdjustmentsAlt size="1rem" stroke={1.5} />,
       color: "blue",
       path: "/adminDashboard/Customization",
     },
@@ -129,7 +135,7 @@ function Navbar(props) {
         </Text>
       ),
       label: "Permission",
-      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
+      leftSection: <IconShieldHalfFilled size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
       path: "/adminDashboard/Permissions",
