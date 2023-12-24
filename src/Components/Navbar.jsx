@@ -8,6 +8,12 @@ import {
   IconSettings,
   IconLogout2,
   IconPlus,
+  IconUsers,
+  IconBuildingSkyscraper,
+  IconAdjustmentsAlt,
+  IconShieldHalfFilled,
+
+
 } from "@tabler/icons-react";
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
@@ -27,7 +33,7 @@ function Navbar(props) {
       leftSection: <IconHome2 size="1rem" stroke={1.5} />,
       mt: 35,
       color: "blue",
-      path: "/",
+      path: "/doctorDashboard/overview",
     },
     {
       key: 1,
@@ -40,21 +46,21 @@ function Navbar(props) {
       leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Appointments",
+      path: "/doctorDashboard/Appointments",
     },
     {
       key: 2,
       label: "Patients",
       leftSection: <IconUser size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Patients",
+      path: "/doctorDashboard/Patients",
     },
     {
       key: 3,
       label: "Consultations Log",
       leftSection: <IconArticle size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Consultationslog",
+      path: "/doctorDashboard/Consultationslog",
     },
     {
       key: 4,
@@ -67,7 +73,7 @@ function Navbar(props) {
       leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Messages",
+      path: "/doctorDashboard/Messages",
     },
     {
       key: 5,
@@ -75,13 +81,14 @@ function Navbar(props) {
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
       mt: isLongDisplay ? '8vh' : '52vh',
       color: "blue",
-      path: "/Setting",
+      path: "/doctorDashboard/Setting",
     },
     {
       key: 6,
       label: "Logout",
       leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
       color: "red",
+      path: "/"
     },
   ];
   const adminData = [
@@ -91,7 +98,7 @@ function Navbar(props) {
       leftSection: <IconHome2 size="1rem" stroke={1.5} />,
       mt: 35,
       color: "blue",
-      path: "/",
+      path: "/adminDashboard/Overview",
     },
     {
       key: 1,
@@ -101,24 +108,24 @@ function Navbar(props) {
         </Text>
       ),
       label: "Users",
-      leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
+      leftSection: <IconUsers size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Users",
+      path: "/adminDashboard/Users",
     },
     {
       key: 2,
       label: "Departments",
-      leftSection: <IconUser size="1rem" stroke={1.5} />,
+      leftSection: <IconBuildingSkyscraper size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Departments",
+      path: "/adminDashboard/Departments",
     },
     {
       key: 3,
       label: "Customization",
-      leftSection: <IconArticle size="1rem" stroke={1.5} />,
+      leftSection: <IconAdjustmentsAlt size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Customization",
+      path: "/adminDashboard/Customization",
     },
     {
       key: 4,
@@ -128,10 +135,10 @@ function Navbar(props) {
         </Text>
       ),
       label: "Permission",
-      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
+      leftSection: <IconShieldHalfFilled size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Permission",
+      path: "/adminDashboard/Permissions",
     },
     {
       key: 5,
@@ -144,7 +151,7 @@ function Navbar(props) {
       leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Messages",
+      path: "/adminDashboard/Messages",
     },
     {
       key: 6,
@@ -152,13 +159,14 @@ function Navbar(props) {
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
       mt: isLongDisplay ? '8vh' : '52vh',
       color: "blue",
-      path: "/Setting",
+      path: "/adminDashboard/Setting",
     },
     {
       key: 7,
       label: "Logout",
       leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
       color: "red",
+      path: "/"
     },
   ];
 
@@ -176,7 +184,7 @@ function Navbar(props) {
     <div key={item.key}>
       {item.headingText}
       <NavLink
-        style={{borderRadius: 8}}
+        style={{ borderRadius: 8 }}
         component={Link}
         variant="link"
         to={item.path}
