@@ -14,8 +14,8 @@ function SignUp() {
             <Grid mt={100}>
                 <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
                 <Grid.Col span={isMobile ? 12 :6}>
-                    <Stepper active={active} size={isMobile ? "xs" : "lg"}>
-                        <Stepper.Step label="First step" description="Patient Information" si>
+                    <Stepper active={active} iconSize={isMobile ? 15 : 37} size={isMobile ? 11 : "lg"}>
+                        <Stepper.Step label="First step" description="Patient Information">
                             <Stack>
                                 <SignUpForm label1="First Name" placeholder1="First Name..."
                                     label2="Last Name" placeholder2="Last Name..."
@@ -46,7 +46,7 @@ function SignUp() {
                         </Stepper.Step>
                         <Stepper.Completed>
                             <Center>
-                                <Title order={isMobile ? 4 :2}>Completed, account has been created successfully!</Title>
+                                <Title size={isMobile ? 13 : 30} order={2}>Completed, account has been created successfully!</Title>
                             </Center>
 
                         </Stepper.Completed>

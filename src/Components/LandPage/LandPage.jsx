@@ -4,11 +4,13 @@ import { MantineLogo } from "@mantine/ds";
 import { useState } from "react";
 import ThemeSwitcher from "../ThemeSwitcher.jsx";
 import { Link, Outlet } from "react-router-dom";
+import { useMediaQuery } from '@mantine/hooks';
 
 
 function LandPage(){
     const [opened, { toggle }] = useDisclosure();
     const [isDarkMode, setChecked] = useState(false);
+    const isMobile = useMediaQuery(`(max-width: 1200px)`);
     
     return (
     <AppShell
@@ -18,9 +20,8 @@ function LandPage(){
     >
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <MantineLogo size={30} />
-          <Group visibleFrom="xs">
+          <Group gap={isMobile ? 8 : "md"}>
             <ThemeSwitcher
               onChange={(event) => setChecked(event.currentTarget.isDarkMode)}
               isDarkMode={isDarkMode} 
