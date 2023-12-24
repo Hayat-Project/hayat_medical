@@ -1,4 +1,4 @@
-import { Input, Button, Grid, PasswordInput } from '@mantine/core';
+import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card } from '@mantine/core';
 import { useState } from 'react';
 import {useNavigate } from "react-router-dom";
 
@@ -18,31 +18,42 @@ function Login() {
 
     return (
         <>
+        
             <Grid mt={200}>
-                <Grid.Col span={4}></Grid.Col>
-                <Grid.Col span={4}>
-                    <Input.Wrapper label="Email" withAsterisk >
-                        <Input
-                            size="md" 
-                            placeholder="Email..."
-                            onChange={(event) =>
-                            setEmail(event.currentTarget.value)
-                            }
-                        />
-                    </Input.Wrapper>
-                    <Input.Wrapper label="Password" withAsterisk >
-                         <PasswordInput
-                            size="md" 
-                            placeholder="Password..."
-                            onChange={(event) =>
-                            setPassword(event.currentTarget.value)
-                            }
+                <Grid.Col span={4.5}></Grid.Col>
+                <Grid.Col span={3}>
+                    <Card shadow="sm" withBorder radius="md">
+                        <Title order={2}>Login</Title>
+                        <Space h="xl" />
+                        <Input.Wrapper label="Email" withAsterisk >
+                            <Input
+                                size="lg" 
+                                placeholder="Email..."
+                                onChange={(event) =>
+                                setEmail(event.currentTarget.value)
+                                }
                             />
-                    </Input.Wrapper>
-                    <Button mt={15} onClick={handleLogin}>Login</Button>
+                        </Input.Wrapper>
+                        <Space h="lg" />
+                        <Input.Wrapper label="Password" withAsterisk >
+                            <PasswordInput
+                                size="lg" 
+                                placeholder="Password..."
+                                onChange={(event) =>
+                                setPassword(event.currentTarget.value)
+                                }
+                                />
+                        </Input.Wrapper>
+                        <Space h="xl" />
+                        <Group gap="lg" justify="space-between">
+                            <Button onClick={handleLogin}>Login</Button>
+                            <Button variant="subtle">FORGET PASSWORD?</Button>
+                        </Group>
+                    </Card>
                 </Grid.Col>
-                <Grid.Col span={4}></Grid.Col>
             </Grid>
+
+            
 
             {loginDoctor && navigate('/doctorDashboard')}
             {loginAdmin && navigate('/adminDashboard')}
