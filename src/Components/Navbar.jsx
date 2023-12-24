@@ -27,7 +27,7 @@ function Navbar(props) {
       leftSection: <IconHome2 size="1rem" stroke={1.5} />,
       mt: 35,
       color: "blue",
-      path: "/",
+      path: "/doctorDashboard/overview",
     },
     {
       key: 1,
@@ -40,21 +40,21 @@ function Navbar(props) {
       leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Appointments",
+      path: "/doctorDashboard/Appointments",
     },
     {
       key: 2,
       label: "Patients",
       leftSection: <IconUser size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Patients",
+      path: "/doctorDashboard/Patients",
     },
     {
       key: 3,
       label: "Consultations Log",
       leftSection: <IconArticle size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Consultationslog",
+      path: "/doctorDashboard/Consultationslog",
     },
     {
       key: 4,
@@ -67,7 +67,7 @@ function Navbar(props) {
       leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Messages",
+      path: "/doctorDashboard/Messages",
     },
     {
       key: 5,
@@ -75,7 +75,7 @@ function Navbar(props) {
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
       mt: isLongDisplay ? '8vh' : '52vh',
       color: "blue",
-      path: "/Setting",
+      path: "/doctorDashboard/Setting",
     },
     {
       key: 6,
@@ -91,7 +91,7 @@ function Navbar(props) {
       leftSection: <IconHome2 size="1rem" stroke={1.5} />,
       mt: 35,
       color: "blue",
-      path: "/",
+      path: "/adminDashboard/overview",
     },
     {
       key: 1,
@@ -104,21 +104,21 @@ function Navbar(props) {
       leftSection: <IconCalendarEvent size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Users",
+      path: "/adminDashboard/Users",
     },
     {
       key: 2,
       label: "Departments",
       leftSection: <IconUser size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Departments",
+      path: "/adminDashboard/Departments",
     },
     {
       key: 3,
       label: "Customization",
       leftSection: <IconArticle size="1rem" stroke={1.5} />,
       color: "blue",
-      path: "/Customization",
+      path: "/adminDashboard/Customization",
     },
     {
       key: 4,
@@ -131,7 +131,7 @@ function Navbar(props) {
       leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Permission",
+      path: "/adminDashboard/Permissions",
     },
     {
       key: 5,
@@ -144,7 +144,7 @@ function Navbar(props) {
       leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
       mt: 11,
       color: "blue",
-      path: "/Messages",
+      path: "/adminDashboard/Messages",
     },
     {
       key: 6,
@@ -152,7 +152,7 @@ function Navbar(props) {
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
       mt: isLongDisplay ? '8vh' : '52vh',
       color: "blue",
-      path: "/Setting",
+      path: "/adminDashboard/Setting",
     },
     {
       key: 7,

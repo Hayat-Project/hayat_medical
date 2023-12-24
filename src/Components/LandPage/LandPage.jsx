@@ -1,24 +1,14 @@
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell, Burger, Group, Button  } from "@mantine/core";
 import { MantineLogo } from "@mantine/ds";
-import Login from "./Login";
-import SignUp from "./SignUp";
 import { useState } from "react";
+import ThemeSwitcher from "../ThemeSwitcher.jsx";
+import { Link, Outlet } from "react-router-dom";
+
 
 function LandPage(){
     const [opened, { toggle }] = useDisclosure();
-    const [login, setLogin] = useState(true);
-    const [signUp, setSignUp] = useState(false);
-
-    function handLeLogin(){
-        setLogin(true);
-        setSignUp(false);
-    }
-
-    function handSignUp(){
-        setSignUp(true);
-        setLogin(false);
-    }
+    const [isDarkMode, setChecked] = useState(false);
     
     return (
     <AppShell
@@ -31,14 +21,18 @@ function LandPage(){
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           <MantineLogo size={30} />
           <Group visibleFrom="xs">
-            <Button variant="light" onClick={handLeLogin}>Login</Button>
-            <Button variant="filled" onClick={handSignUp}>Sign Up</Button> 
-        </Group>
+            <ThemeSwitcher
+              onChange={(event) => setChecked(event.currentTarget.isDarkMode)}
+              isDarkMode={isDarkMode} 
+            />
+            <Button variant="light" component={Link} to="login">Login</Button>
+            <Button variant="filled" component={Link} to="signup">Sign Up</Button> 
+          </Group>
         </Group>
       </AppShell.Header>
 
-        {login && <Login/>}
-        {signUp && <SignUp/>}
+      <Outlet/>
+      
     </AppShell>
   );
 }

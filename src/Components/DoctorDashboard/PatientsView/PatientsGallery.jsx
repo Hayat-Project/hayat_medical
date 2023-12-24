@@ -71,7 +71,7 @@ function PatientsGallery(props) {
               mt="md"
               radius="md"
               onClick={() =>
-                navigate(`/Patients/Patient Profile/${patient.id}`)
+                navigate(`/doctorDashboard/PatientProfile/${patient.id}`)
               }
             >
               View Patient
