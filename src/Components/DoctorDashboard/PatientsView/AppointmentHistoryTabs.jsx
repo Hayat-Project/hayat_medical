@@ -21,7 +21,7 @@ function AppointmentHistoryTabs() {
           Appointments
         </Title>
         <Button variant="subtle" leftSection={<IconPlus size={14} />} 
-            onClick={() => navigate(`/Patients/Patient Profile/New Consultation`)}>
+            onClick={() => navigate(`/doctorDashboard/Patient Profile/New Consultation`)}>
           New Consultation
         </Button>
       </Group>
