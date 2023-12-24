@@ -1,11 +1,10 @@
 import MainHeader from "../MainHeader";
 import { Card, Tabs} from "@mantine/core";
-import { IconUser, IconUsersGroup, IconPhone, IconVideo, IconSend, IconPaperclip} from '@tabler/icons-react';
-import patientMessages from "../../mockdata/patientMessages.json";
-import staffMessages from "../../mockdata/staffMessages.json"
-import UserList from "../MessagesView/UserList";
+import { IconUser, IconUsersGroup} from '@tabler/icons-react';
+import UsersTable from "./UsersTable";
 
 function Users(){
+      
     return (
         <>
             <MainHeader badge={false} header="Users" />
@@ -30,19 +29,18 @@ function Users(){
               </Tabs.List>
               
               <Tabs.Panel value="Patients">
-                
               </Tabs.Panel>
               <Tabs.Panel value="Doctor">
-                
+                <UsersTable />
               </Tabs.Panel>
               <Tabs.Panel value="Nurse">
-                
+
               </Tabs.Panel>
               <Tabs.Panel value="Radiologist">
-                
+         
               </Tabs.Panel>
               <Tabs.Panel value="Admission">
-                
+          
               </Tabs.Panel>
             </Tabs>   
           </Card>
