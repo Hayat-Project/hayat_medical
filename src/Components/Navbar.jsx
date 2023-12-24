@@ -82,6 +82,7 @@ function Navbar(props) {
       label: "Logout",
       leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
       color: "red",
+      path: "/"
     },
   ];
   const adminData = [
@@ -159,6 +160,7 @@ function Navbar(props) {
       label: "Logout",
       leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
       color: "red",
+      path: "/"
     },
   ];
 
