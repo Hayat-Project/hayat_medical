@@ -8,7 +8,7 @@ import Messages from "../Components/MessagesView/Messages"
 import Setting from "./DoctorDashboard/Settings/Setting";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
-import Users from "./AdminDashboard/Users";
+import Users from "./AdminDashboard/UsersView/Users";
 import Departments from "./AdminDashboard/Departments";
 import Customization from "./AdminDashboard/Customization";
 import Permissions from "./AdminDashboard/Permissions";
