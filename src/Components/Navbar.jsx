@@ -12,7 +12,7 @@ import {
   IconBuildingSkyscraper,
   IconAdjustmentsAlt,
   IconShieldHalfFilled,
-  
+
 
 } from "@tabler/icons-react";
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
@@ -98,7 +98,7 @@ function Navbar(props) {
       leftSection: <IconHome2 size="1rem" stroke={1.5} />,
       mt: 35,
       color: "blue",
-      path: "/adminDashboard/overview",
+      path: "/adminDashboard/Overview",
     },
     {
       key: 1,
@@ -184,7 +184,7 @@ function Navbar(props) {
     <div key={item.key}>
       {item.headingText}
       <NavLink
-        style={{borderRadius: 8}}
+        style={{ borderRadius: 8 }}
         component={Link}
         variant="link"
         to={item.path}

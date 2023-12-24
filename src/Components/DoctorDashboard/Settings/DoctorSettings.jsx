@@ -10,7 +10,7 @@ import Notification from "./Notification";
 import AccountSecurity from "./AccountSecurity";
 import { useState } from "react";
 
-function Setting() {
+function DoctorSettings() {
   const [showInfo, setShowInfo] = useState(true);
   const [showNotifi, setShowNotifi] = useState(false);
   const [showSecurity, setShowSecurity] = useState(false);
@@ -40,7 +40,7 @@ function Setting() {
 
       <Card shadow="sm" withBorder mt={10}>
         <Grid mt={30} mb={30} mr={30}>
-          <Grid.Col span={{ base: 12, md: "content", lg: "content",}}>
+          <Grid.Col span={{ base: 12, md: "content", lg: "content", }}>
             <SimpleGrid>
               <Stack align="flex-start">
                 <Button
@@ -71,7 +71,7 @@ function Setting() {
             </SimpleGrid>
           </Grid.Col>
 
-          <Divider orientation="vertical" mr={15} visibleFrom="sm"/>
+          <Divider orientation="vertical" mr={15} visibleFrom="sm" />
 
           <Grid.Col span={{ base: "auto", md: "auto", lg: "auto" }}>
             <SimpleGrid verticalSpacing="1">
@@ -86,4 +86,4 @@ function Setting() {
   );
 }
 
-export default Setting;
+export default DoctorSettings;

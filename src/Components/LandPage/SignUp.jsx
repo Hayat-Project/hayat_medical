@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Stepper, Button, Group, Grid, Center, Stack, Title } from '@mantine/core';
 import SignUpForm from './SignUpForm';
 
-function SignUp () {
+function SignUp() {
     const [active, setActive] = useState(0);
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
@@ -15,14 +15,14 @@ function SignUp () {
                     <Stepper active={active}>
                         <Stepper.Step label="First step" description="Patient Information">
                             <Stack>
-                                <SignUpForm label1="First Name" placeholder1="First Name..." 
-                                    label2="Last Name" placeholder2="Last Name..." 
+                                <SignUpForm label1="First Name" placeholder1="First Name..."
+                                    label2="Last Name" placeholder2="Last Name..."
                                 />
-                                <SignUpForm label1="Email" placeholder1="Email..." 
-                                    label2="Emirates ID" placeholder2="Emirates ID..." 
+                                <SignUpForm label1="Email" placeholder1="Email..."
+                                    label2="Emirates ID" placeholder2="Emirates ID..."
                                 />
-                                <SignUpForm label1="Contacr Number" placeholder1="Contacr Number..." 
-                                    label2="Emergency Contact" placeholder2="Emergency Contact..." 
+                                <SignUpForm label1="Contacr Number" placeholder1="Contacr Number..."
+                                    label2="Emergency Contact" placeholder2="Emergency Contact..."
                                 />
                                 <SignUpForm label1="Date of birth" placeholder1="Date of birth..."
                                     label2="Gender" placeholder2="Gender..."
@@ -46,7 +46,7 @@ function SignUp () {
                             <Center>
                                 <Title order={2}>Completed, account has been created successfully!</Title>
                             </Center>
-                            
+
                         </Stepper.Completed>
                     </Stepper>
 

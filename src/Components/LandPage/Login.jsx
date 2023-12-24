@@ -1,6 +1,6 @@
 import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card } from '@mantine/core';
 import { useState } from 'react';
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -8,9 +8,9 @@ function Login() {
     const [loginDoctor, setloginDoctor] = useState(false);
     const [loginAdmin, setloginAdmin] = useState(false);
     const navigate = useNavigate();
-    
+
     function handleLogin() {
-        if(email === "doctor" && password === "doctor")
+        if (email === "doctor" && password === "doctor")
             setloginDoctor(true);
         else if (email === "admin" && password === "admin")
             setloginAdmin(true);
@@ -18,7 +18,6 @@ function Login() {
 
     return (
         <>
-        
             <Grid mt={200}>
                 <Grid.Col span={4.5}></Grid.Col>
                 <Grid.Col span={3}>
@@ -27,22 +26,22 @@ function Login() {
                         <Space h="xl" />
                         <Input.Wrapper label="Email" withAsterisk >
                             <Input
-                                size="lg" 
+                                size="lg"
                                 placeholder="Email..."
                                 onChange={(event) =>
-                                setEmail(event.currentTarget.value)
+                                    setEmail(event.currentTarget.value)
                                 }
                             />
                         </Input.Wrapper>
                         <Space h="lg" />
                         <Input.Wrapper label="Password" withAsterisk >
                             <PasswordInput
-                                size="lg" 
+                                size="lg"
                                 placeholder="Password..."
                                 onChange={(event) =>
-                                setPassword(event.currentTarget.value)
+                                    setPassword(event.currentTarget.value)
                                 }
-                                />
+                            />
                         </Input.Wrapper>
                         <Space h="xl" />
                         <Group gap="lg" justify="space-between">
@@ -53,10 +52,8 @@ function Login() {
                 </Grid.Col>
             </Grid>
 
-            
-
-            {loginDoctor && navigate('/doctorDashboard')}
-            {loginAdmin && navigate('/adminDashboard')}
+            {loginDoctor && navigate('/doctorDashboard/overview')}
+            {loginAdmin && navigate('/adminDashboard/overview')}
         </>
     );
 }
