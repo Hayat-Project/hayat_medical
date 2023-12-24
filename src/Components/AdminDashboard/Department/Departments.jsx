@@ -6,9 +6,11 @@ import { FaRegEdit } from "react-icons/fa";
 import SearchBarFilter from "../../SearchBarFilter";
 import { useDisclosure } from "@mantine/hooks";
 import AddDepartment from "./AddDepartment";
+import { useMediaQuery } from '@mantine/hooks';
 
 function Departments() {
   const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useMediaQuery(`(max-width: 1200px)`);
   const data = departmentsData.map((department) => (
     <Table.Tr key={department.id}>
       <Table.Td>{department.name}</Table.Td>

@@ -1,4 +1,5 @@
 import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +9,7 @@ function Login() {
     const [loginDoctor, setloginDoctor] = useState(false);
     const [loginAdmin, setloginAdmin] = useState(false);
     const navigate = useNavigate();
+    const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
     function handleLogin() {
         if (email === "doctor" && password === "doctor")
@@ -19,8 +21,8 @@ function Login() {
     return (
         <>
             <Grid mt={200}>
-                <Grid.Col span={4.5}></Grid.Col>
-                <Grid.Col span={3}>
+                <Grid.Col span={isMobile ? 1 : 4.5}></Grid.Col>
+                <Grid.Col span={isMobile ? 10 : 3}>
                     <Card shadow="sm" withBorder radius="md">
                         <Title order={2}>Login</Title>
                         <Space h="xl" />
