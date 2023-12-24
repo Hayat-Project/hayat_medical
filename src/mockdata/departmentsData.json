@@ -1,0 +1,52 @@
+[
+    {
+        "id": 78392,
+        "name": "Emergency Department",
+        "description": "Handles immediate medical conditions and injuries, providing rapid and critical care services."
+    },
+    {
+        "id": 49105,
+        "name": "Cardiology Department",
+        "description": "Specializes in the diagnosis and treatment of heart-related conditions and cardiovascular diseases."
+    },
+    {
+        "id": 23984,
+        "name": "Orthopedic Department",
+        "description": "Focuses on the musculoskeletal system, treating bones, joints, ligaments, and related injuries."
+    },
+    {
+        "id": 56781,
+        "name": "Obstetrics and Gynecology Department",
+        "description": "Cares for women's reproductive health, covering pregnancy, childbirth, and female reproductive system issues."
+    },
+    {
+        "id": 12456,
+        "name": "Radiology Department",
+        "description": "Utilizes medical imaging techniques such as X-rays and MRIs to diagnose and treat illnesses and injuries."
+    },
+    {
+        "id": 89023,
+        "name": "Pediatrics Department",
+        "description": "Specializes in the medical care of infants, children, and adolescents, providing comprehensive healthcare services."
+    },
+    {
+        "id": 34567,
+        "name": "Surgery Department",
+        "description": "Performs surgical procedures to treat various medical conditions, injuries, and diseases."
+    },
+    {
+        "id": 67890,
+        "name": "Internal Medicine Department",
+        "description": "Focuses on the prevention, diagnosis, and treatment of adult diseases and general medical conditions."
+    },
+    {
+        "id": 45678,
+        "name": "Neurology Department",
+        "description": "Deals with disorders of the nervous system, including the brain, spinal cord, and nerves."
+    },
+    {
+        "id": 90123,
+        "name": "Oncology Department",
+        "description": "Specializes in the diagnosis and treatment of cancer, utilizing various therapies and medical interventions."
+    }
+]

@@ -15,7 +15,7 @@ import Setting from "./DoctorDashboard/Settings/Setting";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import Users from "./AdminDashboard/Users";
-import Departments from "./AdminDashboard/Departments";
+import Departments from "./AdminDashboard/Department/Departments";
 import Customization from "./AdminDashboard/Customization";
 import Permissions from "./AdminDashboard/Permissions";
 
