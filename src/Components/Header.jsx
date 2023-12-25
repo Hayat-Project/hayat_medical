@@ -7,6 +7,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { useState } from "react";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 import NotificatiionPopover from "./NotificatiionPopover.jsx";
+import HayatLogo from "./HayatLogo.jsx";
 
 function Header({ toggle, opened }) {
     const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -26,7 +27,7 @@ function Header({ toggle, opened }) {
                 style={{ padding: "10px 20px" }}
             >
                 <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-                <MantineLogo size={30} />
+                {isDarkMode ? <HayatLogo image="/Logo-dark.png"/> : <HayatLogo image="/Logo.png"/>}
                 <SearchBarFilter width={500} placeholder="Type to search" visibleFrom="md" />
                 <Group gap={rem(isMobile ? 8 : "md")}>
                     <ThemeSwitcher

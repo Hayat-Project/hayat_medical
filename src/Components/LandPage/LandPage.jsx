@@ -5,6 +5,7 @@ import { useState } from "react";
 import ThemeSwitcher from "../ThemeSwitcher.jsx";
 import { Link, Outlet } from "react-router-dom";
 import { useMediaQuery } from '@mantine/hooks';
+import HayatLogo from "../HayatLogo.jsx";
 
 
 function LandPage(){
@@ -20,7 +21,7 @@ function LandPage(){
     >
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
-          <MantineLogo size={30} />
+          <HayatLogo/>
           <Group gap={isMobile ? 8 : "md"}>
             <ThemeSwitcher
               onChange={(event) => setChecked(event.currentTarget.isDarkMode)}
