@@ -5,6 +5,7 @@ import { useDisclosure, useMediaQuery  } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { DateInput } from '@mantine/dates';
 
+
 function SignUp() {
     const [active, setActive] = useState(0);
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
@@ -15,7 +16,7 @@ function SignUp() {
 
     return (
         <>
-            <Grid mt={150}>
+            <Grid mt={100}>
                 <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
                 <Grid.Col span={isMobile ? 12 :6}>
                     <Stepper active={active} iconSize={isMobile ? 15 : 37} size={isMobile ? 11 : "lg"}>
@@ -145,7 +146,6 @@ function SignUp() {
                         <Button onClick={nextStep}>Next step</Button>
                     </Group>
                 </Grid.Col>
-                <Grid.Col span={3}></Grid.Col>
             </Grid>
         </>
     );

@@ -2,13 +2,11 @@ import { useDisclosure } from "@mantine/hooks";
 import { AppShell } from "@mantine/core";
 import Header from "./Header";
 import Navbar from "./Navbar";
-
 import { Outlet } from "react-router-dom";
-
 
 function Dashboard(props) {
   const [opened, { toggle }] = useDisclosure();
-  const dashboard = props.dashboardSelected
+  const dashboard = props.dashboardSelected;
 
   return (
     <AppShell
@@ -27,7 +25,6 @@ function Dashboard(props) {
       <AppShell.Main>
         <Outlet />
       </AppShell.Main>
-
     </AppShell>
   );
 }

@@ -1,11 +1,11 @@
 import { Switch, rem, useMantineTheme, useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 
-function ThemeSwitcher({  isDarkMode }) {
+function ThemeSwitcher({ isDarkMode }) {
 
 	const { colorScheme, setColorScheme } = useMantineColorScheme();
 	const theme = useMantineTheme();
-  	const computedColorScheme = useComputedColorScheme('light');
+	const computedColorScheme = useComputedColorScheme('light');
 
 	const sunIcon = (
 		<IconSun
@@ -23,10 +23,11 @@ function ThemeSwitcher({  isDarkMode }) {
 		/>
 	);
 
-	
+
 
 	return (
 		<Switch size="lg" color="dark.4"
+			visibleFrom='xs'
 			onLabel={sunIcon} offLabel={moonIcon} checked={computedColorScheme === 'dark' ? true : false}
 			onChange={(event) => {
 				setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');

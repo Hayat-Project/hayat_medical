@@ -25,9 +25,11 @@ function Routing() {
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<LandPage />}>
-				<Route path="login" element={<Login />} />
-				<Route path="signup" element={<SignUp />} />
+			<>
+				<Route path="/" element={<LandPage />}>
+					<Route path="login" element={<Login />} />
+					<Route path="signup" element={<SignUp />} />
+				</Route>
 				<Route path="doctorDashboard" element={<Dashboard dashboardSelected="doctor" />}>
 					<Route path="overview" element={<Overview />} />
 					<Route path="Appointments" element={<Appointments />} />
@@ -47,7 +49,7 @@ function Routing() {
 					<Route path="Messages" element={<Messages />} />
 					<Route path="Setting" element={<Setting />} />
 				</Route>
-			</Route>
+			</>
 		)
 	);
 
