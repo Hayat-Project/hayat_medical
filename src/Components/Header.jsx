@@ -1,17 +1,34 @@
 import { Flex, ActionIcon, Burger, AppShell, rem, em, Group } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import {useDisclosure, useMediaQuery} from "@mantine/hooks";
 import { MantineLogo } from "@mantine/ds";
 import SearchBarFilter from "./SearchBarFilter.jsx";
 import ThemeSwitcher from "./ThemeSwitcher.jsx";
 import { IoMailOutline } from "react-icons/io5";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 import NotificatiionPopover from "./NotificatiionPopover.jsx";
+import HayatLogo from "./HayatLogo.jsx";
 
 function Header({ toggle, opened }) {
-    const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
     const iconsStyle = { width: rem(28.5), height: rem(28.5) };
-    const [isDarkMode, setChecked] = useState(false);
+    const isMobile = useMediaQuery(`(max-width: 1200px)`);
+    const [logoSrc, setLogoSrc] = useState("/Logo.png");
+
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('theme');
+
+        if (storedTheme) {
+            setLogoSrc(storedTheme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
+        } else {
+            const theme = document.documentElement.getAttribute('data-mantine-color-scheme');
+            setLogoSrc(theme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
+        }
+    }, []);
+
+    const handleThemeChange = () => {
+        const theme = document.documentElement.getAttribute('data-mantine-color-scheme');
+        setLogoSrc(theme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
+    };
 
     const handleClickMessages = () => {
         localStorage.setItem("activeIndex", 4);
@@ -26,12 +43,10 @@ function Header({ toggle, opened }) {
                 style={{ padding: "10px 20px" }}
             >
                 <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-                <MantineLogo size={30} />
+                <HayatLogo image={logoSrc} />
                 <SearchBarFilter width={500} placeholder="Type to search" visibleFrom="md" />
                 <Group gap={rem(isMobile ? 8 : "md")}>
-                    <ThemeSwitcher
-                        onChange={(event) => setChecked(event.currentTarget.isDarkMode)}
-                        isDarkMode={isDarkMode} />
+                    <ThemeSwitcher onChange={handleThemeChange} />
                     <Group visibleFrom="xs">
                         <ActionIcon
                             variant="default"
