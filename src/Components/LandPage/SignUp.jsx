@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Stepper, Button, Group, Grid, Center, Stack, Title, PasswordInput, Input, Space } from '@mantine/core';
 import { IMaskInput } from 'react-imask';
-import { useDisclosure, useMediaQuery  } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { DateInput } from '@mantine/dates';
 
@@ -17,13 +17,13 @@ function SignUp() {
     return (
         <>
             <Grid mt={100}>
-                <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
-                <Grid.Col span={isMobile ? 12 :6}>
+                <Grid.Col span={isMobile ? 12 : 3}></Grid.Col>
+                <Grid.Col span={isMobile ? 12 : 6}>
                     <Stepper active={active} iconSize={isMobile ? 15 : 37} size={isMobile ? 11 : "lg"}>
                         <Stepper.Step label="First step" description="Patient Information">
                             <Grid>
-                                <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}></Grid.Col>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <Input.Wrapper label="First Name" withAsterisk >
                                         <Input size="md" placeholder="First Name..." />
                                     </Input.Wrapper>
@@ -45,7 +45,7 @@ function SignUp() {
                                         />
                                     </Input.Wrapper>
                                 </Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <Input.Wrapper label="Last Name" withAsterisk >
                                         <Input size="md" placeholder="Last Name..." />
                                     </Input.Wrapper>
@@ -75,8 +75,8 @@ function SignUp() {
                         </Stepper.Step>
                         <Stepper.Step label="Second step" description="Create Password">
                             <Grid>
-                                <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}></Grid.Col>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <PasswordInput
                                         label="Password"
                                         placeholder="Password.."
@@ -85,7 +85,7 @@ function SignUp() {
                                         withAsterisk
                                     />
                                 </Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <PasswordInput
                                         label="Confirm password"
                                         placeholder="Password.."
@@ -98,8 +98,8 @@ function SignUp() {
                         </Stepper.Step>
                         <Stepper.Step label="Final step" description="Health Information">
                             <Grid>
-                                <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}></Grid.Col>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <Input.Wrapper label="Insurance Type" withAsterisk >
                                         <Input size="md" placeholder="Insurance Type..." />
                                     </Input.Wrapper>
@@ -108,7 +108,7 @@ function SignUp() {
                                         <Input size="md" placeholder="Allergies..." />
                                     </Input.Wrapper>
                                 </Grid.Col>
-                                <Grid.Col span={isMobile ? 12 :3}>
+                                <Grid.Col span={isMobile ? 12 : 3}>
                                     <Input.Wrapper label="Blood Type" withAsterisk >
                                         <Input
                                             component="select"
