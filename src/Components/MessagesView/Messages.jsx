@@ -4,14 +4,16 @@ import MainHeader from "../MainHeader";
 import patientMessages from "../../mockdata/patientMessages.json";
 import staffMessages from "../../mockdata/staffMessages.json"
 import UserList from "./UserList";
+import { useMediaQuery } from '@mantine/hooks';
 
 function Messages() {
+  const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
   return (
     <>
       <MainHeader header="Messages" dataSize="2" type="Unread Messages"/>
       <Grid mt="20">
-        <Grid.Col span={4}>
+        <Grid.Col span={isMobile ? 12 : 4}>
           <Card shadow="sm" withBorder > 
             <Tabs radius="md" defaultValue="Patients">   
               <Tabs.List>
@@ -32,7 +34,7 @@ function Messages() {
             </Tabs>   
           </Card>
         </Grid.Col>
-        <Grid.Col span={8}>
+        <Grid.Col span={isMobile ? 12 : 8}>
           <Card shadow="sm" withBorder> 
             <Group justify="space-between">
                 <Group>

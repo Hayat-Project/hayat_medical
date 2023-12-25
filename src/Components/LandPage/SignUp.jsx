@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { Stepper, Button, Group, Grid, Center, Stack, Title } from '@mantine/core';
 import SignUpForm from './SignUpForm';
+import { useMediaQuery } from '@mantine/hooks';
 
 function SignUp() {
     const [active, setActive] = useState(0);
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+    const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
     return (
         <>
             <Grid mt={100}>
-                <Grid.Col span={3}></Grid.Col>
-                <Grid.Col span={6}>
-                    <Stepper active={active}>
+                <Grid.Col span={isMobile ? 12 :3}></Grid.Col>
+                <Grid.Col span={isMobile ? 12 :6}>
+                    <Stepper active={active} iconSize={isMobile ? 15 : 37} size={isMobile ? 11 : "lg"}>
                         <Stepper.Step label="First step" description="Patient Information">
                             <Stack>
                                 <SignUpForm label1="First Name" placeholder1="First Name..."
@@ -44,7 +46,7 @@ function SignUp() {
                         </Stepper.Step>
                         <Stepper.Completed>
                             <Center>
-                                <Title order={2}>Completed, account has been created successfully!</Title>
+                                <Title size={isMobile ? 13 : 30} order={2}>Completed, account has been created successfully!</Title>
                             </Center>
 
                         </Stepper.Completed>
@@ -55,7 +57,6 @@ function SignUp() {
                         <Button onClick={nextStep}>Next step</Button>
                     </Group>
                 </Grid.Col>
-                <Grid.Col span={3}></Grid.Col>
             </Grid>
         </>
     );
