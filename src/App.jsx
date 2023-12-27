@@ -1,6 +1,5 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import "./css/global.css"
 import { MantineProvider, createTheme, Button } from "@mantine/core";
 import Routing from "./Components/Routing";
 
@@ -19,7 +18,7 @@ function App() {
 
 	return (
 		<MantineProvider theme={theme}>
-			<Routing/>
+			<Routing />
 		</MantineProvider>
 	);
 }

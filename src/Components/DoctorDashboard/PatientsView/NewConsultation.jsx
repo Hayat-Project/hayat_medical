@@ -1,4 +1,4 @@
-import { Card, Title, Select, SimpleGrid, Button, ScrollArea, TextInput, Table, ActionIcon, Flex, Group } from "@mantine/core";
+import { Card, Title, Select, SimpleGrid, Button, ScrollArea, TextInput, Table, ActionIcon, Group } from "@mantine/core";
 import MainHeader from '../../MainHeader'
 import elements from "../../../mockdata/prescriptionDrugs.json";
 import { IconTrash } from '@tabler/icons-react';
@@ -28,7 +28,7 @@ function NewConsultation() {
   return (
     <>
       <MainHeader header="New Consultation" badge={false} />
-        
+
       <SimpleGrid mt={15}>
         <Title size="h3" mb={5}>General</Title>
         <Group>

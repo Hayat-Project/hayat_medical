@@ -1,10 +1,9 @@
-import { Flex, ActionIcon, Burger, AppShell, rem, em, Group } from "@mantine/core";
-import {useDisclosure, useMediaQuery} from "@mantine/hooks";
-import { MantineLogo } from "@mantine/ds";
+import { Flex, ActionIcon, Burger, AppShell, rem, Group } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import SearchBarFilter from "./SearchBarFilter.jsx";
 import ThemeSwitcher from "./ThemeSwitcher.jsx";
 import { IoMailOutline } from "react-icons/io5";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 import NotificatiionPopover from "./NotificatiionPopover.jsx";
 import HayatLogo from "./HayatLogo.jsx";

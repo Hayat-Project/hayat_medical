@@ -12,8 +12,6 @@ import {
   IconBuildingSkyscraper,
   IconAdjustmentsAlt,
   IconShieldHalfFilled,
-
-
 } from "@tabler/icons-react";
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";

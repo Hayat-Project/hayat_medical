@@ -1,6 +1,5 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import "../css/global.css"
 import Dashboard from "./Dashboard";
 import LandPage from "./LandPage/LandPage";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";

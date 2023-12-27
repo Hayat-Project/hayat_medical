@@ -1,4 +1,3 @@
-// ThemeSwitcher.jsx
 import { Switch, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, Group, Avatar, Stack } from "@mantine/core";
 
 function DoctorProfileCard(props) {

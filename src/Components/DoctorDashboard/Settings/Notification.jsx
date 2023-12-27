@@ -1,5 +1,4 @@
 import { Divider, Text, Title } from "@mantine/core";
-import SettingOptionButton from "./SettingOptionButton";
 import SettingOptionSwitch from "./SettingOptionSwitch";
 
 function Notification() {
@@ -41,7 +40,7 @@ function Notification() {
         title="Messages Alerts"
         text="Receive notification about messages alerts"
       />
-    
+
     </>
   );
 }

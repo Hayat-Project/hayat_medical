@@ -9,7 +9,7 @@ import ReportsTabs from "./ReportsTabs";
 
 import AppointmentHistoryTabs from "./AppointmentHistoryTabs";
 
-function PatientProfile(props) {
+function PatientProfile() {
   const { selectedPatientId } = useParams();
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
