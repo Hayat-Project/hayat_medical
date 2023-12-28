@@ -1,15 +1,14 @@
+import sharp from "sharp";
+import fs from "fs/promises";
 
-import sharp from 'sharp';
-import fs from 'fs/promises';
-
-const imagePath = '/home/ahmad/hayat_medical/public/images/image.jpg';
+const imagePath = "/home/ahmad/hayat_medical/public/images/image.jpg";
 
 async function extractPixels(imagePath) {
   try {
     const [redPixels, greenPixels, bluePixels] = await Promise.all([
-      sharp(imagePath).extractChannel('red').raw().toBuffer(),
-      sharp(imagePath).extractChannel('green').raw().toBuffer(),
-      sharp(imagePath).extractChannel('blue').raw().toBuffer(),
+      sharp(imagePath).extractChannel("red").raw().toBuffer(),
+      sharp(imagePath).extractChannel("green").raw().toBuffer(),
+      sharp(imagePath).extractChannel("blue").raw().toBuffer(),
     ]);
 
     return {
@@ -18,20 +17,25 @@ async function extractPixels(imagePath) {
       bluePixels: Array.from(bluePixels),
     };
   } catch (err) {
-    console.error('Error extracting pixel data:', err);
+    console.error("Error extracting pixel data:", err);
   }
 }
 
 async function writePixelsToFile(filePath, pixels) {
   try {
-    await fs.writeFile(filePath, pixels.join(','));
-    console.log('Output written to', filePath);
+    await fs.writeFile(filePath, pixels.join(","));
+    console.log("Output written to", filePath);
   } catch (err) {
-    console.error('Error writing to file:', err);
+    console.error("Error writing to file:", err);
   }
 }
 
-async function createImageFromPixels(redPixels, greenPixels, bluePixels, outputPath) {
+async function createImageFromPixels(
+  redPixels,
+  greenPixels,
+  bluePixels,
+  outputPath
+) {
   const width = 617;
   const height = 617;
 
@@ -45,41 +49,53 @@ async function createImageFromPixels(redPixels, greenPixels, bluePixels, outputP
     imageData[index + 3] = 255;
   }
 
-  await sharp(Buffer.from(imageData.buffer), { raw: { width, height, channels: 4 } }).toFile(outputPath);
+  await sharp(Buffer.from(imageData.buffer), {
+    raw: { width, height, channels: 4 },
+  }).toFile(outputPath);
 }
 
 function stringToBinary(str) {
-  return Array.from(str).map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+  return Array.from(str)
+    .map((char) => char.charCodeAt(0).toString(2).padStart(8, "0"))
+    .join("");
 }
 
 async function main() {
   try {
-    const flag = ' ##END##';
-    const myString = 'In the quiet corners of the forgotten forest, where sunlight dances through the leaves like golden whispers, a solitary owl' + 
-    'perches on a moss-covered branch. Its wise eyes survey the landscape, capturing the essence of centuries gone by. The air is filled with the' +
-    'soft rustling of leaves and the distant murmur of a babbling brook.' + flag;
+    const flag = " ##END##";
+    const myString =
+      "In the quiet corners of the forgotten forest, where sunlight dances through the leaves like golden whispers, a solitary owl" +
+      "perches on a moss-covered branch. Its wise eyes survey the landscape, capturing the essence of centuries gone by. The air is filled with the" +
+      "soft rustling of leaves and the distant murmur of a babbling brook." +
+      flag;
     const binaryString = stringToBinary(myString);
-    const { redPixels, greenPixels, bluePixels } = await extractPixels(imagePath);
+    const { redPixels, greenPixels, bluePixels } = await extractPixels(
+      imagePath
+    );
 
-    // const modifyPixels = (pixels) =>
-    //   pixels.map((pixel) => (pixel === 0 ? pixel : 255));
-
-    // const redBinaryPixels = modifyPixels(redPixels);
-    // const greenBinaryPixels = modifyPixels(greenPixels);
-    // const blueBinaryPixels = modifyPixels(bluePixels);
     const redBinaryPixels = redPixels;
     const greenBinaryPixels = greenPixels;
     const blueBinaryPixels = bluePixels;
 
     let binaryIndex = 0;
 
-    for (let i = 0; i < redBinaryPixels.length && binaryIndex < binaryString.length; i++) {
+    for (
+      let i = 0;
+      i < redBinaryPixels.length && binaryIndex < binaryString.length;
+      i++
+    ) {
       const modifyChannel = (channel) =>
         channel.slice(0, -1) + binaryString.charAt(binaryIndex++);
 
-      const newEmbedX = modifyChannel(redBinaryPixels[i].toString(2).padStart(8, '0'));
-      const newEmbedY = modifyChannel(greenBinaryPixels[i].toString(2).padStart(8, '0'));
-      const newEmbedZ = modifyChannel(blueBinaryPixels[i].toString(2).padStart(8, '0'));
+      const newEmbedX = modifyChannel(
+        redBinaryPixels[i].toString(2).padStart(8, "0")
+      );
+      const newEmbedY = modifyChannel(
+        greenBinaryPixels[i].toString(2).padStart(8, "0")
+      );
+      const newEmbedZ = modifyChannel(
+        blueBinaryPixels[i].toString(2).padStart(8, "0")
+      );
 
       const convertToDecimal = (binary) => parseInt(binary, 2);
 
@@ -89,15 +105,15 @@ async function main() {
     }
 
     await writePixelsToFile(
-      '/home/ahmad/hayat_medical/public/images/redPixels.txt',
+      "/home/ahmad/hayat_medical/public/images/redPixels.txt",
       redBinaryPixels
     );
     await writePixelsToFile(
-      '/home/ahmad/hayat_medical/public/images/greenPixels.txt',
+      "/home/ahmad/hayat_medical/public/images/greenPixels.txt",
       greenBinaryPixels
     );
     await writePixelsToFile(
-      '/home/ahmad/hayat_medical/public/images/bluePixels.txt',
+      "/home/ahmad/hayat_medical/public/images/bluePixels.txt",
       blueBinaryPixels
     );
 
@@ -105,10 +121,10 @@ async function main() {
       redBinaryPixels,
       greenBinaryPixels,
       blueBinaryPixels,
-      '/home/ahmad/hayat_medical/public/images/reconstructedImage.png'
+      "/home/ahmad/hayat_medical/public/images/reconstructedImage.png"
     );
   } catch (err) {
-    console.error('An error occurred:', err);
+    console.error("An error occurred:", err);
   }
 }
 
