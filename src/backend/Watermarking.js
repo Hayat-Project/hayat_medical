@@ -1,7 +1,8 @@
 import sharp from "sharp";
 import fs from "fs/promises";
 
-const imagePath = "/home/ahmad/hayat_medical/public/images/image.jpg";
+const imagePath =
+  "/home/moutasim/Development/hayat_medical/public/images/image.jpg";
 
 async function extractPixels(imagePath) {
   try {
@@ -105,15 +106,15 @@ async function main() {
     }
 
     await writePixelsToFile(
-      "/home/ahmad/hayat_medical/public/images/redPixels.txt",
+      "/home/moutasim/Development/hayat_medical/public/images/redPixels.txt",
       redBinaryPixels
     );
     await writePixelsToFile(
-      "/home/ahmad/hayat_medical/public/images/greenPixels.txt",
+      "/home/moutasim/Development/hayat_medical/public/images/greenPixels.txt",
       greenBinaryPixels
     );
     await writePixelsToFile(
-      "/home/ahmad/hayat_medical/public/images/bluePixels.txt",
+      "/home/moutasim/Development/hayat_medical/public/images/bluePixels.txt",
       blueBinaryPixels
     );
 
@@ -121,7 +122,7 @@ async function main() {
       redBinaryPixels,
       greenBinaryPixels,
       blueBinaryPixels,
-      "/home/ahmad/hayat_medical/public/images/reconstructedImage.png"
+      "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
     );
   } catch (err) {
     console.error("An error occurred:", err);

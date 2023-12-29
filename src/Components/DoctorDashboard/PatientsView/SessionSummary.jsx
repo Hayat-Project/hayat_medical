@@ -10,10 +10,16 @@ function SessionSummary() {
 				<Tabs.Tab value="doctor" leftSection={<IconNotes style={iconStyle} />}>
 					Doctor Notes
 				</Tabs.Tab>
-				<Tabs.Tab value="transcriptSummary" leftSection={<IconSettingsAutomation style={iconStyle} />}>
+				<Tabs.Tab
+					value="transcriptSummary"
+					leftSection={<IconSettingsAutomation style={iconStyle} />}
+				>
 					Transcript Summary
 				</Tabs.Tab>
-				<Tabs.Tab value="transcript" leftSection={<IconTextCaption style={iconStyle} />}>
+				<Tabs.Tab
+					value="transcript"
+					leftSection={<IconTextCaption style={iconStyle} />}
+				>
 					Transcript
 				</Tabs.Tab>
 			</Tabs.List>
@@ -30,11 +36,16 @@ function SessionSummary() {
 			</Tabs.Panel>
 
 			<Tabs.Panel value="transcriptSummary">
-				<Text mt={10}>Start recording session to have an automatic summary of the conversation</Text>
+				<Text mt={10}>
+					Start recording session to have an automatic summary of the
+					conversation
+				</Text>
 			</Tabs.Panel>
 
-			<Tabs.Panel value="transcript" >
-				<Button mt={10} color='red' leftSection={<IconPlayerRecord />}>Start recording</Button>
+			<Tabs.Panel value="transcript">
+				<Button mt={10} color="red" leftSection={<IconPlayerRecord />}>
+					Start recording
+				</Button>
 			</Tabs.Panel>
 		</Tabs>
 	);
