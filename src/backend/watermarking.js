@@ -62,14 +62,10 @@ function stringToBinary(str) {
 }
 
 export async function watermarkImageWithData(formData) {
-  console.log(formData);
   try {
     const flag = " ##END##";
-    const myString =
-      "In the quiet corners of the forgotten forest, where sunlight dances through the leaves like golden whispers, a solitary owl" +
-      "perches on a moss-covered branch. Its wise eyes survey the landscape, capturing the essence of centuries gone by. The air is filled with the" +
-      "soft rustling of leaves and the distant murmur of a babbling brook." +
-      flag;
+    //Convert Object to JSON
+    const myString = JSON.stringify(formData) + flag;
     const binaryString = stringToBinary(myString);
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath

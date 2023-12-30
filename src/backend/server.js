@@ -15,12 +15,13 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//JSON to Object
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/watermark-image", (req, res) => {
-  const formData = req.body;
+  const formData = req.body; // Object
   console.log("Form data received:", formData);
   watermarkImageWithData(formData);
   res.status(200).json({ message: "Form submitted successfully!" });
@@ -28,8 +29,11 @@ app.post("/watermark-image", (req, res) => {
 
 app.get("/extract-image-data", (req, res) => {
   const watermarkedData = extractWatermarkedData();
-  res.status(200).json({ message: "Data extracted successfully!" });
-  res.send(watermarkedData);
+  console.log(watermarkedData);
+  res.status(200).json({
+    message: "Data extracted successfully!",
+    watermarkedData: watermarkedData,
+  });
 });
 
 app.listen(port, () => {

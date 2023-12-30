@@ -7,6 +7,24 @@ function AppointmentHistoryCard(props) {
   const elements = props.data;
   const [opened, { open, close }] = useDisclosure(false);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/extract-image-data", {
+        method: "GET"
+      });
+      console.log(response.body);
+      // if (response.ok) {
+      //   navigate(-1);
+      // } else {
+      //   console.error("Error submitting form:", response.statusText);
+      // }
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
+  };
+
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>
       <Table.Td>{element.date}</Table.Td>
@@ -26,11 +44,17 @@ function AppointmentHistoryCard(props) {
         }
       </Table.Td>
       <Table.Td>
-        <Button onClick={open} rightSection={<IconEye size={14} />} size="xs">
+        <Button
+          action="http://localhost:3000/extract-image-data"
+          method="get"
+          onClick={open}
+          rightSection={<IconEye size={14} />}
+          size="xs"
+        >
           View
         </Button>
       </Table.Td>
-    </Table.Tr >
+    </Table.Tr>
   ));
 
   return (
@@ -66,8 +90,8 @@ function AppointmentHistoryCard(props) {
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
-      
-      <Modal 
+
+      <Modal
         opened={opened}
         onClose={close}
         title="View Previous Consultation"

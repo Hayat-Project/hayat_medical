@@ -31,7 +31,7 @@ function NewConsultation() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data.values),
+        body: JSON.stringify(data.values), // JSON
       });
 
       if (response.ok) {
@@ -194,7 +194,7 @@ function NewConsultation() {
             spacing="md"
             verticalSpacing="xs"
           >
-            <ReportsTabs height={270} checkbox='checkbox'/>
+            <ReportsTabs height={270} checkbox='checkbox' />
             <Card shadow="sm" withBorder>
               <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} />
             </Card>
