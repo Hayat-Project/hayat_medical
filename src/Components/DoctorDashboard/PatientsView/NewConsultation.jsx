@@ -1,19 +1,50 @@
 import { Card, Title, Select, SimpleGrid, Button, ScrollArea, TextInput, Table, ActionIcon, Group } from "@mantine/core";
 import MainHeader from '../../MainHeader'
-import elements from "../../../mockdata/prescriptionDrugs.json";
+import prescriptionDrugs from "../../../mockdata/prescriptionDrugs.json";
 import { IconTrash } from '@tabler/icons-react';
 import ReportsTabs from "./ReportsTabs";
 import SessionSummary from "./SessionSummary";
 import { useForm } from "@mantine/form";
+import { useNavigate } from "react-router-dom";
 
 function NewConsultation() {
   const data = useForm({
     initialValues: {
-      doctorNote: "",
+      doctorNote: "", // Doctor notes TextInput field
+      sessionSummary: "Thanks for attending our initial propoposal presentation", // Placeholder String
+      prescriptionDrugs: prescriptionDrugs // Array of JSON objects
     },
   });
 
-  const rows = elements.map((element) => (
+  const handleDoctorNoteChange = (value) => {
+    data.setFieldValue("doctorNote", value);
+  };
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/watermark-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data.values),
+      });
+
+      if (response.ok) {
+        navigate(-1)
+      } else {
+        console.error('Error submitting form:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error.message);
+    }
+  };
+
+  const rows = prescriptionDrugs.map((element) => (
     <Table.Tr key={element.name}>
       <Table.Td>{element.name}</Table.Td>
       <Table.Td>{element.strength}</Table.Td>
@@ -35,7 +66,7 @@ function NewConsultation() {
   return (
     <>
       <MainHeader header="New Consultation" badge={false} />
-      <form onSubmit={data.onSubmit((values) => console.log(values))}>
+      <form onSubmit={handleSubmit} action="http://localhost:3000/watermark-image" method="post">
         <SimpleGrid mt={15}>
           <Title size="h3" mb={5}>
             General
@@ -165,11 +196,11 @@ function NewConsultation() {
           >
             <ReportsTabs height={270} />
             <Card shadow="sm" withBorder>
-              <SessionSummary />
+              <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} />
             </Card>
           </SimpleGrid>
           <Group mt={10} justify="flex-end">
-            <Button variant="outline" w={150}>
+            <Button onClick={() => navigate(-1)} variant="outline" w={150}>
               Cancel
             </Button>
             <Button type="submit" w={150}>Submit</Button>

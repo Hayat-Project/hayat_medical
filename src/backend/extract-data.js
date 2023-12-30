@@ -53,7 +53,7 @@ function binaryToString(binary) {
   return extractedString;
 }
 
-async function main() {
+export async function extractWatermarkedData() {
   try {
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath
@@ -70,5 +70,3 @@ async function main() {
     console.error("An error occurred:", err);
   }
 }
-
-main();

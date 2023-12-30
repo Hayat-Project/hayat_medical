@@ -1,9 +1,12 @@
-import { Badge, Button, Group, Table } from "@mantine/core";
+import { Badge, Button, Group, Modal, Table, Title } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../../InfoIconWithProps";
+import { useDisclosure } from "@mantine/hooks";
 
 function AppointmentHistoryCard(props) {
   const elements = props.data;
+  const [opened, { open, close }] = useDisclosure(false);
+
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>
       <Table.Td>{element.date}</Table.Td>
@@ -23,11 +26,17 @@ function AppointmentHistoryCard(props) {
         }
       </Table.Td>
       <Table.Td>
-        <Button rightSection={<IconEye size={14} />} size="xs">
+        <Button onClick={open} rightSection={<IconEye size={14} />} size="xs">
           View
         </Button>
+        <Modal opened={opened}
+          onClose={close}
+          title="View Previous Consultation"
+        >
+          <Title>Test</Title>
+        </Modal>
       </Table.Td>
-    </Table.Tr>
+    </Table.Tr >
   ));
 
   return (

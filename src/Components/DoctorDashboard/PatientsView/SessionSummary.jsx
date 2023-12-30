@@ -1,8 +1,12 @@
 import { Button, Tabs, Text, Textarea, rem } from '@mantine/core';
 import { IconNotes, IconPlayerRecord, IconSettingsAutomation, IconTextCaption, } from '@tabler/icons-react';
 
-function SessionSummary() {
+function SessionSummary({ onDoctorNoteChange }) {
 	const iconStyle = { width: rem(12), height: rem(12) };
+
+	const handleDoctorNoteChange = (event) => {
+		onDoctorNoteChange(event.target.value);
+	};
 
 	return (
 		<Tabs radius="md" defaultValue="doctor">
@@ -32,6 +36,7 @@ function SessionSummary() {
 					radius="md"
 					minRows={8}
 					maxRows={8}
+					onChange={handleDoctorNoteChange}
 				/>
 			</Tabs.Panel>
 

@@ -61,7 +61,8 @@ function stringToBinary(str) {
     .join("");
 }
 
-async function main() {
+export async function watermarkImageWithData(formData) {
+  console.log(formData);
   try {
     const flag = " ##END##";
     const myString =
@@ -128,5 +129,3 @@ async function main() {
     console.error("An error occurred:", err);
   }
 }
-
-main();
