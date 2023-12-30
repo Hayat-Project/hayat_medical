@@ -194,7 +194,7 @@ function NewConsultation() {
             spacing="md"
             verticalSpacing="xs"
           >
-            <ReportsTabs height={270} />
+            <ReportsTabs height={270} checkbox='checkbox'/>
             <Card shadow="sm" withBorder>
               <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} />
             </Card>

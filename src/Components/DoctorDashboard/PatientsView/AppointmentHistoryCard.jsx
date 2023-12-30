@@ -29,48 +29,52 @@ function AppointmentHistoryCard(props) {
         <Button onClick={open} rightSection={<IconEye size={14} />} size="xs">
           View
         </Button>
-        <Modal opened={opened}
-          onClose={close}
-          title="View Previous Consultation"
-        >
-          <Title>Test</Title>
-        </Modal>
       </Table.Td>
     </Table.Tr >
   ));
 
   return (
-    <Table>
-      <Table.Thead>
-        <Table.Tr>
-          <Table.Th>Date</Table.Th>
-          <Table.Th>Treatment Type</Table.Th>
-          <Table.Th>Booking Time</Table.Th>
-          <Table.Th>Comments</Table.Th>
-          <Table.Th>
-            <Group gap={5}>
-              Status
-              <InfoIconWithProps
-                badges={[
-                  {
-                    name: "Upcoming",
-                    color: "orange",
-                    description: "Upcoming Appointment",
-                  },
-                  {
-                    name: "Completed",
-                    color: "green",
-                    description: "Appointment Completed",
-                  },
-                ]}
-                width={322}
-              />
-            </Group>
-          </Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
-    </Table>
+    <>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Date</Table.Th>
+            <Table.Th>Treatment Type</Table.Th>
+            <Table.Th>Booking Time</Table.Th>
+            <Table.Th>Comments</Table.Th>
+            <Table.Th>
+              <Group gap={5}>
+                Status
+                <InfoIconWithProps
+                  badges={[
+                    {
+                      name: "Upcoming",
+                      color: "orange",
+                      description: "Upcoming Appointment",
+                    },
+                    {
+                      name: "Completed",
+                      color: "green",
+                      description: "Appointment Completed",
+                    },
+                  ]}
+                  width={322}
+                />
+              </Group>
+            </Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
+      </Table>
+      
+      <Modal 
+        opened={opened}
+        onClose={close}
+        title="View Previous Consultation"
+      >
+        <Title>Test</Title>
+      </Modal>
+    </>
   );
 }
 

@@ -38,7 +38,9 @@ function ReportsTabs(props) {
         </Tabs.List>
 
         <Tabs.Panel value="Screening">
-          <ReportTable title="Screening" data={Screening} />
+          {props.checkbox === 'checkbox' ? 
+            <ReportTable title="Screening" data={Screening} checkbox='checkbox'/> : 
+            <ReportTable title="Screening" data={Screening}/>}
         </Tabs.Panel>
 
         <Tabs.Panel value="Reports">

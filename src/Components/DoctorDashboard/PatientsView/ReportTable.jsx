@@ -1,10 +1,14 @@
-import { Table, Button } from "@mantine/core";
+import { Table, Button, Checkbox } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 
 function ReportTable(props) {
+  const checkbox = props.checkbox;
   const elements = props.data;
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>
+      {checkbox === 'checkbox' ? <Table.Td>
+        <Checkbox/>
+      </Table.Td> : null}
       <Table.Td>{element.reportName}</Table.Td>
       <Table.Td>{element.date}</Table.Td>
       <Table.Td>
