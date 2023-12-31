@@ -2,7 +2,7 @@ import sharp from "sharp";
 import fs from "fs/promises";
 
 const imagePath =
-  "/home/moutasim/Development/hayat_medical/public/images/image.jpg";
+  "../../public/images/image.jpg";
 
 async function extractPixels(imagePath) {
   try {
@@ -65,16 +65,9 @@ export async function watermarkImageWithData(formData) {
   try {
     const flag = " ##END##";
     //Convert Object to JSON
-    // let drugs;
+    const data = "- Doctor Note:" + formData.doctorNote + " \n" + 
+      "\n- Session Summary: " + formData.sessionSummary;
 
-    // for (let i = 0; i < array.length; i++) {
-    //   drugs = " ##stPD## " + formData.prescriptionDrugs[i] + " ##enPD##";
-    // }
-    const data =
-      "Doctor Note:" +
-      formData.doctorNote +
-      "Session Summary: " +
-      formData.sessionSummary;
     const myString = data + flag;
     const binaryString = stringToBinary(myString);
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
@@ -113,15 +106,15 @@ export async function watermarkImageWithData(formData) {
     }
 
     await writePixelsToFile(
-      "/home/moutasim/Development/hayat_medical/public/images/redPixels.txt",
+      "../../public/images/redPixels.txt",
       redBinaryPixels
     );
     await writePixelsToFile(
-      "/home/moutasim/Development/hayat_medical/public/images/greenPixels.txt",
+      "../../public/images/greenPixels.txt",
       greenBinaryPixels
     );
     await writePixelsToFile(
-      "/home/moutasim/Development/hayat_medical/public/images/bluePixels.txt",
+      "../../public/images/bluePixels.txt",
       blueBinaryPixels
     );
 
@@ -129,7 +122,7 @@ export async function watermarkImageWithData(formData) {
       redBinaryPixels,
       greenBinaryPixels,
       blueBinaryPixels,
-      "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
+      "../../public/images/reconstructedImage.png"
     );
   } catch (err) {
     console.error("An error occurred:", err);

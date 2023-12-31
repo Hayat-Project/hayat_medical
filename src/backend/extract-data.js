@@ -1,7 +1,7 @@
 import sharp from "sharp";
 
 const imagePath =
-  "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png";
+  "../../public/images/reconstructedImage.png";
 
 async function extractPixels(imagePath) {
   try {
@@ -70,5 +70,3 @@ export async function extractWatermarkedData() {
     console.error("An error occurred:", err);
   }
 }
-
-// extractWatermarkedData();
