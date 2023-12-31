@@ -64,7 +64,7 @@ export async function extractWatermarkedData() {
       bluePixels
     );
     const extractedString = binaryToString(extractedBinaryString);
-    // console.log("Extracted String:", extractedString);
+    console.log("Extracted String:", extractedString);
     return extractedString;
   } catch (err) {
     console.error("An error occurred:", err);

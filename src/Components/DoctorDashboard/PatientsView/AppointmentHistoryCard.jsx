@@ -1,9 +1,12 @@
-import { Badge, Button, Group, Modal, Table, Title } from "@mantine/core";
+import { Badge, Button, Group, Modal, Table, Loader, Text } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../../InfoIconWithProps";
 import { useDisclosure } from "@mantine/hooks";
+import React, { useState } from "react";
 
 function AppointmentHistoryCard(props) {
+  const [retrievedData, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const elements = props.data;
   const [opened, { open, close }] = useDisclosure(false);
   let responseBody;
@@ -17,11 +20,14 @@ function AppointmentHistoryCard(props) {
       });
 
       if (response.ok) {
-        responseBody = await response.json();
+        responseBody = await response.json(); // object
         console.log(responseBody);
+        setData(responseBody);
       }
     } catch (error) {
       console.error("Error submitting form:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,16 +50,22 @@ function AppointmentHistoryCard(props) {
         }
       </Table.Td>
       <Table.Td>
-        <Button
-          type="submit"
-          onClick={open}
-          rightSection={<IconEye size={14} />}
-          size="xs"
+        <form
+          onSubmit={handleView}
+          action="http://localhost:3000/extract-image-data"
+          method="get"
         >
-          View
-        </Button>
+          <Button
+            type="submit"
+            onClick={open}
+            rightSection={<IconEye size={14} />}
+            size="xs"
+          >
+            View
+          </Button>
+        </form>
       </Table.Td>
-    </Table.Tr >
+    </Table.Tr>
   ));
 
   return (
@@ -91,7 +103,14 @@ function AppointmentHistoryCard(props) {
       </Table>
 
       <Modal opened={opened} onClose={close} title="View Previous Consultation">
-        <Title>{responseBody}</Title>
+        {loading ? (
+          <Loader color="blue" />
+        ) : (
+          <>
+            <Text mb={10}>{retrievedData.message}</Text>
+            <Text>{retrievedData.data}</Text>
+          </>
+        )}
       </Modal>
     </>
   );

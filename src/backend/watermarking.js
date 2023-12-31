@@ -65,7 +65,17 @@ export async function watermarkImageWithData(formData) {
   try {
     const flag = " ##END##";
     //Convert Object to JSON
-    const myString = JSON.stringify(formData) + flag;
+    // let drugs;
+
+    // for (let i = 0; i < array.length; i++) {
+    //   drugs = " ##stPD## " + formData.prescriptionDrugs[i] + " ##enPD##";
+    // }
+    const data =
+      "Doctor Note:" +
+      formData.doctorNote +
+      "Session Summary: " +
+      formData.sessionSummary;
+    const myString = data + flag;
     const binaryString = stringToBinary(myString);
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath
