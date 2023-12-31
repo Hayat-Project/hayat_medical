@@ -13,9 +13,8 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 //JSON to Object
+app.use(express.json());
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
@@ -24,15 +23,14 @@ app.post("/watermark-image", (req, res) => {
   const formData = req.body; // Object
   console.log("Form data received:", formData);
   watermarkImageWithData(formData);
-  res.status(200).json({ message: "Form submitted successfully!" });
+  res.status(200).send({ message: "Form submitted successfully!" });
 });
 
-app.get("/extract-image-data", (req, res) => {
-  const watermarkedData = extractWatermarkedData();
-  console.log(watermarkedData);
-  res.status(200).json({
+app.get("/extract-image-data", async (req, res) => {
+  const watermarkedData = await extractWatermarkedData();
+  res.status(200).send({
     message: "Data extracted successfully!",
-    watermarkedData: watermarkedData,
+    data: watermarkedData,
   });
 });
 

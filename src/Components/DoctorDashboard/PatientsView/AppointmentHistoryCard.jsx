@@ -6,20 +6,20 @@ import { useDisclosure } from "@mantine/hooks";
 function AppointmentHistoryCard(props) {
   const elements = props.data;
   const [opened, { open, close }] = useDisclosure(false);
+  let responseBody;
 
-  const handleSubmit = async (event) => {
+  const handleView = async (event) => {
     event.preventDefault();
 
     try {
       const response = await fetch("http://localhost:3000/extract-image-data", {
         method: "GET"
       });
-      console.log(response.body);
-      // if (response.ok) {
-      //   navigate(-1);
-      // } else {
-      //   console.error("Error submitting form:", response.statusText);
-      // }
+
+      if (response.ok) {
+        responseBody = await response.json();
+        console.log(responseBody);
+      }
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
@@ -45,8 +45,7 @@ function AppointmentHistoryCard(props) {
       </Table.Td>
       <Table.Td>
         <Button
-          action="http://localhost:3000/extract-image-data"
-          method="get"
+          type="submit"
           onClick={open}
           rightSection={<IconEye size={14} />}
           size="xs"
@@ -54,7 +53,7 @@ function AppointmentHistoryCard(props) {
           View
         </Button>
       </Table.Td>
-    </Table.Tr>
+    </Table.Tr >
   ));
 
   return (
@@ -91,12 +90,8 @@ function AppointmentHistoryCard(props) {
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
 
-      <Modal
-        opened={opened}
-        onClose={close}
-        title="View Previous Consultation"
-      >
-        <Title>Test</Title>
+      <Modal opened={opened} onClose={close} title="View Previous Consultation">
+        <Title>{responseBody}</Title>
       </Modal>
     </>
   );
