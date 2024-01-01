@@ -12,9 +12,8 @@ const reports = [
   { id: 3, reportName: "CheckUp Result", date: "Jan 12 2023" },
 ];
 const Screening = [
-  { id: 1, reportName: "Mass", date: "Mar 24 2023" },
-  { id: 2, reportName: "multiphasic", date: "Sep 8 2022" },
-  { id: 3, reportName: "opportunistic", date: "Jan 12 2023" },
+  { id: 1, reportName: "Mass", date: "Mar 24 2023", image: "/images/image.jpg" },
+
 ];
 
 function ReportsTabs(props) {
@@ -38,7 +37,9 @@ function ReportsTabs(props) {
         </Tabs.List>
 
         <Tabs.Panel value="Screening">
-          <ReportTable title="Screening" data={Screening} />
+          {props.checkbox === 'checkbox' ? 
+            <ReportTable title="Screening" data={Screening} checkbox='checkbox'/> : 
+            <ReportTable title="Screening" data={Screening}/>}
         </Tabs.Panel>
 
         <Tabs.Panel value="Reports">

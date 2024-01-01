@@ -14,14 +14,14 @@ function TodoList() {
       <Text>Todo List</Text>
       <Group>
         <TextInput
-          w="90%"
+          w="100%"
           mt={10}
           placeholder="Add Todo Task"
           rightSection={
             <ActionIcon
               variant="transparent"
               aria-label="Settings"
-              // onClick={addTodo}
+            // onClick={addTodo}
             >
               <IconPlaylistAdd size="xl" stroke={1.5} />
             </ActionIcon>
