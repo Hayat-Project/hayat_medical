@@ -155,7 +155,7 @@ function Navbar(props) {
       key: 6,
       label: "Setting",
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
-      mt: isLongDisplay ? '20vh' : '50vh',
+      mt: isLongDisplay ? '20vh' : '45vh',
       color: "blue",
       path: "/adminDashboard/Setting",
     },
