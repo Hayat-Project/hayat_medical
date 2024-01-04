@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 import NotificatiionPopover from "./NotificatiionPopover.jsx";
 import HayatLogo from "./HayatLogo.jsx";
+import { Link } from "react-router-dom";
 
 function Header({ toggle, opened }) {
     const iconsStyle = { width: rem(28.5), height: rem(28.5) };
@@ -29,11 +30,6 @@ function Header({ toggle, opened }) {
         setLogoSrc(theme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
     };
 
-    const handleClickMessages = () => {
-        localStorage.setItem("activeIndex", 4);
-        setActive(4);
-    };
-
     return (
         <AppShell.Header>
             <Flex
@@ -49,11 +45,8 @@ function Header({ toggle, opened }) {
                     <Group visibleFrom="xs">
                         <ActionIcon
                             variant="default"
-                            component="a"
-                            href="/Messages"
                             size="xl"
                             radius='md'
-                            onClick={() => handleClickMessages()}
                         >
                             <IoMailOutline style={iconsStyle} />
                         </ActionIcon>

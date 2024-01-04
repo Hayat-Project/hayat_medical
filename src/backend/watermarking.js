@@ -4,6 +4,7 @@ import fs from "fs/promises";
 const imagePath =
   "../../public/images/image.jpg";
 
+// Function to extract RGB channels from an image
 async function extractPixels(imagePath) {
   try {
     const [redPixels, greenPixels, bluePixels] = await Promise.all([
@@ -12,6 +13,7 @@ async function extractPixels(imagePath) {
       sharp(imagePath).extractChannel("blue").raw().toBuffer(),
     ]);
 
+    //Store each channel in an array
     return {
       redPixels: Array.from(redPixels),
       greenPixels: Array.from(greenPixels),
@@ -21,7 +23,7 @@ async function extractPixels(imagePath) {
     console.error("Error extracting pixel data:", err);
   }
 }
-
+// Skip
 async function writePixelsToFile(filePath, pixels) {
   try {
     await fs.writeFile(filePath, pixels.join(","));
@@ -31,11 +33,7 @@ async function writePixelsToFile(filePath, pixels) {
   }
 }
 
-async function createImageFromPixels(
-  redPixels,
-  greenPixels,
-  bluePixels,
-  outputPath
+async function createImageFromPixels(redPixels, greenPixels, bluePixels, outputPath
 ) {
   const width = 617;
   const height = 617;
@@ -55,6 +53,7 @@ async function createImageFromPixels(
   }).toFile(outputPath);
 }
 
+// Convert the string to a binary representation
 function stringToBinary(str) {
   return Array.from(str)
     .map((char) => char.charCodeAt(0).toString(2).padStart(8, "0"))
@@ -65,14 +64,11 @@ export async function watermarkImageWithData(formData) {
   try {
     const flag = " ##END##";
     //Convert Object to JSON
-    const data = "- Doctor Note:" + formData.doctorNote + " \n" + 
-      "\n- Session Summary: " + formData.sessionSummary;
-
-    const myString = data + flag;
-    const binaryString = stringToBinary(myString);
-    const { redPixels, greenPixels, bluePixels } = await extractPixels(
-      imagePath
-    );
+    const data = "- Doctor Note:" + formData.doctorNote;
+    
+    const myString = data + flag; //- Doctor Note:Ahmad  ##END##
+    const binaryString = stringToBinary(myString); //01001000 01100001 01111001 01100001 01110100 
+    const { redPixels, greenPixels, bluePixels } = await extractPixels(imagePath); // Extract Three Channels
 
     const redBinaryPixels = redPixels;
     const greenBinaryPixels = greenPixels;
@@ -80,11 +76,7 @@ export async function watermarkImageWithData(formData) {
 
     let binaryIndex = 0;
 
-    for (
-      let i = 0;
-      i < redBinaryPixels.length && binaryIndex < binaryString.length;
-      i++
-    ) {
+    for (let i = 0; i < redBinaryPixels.length && binaryIndex < binaryString.length; i++) {
       const modifyChannel = (channel) =>
         channel.slice(0, -1) + binaryString.charAt(binaryIndex++);
 

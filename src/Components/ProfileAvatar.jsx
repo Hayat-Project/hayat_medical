@@ -5,10 +5,6 @@ import { IconSettings, IconUserCircle, IconLogout } from "@tabler/icons-react";
 import { IoMailOutline } from "react-icons/io5";
 
 function ProfileAvatar() {
-	const handleClickMessages = (index) => {
-		localStorage.setItem("activeIndex", index);
-		setActive(index);
-	};
 
 	return (
 		<Menu offset={20} withArrow shadow="md" width={250}>
@@ -26,7 +22,6 @@ function ProfileAvatar() {
 					leftSection={
 						<IconUserCircle style={{ width: rem(14), height: rem(14) }} />
 					}
-					onClick={() => handleClickMessages(3)}
 				>
 					View My Profile
 				</Menu.Item>
@@ -34,7 +29,6 @@ function ProfileAvatar() {
 					leftSection={
 						<IconSettings style={{ width: rem(14), height: rem(14) }} />
 					}
-					onClick={() => handleClickMessages(5)}
 				>
 					Settings
 				</Menu.Item>
@@ -42,7 +36,6 @@ function ProfileAvatar() {
 					leftSection={
 						<IoMailOutline style={{ width: rem(14), height: rem(14) }} />
 					}
-					onClick={() => handleClickMessages(4)}
 				>
 					Messages
 				</Menu.Item>
