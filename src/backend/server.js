@@ -20,6 +20,10 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 // Boilerplate code end
 
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
 app.post("/watermark-image", (req, res) => {
   const formData = req.body; // Object
   console.log("Form data received:", formData);
@@ -33,8 +37,4 @@ app.get("/extract-image-data", async (req, res) => {
     message: "Data extracted successfully!",
     data: watermarkedData,
   });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
 });

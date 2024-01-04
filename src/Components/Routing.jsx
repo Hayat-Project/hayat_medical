@@ -21,7 +21,7 @@ import Setting from "./AdminDashboard/Setting";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
 
 function Routing() {
-
+	//Create Browser Router function
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<>
