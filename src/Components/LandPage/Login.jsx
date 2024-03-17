@@ -2,20 +2,24 @@ import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card } from '@
 import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { auth } from '../../Config/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginDoctor, setloginDoctor] = useState(false);
-    const [loginAdmin, setloginAdmin] = useState(false);
     const navigate = useNavigate();
     const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
-    function handleLogin() {
-        if (email === "doctor" && password === "doctor")
-            setloginDoctor(true);
-        else if (email === "admin" && password === "admin")
-            setloginAdmin(true);
+    const signIn = async () => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/doctorDashboard/overview')
+        } catch (err){
+            console.error(err);
+        }
+        
     }
 
     return (
@@ -47,7 +51,7 @@ function Login() {
                         </Input.Wrapper>
                         <Space h="xl" />
                         <Group gap="lg" justify="space-between">
-                            <Button onClick={handleLogin}>Login</Button>
+                            <Button onClick={signIn}>Login</Button>
                             <Button variant="subtle">FORGET PASSWORD?</Button>
                         </Group>
                     </Card>
@@ -55,7 +59,6 @@ function Login() {
             </Grid>
 
             {loginDoctor && navigate('/doctorDashboard/overview')}
-            {loginAdmin && navigate('/adminDashboard/overview')}
         </>
     );
 }
