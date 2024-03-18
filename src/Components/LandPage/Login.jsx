@@ -7,15 +7,12 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginDoctor, setloginDoctor] = useState(false);
-    const [loginAdmin, setloginAdmin] = useState(false);
     const navigate = useNavigate();
     const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
     function handleLogin() {
         if (email === "doctor" && password === "doctor")
             setloginDoctor(true);
-        else if (email === "admin" && password === "admin")
-            setloginAdmin(true);
     }
 
     return (
@@ -55,7 +52,6 @@ function Login() {
             </Grid>
 
             {loginDoctor && navigate('/doctorDashboard/overview')}
-            {loginAdmin && navigate('/adminDashboard/overview')}
         </>
     );
 }

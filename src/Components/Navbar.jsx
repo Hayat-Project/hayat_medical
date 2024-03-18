@@ -61,19 +61,6 @@ function Navbar(props) {
       path: "/doctorDashboard/Consultationslog",
     },
     {
-      key: 4,
-      headingText: (
-        <Text c="gray" size="xs" mt={20}>
-          SUPPORT
-        </Text>
-      ),
-      label: "Messages",
-      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
-      mt: 11,
-      color: "blue",
-      path: "/doctorDashboard/Messages",
-    },
-    {
       key: 5,
       label: "Setting",
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
@@ -89,92 +76,11 @@ function Navbar(props) {
       path: "/"
     },
   ];
-  const adminData = [
-    {
-      key: 0,
-      label: "Overview",
-      leftSection: <IconHome2 size="1rem" stroke={1.5} />,
-      mt: 35,
-      color: "blue",
-      path: "/adminDashboard/Overview",
-    },
-    {
-      key: 1,
-      headingText: (
-        <Text c="gray" size="xs" mt={20}>
-          GENERAL
-        </Text>
-      ),
-      label: "Users",
-      leftSection: <IconUsers size="1rem" stroke={1.5} />,
-      mt: 11,
-      color: "blue",
-      path: "/adminDashboard/Users",
-    },
-    {
-      key: 2,
-      label: "Departments",
-      leftSection: <IconBuildingSkyscraper size="1rem" stroke={1.5} />,
-      color: "blue",
-      path: "/adminDashboard/Departments",
-    },
-    {
-      key: 3,
-      label: "Customization",
-      leftSection: <IconAdjustmentsAlt size="1rem" stroke={1.5} />,
-      color: "blue",
-      path: "/adminDashboard/Customization",
-    },
-    {
-      key: 4,
-      headingText: (
-        <Text c="gray" size="xs" mt={20}>
-          SECURITY
-        </Text>
-      ),
-      label: "Permission",
-      leftSection: <IconShieldHalfFilled size="1rem" stroke={1.5} />,
-      mt: 11,
-      color: "blue",
-      path: "/adminDashboard/Permissions",
-    },
-    {
-      key: 5,
-      headingText: (
-        <Text c="gray" size="xs" mt={20}>
-          SUPPORT
-        </Text>
-      ),
-      label: "Messages",
-      leftSection: <IconMessage2 size="1rem" stroke={1.5} />,
-      mt: 11,
-      color: "blue",
-      path: "/adminDashboard/Messages",
-    },
-    {
-      key: 6,
-      label: "Setting",
-      leftSection: <IconSettings size="1rem" stroke={1.5} />,
-      mt: isLongDisplay ? '20vh' : '45vh',
-      color: "blue",
-      path: "/adminDashboard/Setting",
-    },
-    {
-      key: 7,
-      label: "Logout",
-      leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
-      color: "red",
-      path: "/"
-    },
-  ];
 
   let navbar;
   switch (props.selectNavbar) {
     case 'doctor':
       navbar = doctorData;
-      break;
-    case 'admin':
-      navbar = adminData;
       break;
   }
 
