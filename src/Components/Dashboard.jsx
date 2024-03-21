@@ -4,9 +4,8 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 
-function Dashboard(props) {
+function Dashboard() {
   const [opened, { toggle }] = useDisclosure();
-  const dashboard = props.dashboardSelected;
 
   return (
     <AppShell
@@ -20,7 +19,7 @@ function Dashboard(props) {
     >
       <Header toggle={toggle} opened={opened} />
 
-      <Navbar selectNavbar={dashboard} />
+      <Navbar/>
 
       <AppShell.Main>
         <Outlet />

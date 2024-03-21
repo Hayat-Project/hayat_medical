@@ -4,20 +4,15 @@ import {
   IconCalendarEvent,
   IconUser,
   IconArticle,
-  IconMessage2,
   IconSettings,
   IconLogout2,
   IconPlus,
-  IconUsers,
-  IconBuildingSkyscraper,
-  IconAdjustmentsAlt,
-  IconShieldHalfFilled,
 } from "@tabler/icons-react";
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
 
-function Navbar(props) {
+function Navbar() {
   const [active, setActive] = useState(
     localStorage.getItem("activeIndex")
       ? parseInt(localStorage.getItem("activeIndex"))
@@ -77,14 +72,7 @@ function Navbar(props) {
     },
   ];
 
-  let navbar;
-  switch (props.selectNavbar) {
-    case 'doctor':
-      navbar = doctorData;
-      break;
-  }
-
-  const items = navbar.map((item, index) => (
+  const items = doctorData.map((item, index) => (
     <div key={item.key}>
       {item.headingText}
       <NavLink

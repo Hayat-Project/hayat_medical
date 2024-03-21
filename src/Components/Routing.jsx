@@ -23,7 +23,7 @@ function Routing() {
 					<Route path="signup" element={<SignUp />} />
 				</Route>
 				
-				<Route path="doctorDashboard" element={<ProtectedRoute><Dashboard dashboardSelected="doctor" /></ProtectedRoute>}>
+				<Route path="doctorDashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
 						<Route path="overview" element={<Overview />} />
 						<Route path="Appointments" element={<Appointments />} />
 						<Route path="Patients" element={<Patients />} />
@@ -32,18 +32,6 @@ function Routing() {
 						<Route path="ConsultationsLog" element={<ConsultationsLog />} />
 						<Route path="Setting" element={<DoctorSettings />} />
 					</Route>
-				{/* <Route path="doctorDashboard" element={<ProtectedRoute><Dashboard dashboardSelected="doctor" /></ProtectedRoute>}> */}
-				{/* <Route path="doctorDashboard" element={<Dashboard dashboardSelected="doctor" />}> */}
-					
-				{/* <Route path="adminDashboard" element={<Dashboard dashboardSelected="admin" />}>
-					<Route path="overview" element={<AdminOverview />} />
-					<Route path="Users" element={<Users />} />
-					<Route path="Departments" element={<Departments />} />
-					<Route path="Customization" element={<Customization />} />
-					<Route path="Permissions" element={<Permissions />} />
-					<Route path="Messages" element={<Messages />} />
-					<Route path="Setting" element={<Setting />} />
-				</Route> */}
 			</>
 		)
 	);
