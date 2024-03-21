@@ -30,7 +30,6 @@ function Routing() {
 						<Route path="PatientProfile/:selectedPatientId" element={<PatientProfile />} />
 						<Route path="Patient Profile/New Consultation" element={<NewConsultation />} />
 						<Route path="ConsultationsLog" element={<ConsultationsLog />} />
-						<Route path="Messages" element={<Messages />} />
 						<Route path="Setting" element={<DoctorSettings />} />
 					</Route>
 				{/* <Route path="doctorDashboard" element={<ProtectedRoute><Dashboard dashboardSelected="doctor" /></ProtectedRoute>}> */}
