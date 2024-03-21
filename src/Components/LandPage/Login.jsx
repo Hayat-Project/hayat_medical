@@ -1,18 +1,28 @@
-import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card } from '@mantine/core';
+import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { auth } from '../../Config/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useUserAuth } from '../../Context/UserAuthContext';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginDoctor, setloginDoctor] = useState(false);
-    const navigate = useNavigate();
+    const [error, setError] = useState(false);
+    const { login } = useUserAuth();
     const isMobile = useMediaQuery(`(max-width: 1200px)`);
+    const navigate = useNavigate();
 
-    function handleLogin() {
-        if (email === "doctor" && password === "doctor")
-            setloginDoctor(true);
+    const signIn = async () => {
+        try {
+            if (!email || !password) return;
+            await login(email, password);
+            navigate('/doctorDashboard/overview');
+        } catch (err){
+            console.log(err)
+            setError(true);
+        }
     }
 
     return (
@@ -23,6 +33,7 @@ function Login() {
                     <Card shadow="sm" withBorder radius="md">
                         <Title order={2}>Login</Title>
                         <Space h="xl" />
+                        <Text c="red">{error ? "Invalid email or password" : null}</Text>
                         <Input.Wrapper label="Email" withAsterisk >
                             <Input
                                 size="lg"
@@ -44,14 +55,12 @@ function Login() {
                         </Input.Wrapper>
                         <Space h="xl" />
                         <Group gap="lg" justify="space-between">
-                            <Button onClick={handleLogin}>Login</Button>
+                            <Button onClick={signIn}>Login</Button>
                             <Button variant="subtle">FORGET PASSWORD?</Button>
                         </Group>
                     </Card>
                 </Grid.Col>
             </Grid>
-
-            {loginDoctor && navigate('/doctorDashboard/overview')}
         </>
     );
 }
