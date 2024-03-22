@@ -12,9 +12,47 @@ function NewConsultation() {
     initialValues: {
       doctorNote: "", // Doctor notes TextInput field
       sessionSummary: "Thanks for attending our initial propoposal presentation", // Placeholder String
-      prescriptionDrugs: prescriptionDrugs // Array of JSON objects
+      prescriptionDrugs: prescriptionDrugs, // Array of JSON objects
     },
   });
+
+  const transcript = `
+  Doctor: Good morning. How can I help you today?
+
+  Patient: Good morning, Doctor. For the past two days, I've been experiencing pretty severe diarrhea. It's been quite uncomfortable.
+
+  Doctor: I'm sorry to hear that. Can you tell me more about your symptoms? Have you noticed anything else besides the diarrhea?
+
+  Patient: Yes, I've also had stomach cramps and a bit of a fever last night. I haven't been able to eat much because I'm afraid it might make things worse.
+
+  Doctor: Understandable. Have you traveled recently or eaten anything unusual that might have caused this?
+
+  Patient: No, I haven't traveled. But yes, I did try a new restaurant a couple of days ago. It's possible that something I ate there didn't agree with me.
+
+  Doctor: That could be a contributing factor. It's also important to consider if you've been in close contact with anyone who's been ill or if this could be related to a medication you're taking. Have you taken any new medications recently?
+
+  Patient: No, I haven't taken any new medications.
+
+  Doctor: Alright. Diarrhea can be caused by a variety of factors, including infections, food intolerances, and digestive disorders. Given your symptoms and the onset following a meal out, it might be food-related or an infection. It's important to stay hydrated. Dehydration can be a concern with diarrhea. Have you been able to drink fluids?
+
+  Patient: I've been trying to drink water and some sports drinks to stay hydrated.
+
+  Doctor: That's good. It's important to drink plenty of fluids. In addition to water and sports drinks, oral rehydration solutions can be very helpful. For now, try to eat bland foods like rice, bananas, and toast as your stomach allows. Avoid dairy, caffeine, and fatty foods until your symptoms improve.
+
+  Patient: I see. Should I be taking any medication for this?
+
+  Doctor: Over-the-counter anti-diarrheal medications can help reduce the frequency of your bowel movements and may provide relief. However, if your diarrhea is caused by an infection, it's sometimes better to let it run its course. Let's not start with any medications for now, especially since you have a fever, which could indicate an infection. I would also like to run a few tests to rule out bacterial or parasitic infections, especially if your symptoms don't improve in the next day or two.
+
+  Patient: Okay, that makes sense. How will I know if it's getting serious and I need to come back or seek more urgent care?
+
+  Doctor: If you experience signs of dehydration, such as decreased urination, dry mouth, or dizziness, if your diarrhea lasts more than three days, if your fever gets higher, or if you see blood in your stool, you should seek medical attention immediately. In the meantime, I'll order some tests to help identify the cause of your symptoms.
+
+  Patient: Got it. Thank you, Doctor. I'll follow your advice and keep an eye on my symptoms.
+
+  Doctor: You're welcome. Don't hesitate to call if you have any concerns or if your symptoms worsen. We're here to help. I'll have the nurse come in with some information on hydration and diet, as well as the lab form for the tests. Take care, and I hope you feel better soon.
+
+  Patient: Thank you, Doctor. I appreciate your help.
+`
 
   const handleDoctorNoteChange = (value) => {
     data.setFieldValue("doctorNote", value);
@@ -73,7 +111,7 @@ function NewConsultation() {
           </Title>
           <Group>
             <Select
-              label="DiagnosuseState "
+              label="Diagnosis State "
               w={350}
               withAsterisk={true}
               placeholder="Pick value"
@@ -196,7 +234,7 @@ function NewConsultation() {
           >
             <ReportsTabs height={270} checkbox='checkbox' />
             <Card shadow="sm" withBorder>
-              <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} />
+              <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} transcript={transcript} />
             </Card>
           </SimpleGrid>
           <Group mt={10} justify="flex-end">

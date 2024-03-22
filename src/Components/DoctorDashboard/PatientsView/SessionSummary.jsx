@@ -1,12 +1,33 @@
 import { Button, Tabs, Text, Textarea, rem } from '@mantine/core';
 import { IconNotes, IconPlayerRecord, IconSettingsAutomation, IconTextCaption, } from '@tabler/icons-react';
+import OpenAI from "openai";
+import { useState } from 'react';
 
-function SessionSummary({ onDoctorNoteChange }) {
+function SessionSummary({ onDoctorNoteChange, transcript }) {
 	const iconStyle = { width: rem(12), height: rem(12) };
 
 	const handleDoctorNoteChange = (event) => {
 		onDoctorNoteChange(event.target.value);
 	};
+
+	const openai = new OpenAI({
+		apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+		dangerouslyAllowBrowser: true
+	});
+
+	let [summary, setSummary] = useState("");
+
+	async function summarize(transcript) {
+		const prompt = "Summarize the following consultation between the doctor and patient:\n" + transcript
+		const completion = await openai.chat.completions.create({
+			messages: [{ role: "system", content: prompt }],
+			model: "gpt-3.5-turbo"
+		});
+
+		console.log(completion.choices[0].message.content);
+		setSummary(completion.choices[0].message.content);
+	}
+
 
 	return (
 		<Tabs radius="md" defaultValue="doctor">
@@ -41,9 +62,11 @@ function SessionSummary({ onDoctorNoteChange }) {
 			</Tabs.Panel>
 
 			<Tabs.Panel value="transcriptSummary">
-				<Text mt={10}>
-					Start recording session to have an automatic summary of the
-					conversation
+				<Button mt={10} color="red" leftSection={<IconPlayerRecord />} onClick={summarize}>
+					Generate Summary
+				</Button>
+				<Text>
+					{summary}
 				</Text>
 			</Tabs.Panel>
 
@@ -51,6 +74,9 @@ function SessionSummary({ onDoctorNoteChange }) {
 				<Button mt={10} color="red" leftSection={<IconPlayerRecord />}>
 					Start recording
 				</Button>
+				<Text>
+					{transcript}
+				</Text>
 			</Tabs.Panel>
 		</Tabs>
 	);
