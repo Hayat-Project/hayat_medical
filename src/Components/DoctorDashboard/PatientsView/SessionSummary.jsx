@@ -16,15 +16,6 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { uploadAudio } from "../../../backend/Storage/Storage.js";
-import {
-  getMicrophone,
-  handleClickStopRecord,
-} from "../../../backend/RecordingAudio/recording.js";
-import {
-  setupAudio,
-  stopRecording,
-} from "../../../backend/RecordingAudio/recordingToMp3.js";
-import AudioHTML from "../../AudioHTML.jsx";
 
 function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const [audioUpload, setAudioUpload] = useState(null);
