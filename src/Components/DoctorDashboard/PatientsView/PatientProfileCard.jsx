@@ -23,7 +23,7 @@ function PatientProfileCard(props) {
       </Group>
 
       <Group justify="center" mt={32}>
-        <Button variant="default">Send Message</Button>
+        <Button variant="default">Send Email</Button>
       </Group>
     </Card>
   );
