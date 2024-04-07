@@ -1,7 +1,7 @@
 import sharp from "sharp";
 import fs from "fs/promises";
 
-const imagePath = "public/images/image.jpg";
+const imagePath = "/home/moutasim/Development/hayat_medical/public/images/image.jpg";
 
 // Function to extract RGB channels from an image
 async function extractPixels(imagePath) {
@@ -108,15 +108,15 @@ export async function watermarkImageWithData(formData) {
       blueBinaryPixels[i] = convertToDecimal(newEmbedZ);
     }
 
-    await writePixelsToFile("public/images/redPixels.txt", redBinaryPixels);
-    await writePixelsToFile("public/images/greenPixels.txt", greenBinaryPixels);
-    await writePixelsToFile("public/images/bluePixels.txt", blueBinaryPixels);
+    await writePixelsToFile("/home/moutasim/Development/hayat_medical/public/images/redPixels.txt", redBinaryPixels);
+    await writePixelsToFile("/home/moutasim/Development/hayat_medical/public/images/greenPixels.txt", greenBinaryPixels);
+    await writePixelsToFile("/home/moutasim/Development/hayat_medical/public/images/bluePixels.txt", blueBinaryPixels);
 
     await createImageFromPixels(
       redBinaryPixels,
       greenBinaryPixels,
       blueBinaryPixels,
-      "public/images/reconstructedImage.png"
+      "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
     );
   } catch (err) {
     console.error("An error occurred:", err);

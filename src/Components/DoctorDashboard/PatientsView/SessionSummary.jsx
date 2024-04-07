@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { uploadAudio } from "../../../backend/Storage/Storage.js";
 import OpenAI from "openai";
+import env from "../../../../env.js"
 
 function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const [audioUpload, setAudioUpload] = useState(null);
@@ -30,12 +31,12 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const handleSessionSummary = () => {
     onSessionSummary(transcript);
   };
+
 	const openai = new OpenAI({
-		apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+		apiKey: env.REACT_APP_OPENAI_API_KEY,
 		dangerouslyAllowBrowser: true
 	});
 
-	let [summary, setSummary] = useState("");
 
 	async function summarize(transcript) {
 		const prompt = "Summarize the following consultation between the doctor and patient:\n" + transcript
@@ -45,7 +46,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
 		});
 
 		console.log(completion.choices[0].message.content);
-		setSummary(completion.choices[0].message.content);
+    setTranscript(completion.choices[0].message.content);
 	}
 
   const upload = async () => {
@@ -87,7 +88,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       });
       if (response.ok) {
         let responseBody = await response.json(); // object
-        setTranscript(responseBody.data[0].data);
+        summarize(responseBody.data[0].data);
       }
     } catch (err) {
       console.log(err);
