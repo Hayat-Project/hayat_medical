@@ -71,7 +71,7 @@ export async function watermarkImageWithData(formData) {
     const data = "- Doctor Note:" + formData.sessionSummary;
 
     const myString = data + flag; //- Doctor Note:Ahmad  ##END##
-    console.log(data);
+    console.log(data);sessionSummary
     const binaryString = stringToBinary(myString); //01001000 01100001 01111001 01100001 01110100
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath

@@ -7,6 +7,7 @@ import { watermarkImageWithData } from "./watermarking.js";
 import { extractWatermarkedData } from "./extract-data.js";
 import { transcribeUrl } from "./speechToText.js";
 import { setTranscript, getTranscript } from "./Firestore/Database.js";
+import {summarize} from './SummaryAgent/ChatGPT.js'
 
 // Boilerplate code start
 const __filename = fileURLToPath(import.meta.url);
@@ -51,7 +52,8 @@ app.post("/diarization", async (req, res) => {
     console.log("Form data received:", formData);
     const transcript = await transcribeUrl(formData.transcript);
     console.log("Inside Post api --> ", transcript);
-    setTranscript(transcript);
+    const summary = await summarize(transcript)
+    setTranscript(transcript, summary);
     res
       .status(200)
       .send({ message: "Form submitted successfully!", transcript });

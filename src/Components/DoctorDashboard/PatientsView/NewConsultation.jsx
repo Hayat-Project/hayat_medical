@@ -32,7 +32,6 @@ function NewConsultation() {
   };
 
   const handleSessionSummary = (value) => {
-    console.log(value);
     data.setFieldValue("sessionSummary", value);
   };
 

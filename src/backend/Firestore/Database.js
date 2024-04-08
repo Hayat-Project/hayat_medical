@@ -9,16 +9,16 @@ export const getTranscript = async () => {
     return data.docs.map((doc) => ({
       ...doc.data(),
     }));
-    // console.log("-> ", filteredData)
   } catch (err) {
     console.log(err);
   }
 };
 
-export const setTranscript = async (transcript) => {
+export const setTranscript = async (transcript, summary) => {
   try {
     await addDoc(consultationRef, {
-      data: transcript,
+      transcript: transcript,
+      summary: summary
     });
   } catch (err) {
     console.error(err);

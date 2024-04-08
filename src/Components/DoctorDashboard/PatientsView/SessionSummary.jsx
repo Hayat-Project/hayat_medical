@@ -16,8 +16,6 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { uploadAudio } from "../../../backend/Storage/Storage.js";
-import OpenAI from "openai";
-import env from "../../../../env.js"
 
 function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const [audioUpload, setAudioUpload] = useState(null);
@@ -31,23 +29,6 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const handleSessionSummary = () => {
     onSessionSummary(transcript);
   };
-
-	const openai = new OpenAI({
-		apiKey: env.REACT_APP_OPENAI_API_KEY,
-		dangerouslyAllowBrowser: true
-	});
-
-
-	async function summarize(transcript) {
-		const prompt = "Summarize the following consultation between the doctor and patient:\n" + transcript
-		const completion = await openai.chat.completions.create({
-			messages: [{ role: "system", content: prompt }],
-			model: "gpt-3.5-turbo"
-		});
-
-		console.log(completion.choices[0].message.content);
-    setTranscript(completion.choices[0].message.content);
-	}
 
   const upload = async () => {
     try {
@@ -79,7 +60,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       console.log(err);
     }
   };
-
+  
   const consultationResult = async (event) => {
     event.preventDefault();
     try {
@@ -168,7 +149,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
           leftSection={<IconUpload />}
           onClick={upload}
         >
-          Upload Aduio
+          Upload Audio
         </Button>
       </Tabs.Panel>
     </Tabs>
