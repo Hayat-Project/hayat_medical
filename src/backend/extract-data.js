@@ -1,6 +1,8 @@
 import sharp from "sharp";
 
-const imagePath = "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png";
+const imagePath = "public/images/reconstructedImage.png";
+// const imagePath =
+//   "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png";
 
 async function extractPixels(imagePath) {
   try {

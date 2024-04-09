@@ -6,8 +6,8 @@ import cors from "cors";
 import { watermarkImageWithData } from "./watermarking.js";
 import { extractWatermarkedData } from "./extract-data.js";
 import { transcribeUrl } from "./speechToText.js";
-import { setTranscript, getTranscript } from "./Firestore/Database.js";
-import {summarize} from './SummaryAgent/ChatGPT.js'
+import { setTranscript, getSummary } from "./Firestore/Database.js";
+import { summarize } from "./SummaryAgent/ChatGPT.js";
 
 // Boilerplate code start
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+let globalDocID = null;
 
 app.post("/watermark-image", (req, res) => {
   const formData = req.body;
@@ -51,12 +53,13 @@ app.post("/diarization", async (req, res) => {
     const formData = req.body;
     console.log("Form data received:", formData);
     const transcript = await transcribeUrl(formData.transcript);
-    console.log("Inside Post api --> ", transcript);
-    const summary = await summarize(transcript)
-    setTranscript(transcript, summary);
-    res
-      .status(200)
-      .send({ message: "Form submitted successfully!", transcript });
+    console.log("transcript --> ", transcript);
+    const summary = await summarize(transcript);
+    console.log("summary --> ", summary);
+    const docID = await setTranscript(transcript, summary);
+    console.log("docID --> ", docID);
+    globalDocID = docID;
+    res.status(200).send({ message: "Form submitted successfully!" });
   } catch (err) {
     console.log(err);
   }
@@ -64,7 +67,10 @@ app.post("/diarization", async (req, res) => {
 
 app.get("/cosultationResult", async (req, res) => {
   try {
-    const data = await getTranscript();
+    console.log("docID --> ", globalDocID);
+
+    const data = await getSummary(globalDocID);
+
     res.status(200).send({
       message: "Successfully!",
       data: data,

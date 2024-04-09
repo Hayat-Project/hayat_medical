@@ -1,26 +1,35 @@
 import { db } from "../../Config/firebase.js";
-import { getDocs, collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 
 const consultationRef = collection(db, "Consultation");
 
-export const getTranscript = async () => {
+export const setTranscript = async (transcript, summary) => {
   try {
-    const data = await getDocs(consultationRef);
-    return data.docs.map((doc) => ({
-      ...doc.data(),
-    }));
+    const docRef = await addDoc(consultationRef, {
+      transcript: transcript,
+      summary: summary,
+    });
+    return docRef.id;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return null;
   }
 };
 
-export const setTranscript = async (transcript, summary) => {
+export const getSummary = async (documentId) => {
   try {
-    await addDoc(consultationRef, {
-      transcript: transcript,
-      summary: summary
-    });
+    const docRef = doc(consultationRef, documentId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const summaryData = docSnap.data();
+      const summary = summaryData.summary;
+      return summary;
+    } else {
+      console.log("No such document!");
+      return null;
+    }
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };

@@ -60,7 +60,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       console.log(err);
     }
   };
-  
+
   const consultationResult = async (event) => {
     event.preventDefault();
     try {
@@ -68,14 +68,14 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
         method: "GET",
       });
       if (response.ok) {
-        let responseBody = await response.json(); // object
-        summarize(responseBody.data[0].data);
+        let responseBody = await response.json();
+        setTranscript(responseBody.data);
       }
     } catch (err) {
       console.log(err);
     }
   };
-	
+
   return (
     <Tabs radius="md" defaultValue="doctor">
       <Tabs.List>
@@ -154,7 +154,6 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       </Tabs.Panel>
     </Tabs>
   );
-  
 }
 
 export default SessionSummary;
