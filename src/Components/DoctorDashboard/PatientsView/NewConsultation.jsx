@@ -1,7 +1,18 @@
-import { Card, Title, Select, SimpleGrid, Button, ScrollArea, TextInput, Table, ActionIcon, Group } from "@mantine/core";
-import MainHeader from '../../MainHeader'
+import {
+  Card,
+  Title,
+  Select,
+  SimpleGrid,
+  Button,
+  ScrollArea,
+  TextInput,
+  Table,
+  ActionIcon,
+  Group,
+} from "@mantine/core";
+import MainHeader from "../../MainHeader";
 import prescriptionDrugs from "../../../mockdata/prescriptionDrugs.json";
-import { IconTrash } from '@tabler/icons-react';
+import { IconTrash } from "@tabler/icons-react";
 import ReportsTabs from "./ReportsTabs";
 import SessionSummary from "./SessionSummary";
 import { useForm } from "@mantine/form";
@@ -11,8 +22,8 @@ function NewConsultation() {
   const data = useForm({
     initialValues: {
       doctorNote: "", // Doctor notes TextInput field
-      sessionSummary: "Thanks for attending our initial propoposal presentation", // Placeholder String
-      prescriptionDrugs: prescriptionDrugs // Array of JSON objects
+      sessionSummary: "", // Placeholder String
+      prescriptionDrugs: prescriptionDrugs, // Array of JSON objects
     },
   });
 
@@ -20,27 +31,31 @@ function NewConsultation() {
     data.setFieldValue("doctorNote", value);
   };
 
-  const navigate = useNavigate()
+  const handleSessionSummary = (value) => {
+    data.setFieldValue("sessionSummary", value);
+  };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/watermark-image', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/watermark-image", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data.values), // JSON
       });
 
       if (response.ok) {
-        navigate(-1)
+        navigate(-1);
       } else {
-        console.error('Error submitting form:', response.statusText);
+        console.error("Error submitting form:", response.statusText);
       }
     } catch (error) {
-      console.error('Error submitting form:', error.message);
+      console.error("Error submitting form:", error.message);
     }
   };
 
@@ -66,14 +81,18 @@ function NewConsultation() {
   return (
     <>
       <MainHeader header="New Consultation" badge={false} />
-      <form onSubmit={handleSubmit} action="http://localhost:3000/watermark-image" method="post">
+      <form
+        onSubmit={handleSubmit}
+        action="http://localhost:3000/watermark-image"
+        method="post"
+      >
         <SimpleGrid mt={15}>
           <Title size="h3" mb={5}>
             General
           </Title>
           <Group>
             <Select
-              label="DiagnosuseState "
+              label="Diagnosis State "
               w={350}
               withAsterisk={true}
               placeholder="Pick value"
@@ -194,16 +213,21 @@ function NewConsultation() {
             spacing="md"
             verticalSpacing="xs"
           >
-            <ReportsTabs height={270} checkbox='checkbox' />
+            <ReportsTabs height={270} checkbox="checkbox" />
             <Card shadow="sm" withBorder>
-              <SessionSummary onDoctorNoteChange={handleDoctorNoteChange} />
+              <SessionSummary
+                onDoctorNoteChange={handleDoctorNoteChange}
+                onSessionSummary={handleSessionSummary}
+              />
             </Card>
           </SimpleGrid>
           <Group mt={10} justify="flex-end">
             <Button onClick={() => navigate(-1)} variant="outline" w={150}>
               Cancel
             </Button>
-            <Button type="submit" w={150}>Submit</Button>
+            <Button type="submit" w={150}>
+              Submit
+            </Button>
           </Group>
         </SimpleGrid>
       </form>
@@ -212,4 +236,3 @@ function NewConsultation() {
 }
 
 export default NewConsultation;
-

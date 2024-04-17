@@ -12,6 +12,7 @@ import Patients from "./DoctorDashboard/PatientsView/Patients";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
+import ProtectedRoute from "./ProtectedRoute";
 
 function Routing() {
 	const router = createBrowserRouter(
@@ -21,15 +22,16 @@ function Routing() {
 					<Route path="login" element={<Login />} />
 					<Route path="signup" element={<SignUp />} />
 				</Route>
-				<Route path="doctorDashboard" element={<Dashboard dashboardSelected="doctor" />}>
-					<Route path="overview" element={<Overview />} />
-					<Route path="Appointments" element={<Appointments />} />
-					<Route path="Patients" element={<Patients />} />
-					<Route path="PatientProfile/:selectedPatientId" element={<PatientProfile />} />
-					<Route path="Patient Profile/New Consultation" element={<NewConsultation />} />
-					<Route path="ConsultationsLog" element={<ConsultationsLog />} />
-					<Route path="Setting" element={<DoctorSettings />} />
-				</Route>
+				
+				<Route path="doctorDashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+						<Route path="overview" element={<Overview />} />
+						<Route path="Appointments" element={<Appointments />} />
+						<Route path="Patients" element={<Patients />} />
+						<Route path="PatientProfile/:selectedPatientId" element={<PatientProfile />} />
+						<Route path="Patient Profile/New Consultation" element={<NewConsultation />} />
+						<Route path="ConsultationsLog" element={<ConsultationsLog />} />
+						<Route path="Setting" element={<DoctorSettings />} />
+					</Route>
 			</>
 		)
 	);

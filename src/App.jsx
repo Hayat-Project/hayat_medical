@@ -2,6 +2,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import { MantineProvider, createTheme, Button } from "@mantine/core";
 import Routing from "./Components/Routing";
+import { UserAuthContextProvider } from "./Context/UserAuthContext";
 
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
 
 	return (
 		<MantineProvider theme={theme}>
-			<Routing />
+			<UserAuthContextProvider>
+				<Routing />
+			</UserAuthContextProvider>
 		</MantineProvider>
 	);
 }

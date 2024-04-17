@@ -1,8 +1,9 @@
 import sharp from "sharp";
 import fs from "fs/promises";
 
-const imagePath =
-  "../../public/images/image.jpg";
+const imagePath = "public/images/image.jpg";
+// const imagePath =
+//   "/home/moutasim/Development/hayat_medical/public/images/image.jpg";
 
 // Function to extract RGB channels from an image
 async function extractPixels(imagePath) {
@@ -33,7 +34,11 @@ async function writePixelsToFile(filePath, pixels) {
   }
 }
 
-async function createImageFromPixels(redPixels, greenPixels, bluePixels, outputPath
+async function createImageFromPixels(
+  redPixels,
+  greenPixels,
+  bluePixels,
+  outputPath
 ) {
   const width = 617;
   const height = 617;
@@ -64,11 +69,15 @@ export async function watermarkImageWithData(formData) {
   try {
     const flag = " ##END##";
     //Convert Object to JSON
-    const data = "- Doctor Note:" + formData.doctorNote;
-    
+    // const data = "- Doctor Note:" + JSON.stringify(formData);
+    const data = "- Doctor Note:" + formData.sessionSummary;
+
     const myString = data + flag; //- Doctor Note:Ahmad  ##END##
-    const binaryString = stringToBinary(myString); //01001000 01100001 01111001 01100001 01110100 
-    const { redPixels, greenPixels, bluePixels } = await extractPixels(imagePath); // Extract Three Channels
+    console.log(data);
+    const binaryString = stringToBinary(myString); //01001000 01100001 01111001 01100001 01110100
+    const { redPixels, greenPixels, bluePixels } = await extractPixels(
+      imagePath
+    ); // Extract Three Channels
 
     const redBinaryPixels = redPixels;
     const greenBinaryPixels = greenPixels;
@@ -76,7 +85,11 @@ export async function watermarkImageWithData(formData) {
 
     let binaryIndex = 0;
 
-    for (let i = 0; i < redBinaryPixels.length && binaryIndex < binaryString.length; i++) {
+    for (
+      let i = 0;
+      i < redBinaryPixels.length && binaryIndex < binaryString.length;
+      i++
+    ) {
       const modifyChannel = (channel) =>
         channel.slice(0, -1) + binaryString.charAt(binaryIndex++);
 
@@ -96,25 +109,20 @@ export async function watermarkImageWithData(formData) {
       greenBinaryPixels[i] = convertToDecimal(newEmbedY);
       blueBinaryPixels[i] = convertToDecimal(newEmbedZ);
     }
+    //home/moutasim/Development/hayat_medical/public/images/redPixels.txt
+    await writePixelsToFile("public/images/redPixels.txt", redBinaryPixels);
+    //home/moutasim/Development/hayat_medical/public/images/greenPixels.txt
+    await writePixelsToFile("public/images/greenPixels.txt", greenBinaryPixels);
+    //home/moutasim/Development/hayat_medical/public/images/bluePixels.txt
+    await writePixelsToFile("public/images/bluePixels.txt", blueBinaryPixels);
 
-    await writePixelsToFile(
-      "../../public/images/redPixels.txt",
-      redBinaryPixels
-    );
-    await writePixelsToFile(
-      "../../public/images/greenPixels.txt",
-      greenBinaryPixels
-    );
-    await writePixelsToFile(
-      "../../public/images/bluePixels.txt",
-      blueBinaryPixels
-    );
+    ///home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
 
     await createImageFromPixels(
       redBinaryPixels,
       greenBinaryPixels,
       blueBinaryPixels,
-      "../../public/images/reconstructedImage.png"
+      "public/images/reconstructedImage.png"
     );
   } catch (err) {
     console.error("An error occurred:", err);
