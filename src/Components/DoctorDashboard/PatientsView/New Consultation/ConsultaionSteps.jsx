@@ -1,18 +1,23 @@
-import { useState } from 'react';
-import { Stepper, Button, Group, Grid } from '@mantine/core';
-function Consultation() {
+import { useState } from "react";
+import { Stepper, Button, Group } from "@mantine/core";
+import UploadAudio from "./StepOne/UploadAudio";
+
+function ConsultaionSteps() {
   const [active, setActive] = useState(1);
-  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
-  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+
+  const nextStep = () =>
+    setActive((current) => (current < 3 ? current + 1 : current));
+  const prevStep = () =>
+    setActive((current) => (current > 0 ? current - 1 : current));
 
   return (
     <>
-    <Grid mt={10}>
-      <Grid.Col span={1}> </Grid.Col>
-      <Grid.Col span={10}> 
       <Stepper active={active} onStepClick={setActive}>
-        <Stepper.Step label="First step" description="Create an account">
-          Step 1 content: Create an account
+        <Stepper.Step
+          label="First step"
+          description="Recording consultation session"
+        >
+          <UploadAudio />
         </Stepper.Step>
         <Stepper.Step label="Second step" description="Verify email">
           Step 2 content: Verify email
@@ -27,17 +32,15 @@ function Consultation() {
           Completed, click back button to get to previous step
         </Stepper.Completed>
       </Stepper>
-      </Grid.Col>
-      <Grid.Col span={1}> </Grid.Col>
-    </Grid>
-    
 
       <Group justify="center" mt="xl">
-        <Button variant="default" onClick={prevStep}>Back</Button>
+        <Button variant="default" onClick={prevStep}>
+          Back
+        </Button>
         <Button onClick={nextStep}>Next step</Button>
       </Group>
     </>
   );
 }
 
-export default Consultation;
+export default ConsultaionSteps;
