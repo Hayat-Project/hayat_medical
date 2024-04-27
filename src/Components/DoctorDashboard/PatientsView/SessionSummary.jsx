@@ -3,24 +3,26 @@ import {
   Tabs,
   Textarea,
   rem,
-  FileInput,
   Loader,
   Center,
 } from "@mantine/core";
 import {
   IconNotes,
   IconPlayerRecord,
+  IconPlayerStop,
   IconSettingsAutomation,
   IconTextCaption,
-  IconUpload,
 } from "@tabler/icons-react";
-import { useState } from "react";
-import { uploadAudio } from "../../../backend/Storage/Storage.js";
+
+import { useState, useEffect, useRef } from "react";
+import { uploadAudio } from "../../../backend/Storage/Storage";
 
 function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
-  const [audioUpload, setAudioUpload] = useState(null);
   const [transcript, setTranscript] = useState("");
   const iconStyle = { width: rem(12), height: rem(12) };
+  let rec = null;
+  let audioChunks = [];
+  let recordedAudio = useRef(null);
 
   const handleDoctorNoteChange = (event) => {
     onDoctorNoteChange(event.target.value);
@@ -30,6 +32,14 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
     onSessionSummary(transcript);
   };
 
+  function recordSession(event) {
+    rec.start();
+  }
+
+  function stopRecording(event) {
+    rec.stop();
+  }
+
   const upload = async () => {
     try {
       const url = await uploadAudio(audioUpload);
@@ -38,16 +48,31 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       console.log(err);
     }
   };
+  
+  function handlerFunction(stream) {
+    rec = new MediaRecorder(stream);
+    rec.ondataavailable = async e => {
+      audioChunks.push(e.data);
+      if (rec.state == "inactive") {
+        let blob = new Blob(audioChunks, { type: 'audio/mpeg-3' });
+        recordedAudio.current.src = URL.createObjectURL(blob);
+        recordedAudio.current.controls = true;
+        await diarization(blob)
+      }
+    }
+  }
 
-  const diarization = async (url) => {
+  const diarization = async (blob) => {
     try {
+      const audioUrl = await uploadAudio(blob);
+
       const response = await fetch("http://localhost:3000/diarization", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          transcript: url,
+          url: audioUrl,
         }),
       });
 
@@ -75,6 +100,11 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => { handlerFunction(stream) });
+  }, []);
 
   return (
     <Tabs radius="md" defaultValue="doctor">
@@ -137,20 +167,26 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
       </Tabs.Panel>
 
       <Tabs.Panel value="transcript">
-        <FileInput
-          placeholder="Input placeholder"
-          accept="audio/mp3, audio/wav"
-          value={audioUpload}
-          onChange={setAudioUpload}
-        />
         <Button
           mt={10}
+          mr={10}
           color="blue"
-          leftSection={<IconUpload />}
-          onClick={upload}
+          leftSection={<IconPlayerRecord />}
+          onClick={recordSession}
         >
-          Upload Audio
+          Record Session
         </Button>
+        <Button
+          mt={10}
+          mb={10}
+          color="red"
+          leftSection={<IconPlayerStop />}
+          onClick={stopRecording}
+        >
+          Stop Recording
+        </Button>
+        <br />
+        <audio ref={recordedAudio} />
       </Tabs.Panel>
     </Tabs>
   );
