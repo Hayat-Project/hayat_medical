@@ -13,6 +13,7 @@ import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
 import ProtectedRoute from "./ProtectedRoute";
+import Consultation from "./DoctorDashboard/PatientsView/Consultation";
 
 function Routing() {
 	const router = createBrowserRouter(
@@ -28,7 +29,7 @@ function Routing() {
 						<Route path="Appointments" element={<Appointments />} />
 						<Route path="Patients" element={<Patients />} />
 						<Route path="PatientProfile/:selectedPatientId" element={<PatientProfile />} />
-						<Route path="Patient Profile/New Consultation" element={<NewConsultation />} />
+						<Route path="Patient Profile/New Consultation" element={<Consultation/>} />
 						<Route path="ConsultationsLog" element={<ConsultationsLog />} />
 						<Route path="Setting" element={<DoctorSettings />} />
 					</Route>
