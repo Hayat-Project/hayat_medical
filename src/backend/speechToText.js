@@ -1,14 +1,14 @@
 import { createClient } from "@deepgram/sdk";
 import env from "../../env.js";
 
-export const transcribeUrl = async (audioFile) => {
+export const transcribeUrl = async (audioURL) => {
   // STEP 1: Create a Deepgram client using the API key
   const deepgram = createClient(env.DEEPGRAM_API_KEY);
 
   // STEP 2: Call the transcribeUrl method with the audio payload and options
   const { result, error } = await deepgram.listen.prerecorded.transcribeUrl(
     {
-      url: audioFile,
+      url: audioURL,
     },
     // STEP 3: Configure Deepgram options for audio analysis
     {
