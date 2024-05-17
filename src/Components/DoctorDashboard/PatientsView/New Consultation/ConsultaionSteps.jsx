@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Stepper, Button, Group, Grid, Divider, ActionIcon, Title, FileButton, Text, Space } from "@mantine/core";
-import { IconPlayerRecord, IconPlayerPause, IconUpload } from '@tabler/icons-react';
-import UploadAudio from "./StepOne/UploadAudio";
-import ReportTable from "../ReportTable";
+import { Stepper, Button, Group, Grid, Divider, ActionIcon, Title, FileButton, Text, Space, Textarea, Center, Loader } from "@mantine/core";
+import { IconPlayerRecord, IconPlayerPause, IconUpload, IconCheck } from '@tabler/icons-react';
 import ReportsTabs from "../ReportsTabs";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
   const [file, setFile] = useState();
+  const [transcript, setTranscript] = useState("");
   const nextStep = () =>
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+  
 
   return (
     <>
@@ -20,7 +20,8 @@ function ConsultaionSteps() {
           label="First step"
           description="Recording consultation session"
         >
-          <Grid mt={50}>
+          <Space h="lg"/>
+          <Grid>
            <Grid.Col span={6}> 
               <Title order={2} >Record Session</Title>
               <Group justify="center" gap="xl" mt={30}>
@@ -52,11 +53,46 @@ function ConsultaionSteps() {
 
 
         </Stepper.Step>
-        <Stepper.Step label="Second step" description="Verify email">
-          Step 2 content: Verify email
+        <Stepper.Step label="Second step" description="Consultation Summary">
+        <Space h="lg"/>
+        <Title order={4} > Consultation Summary </Title>
+        {/* {transcript == "" ? (
+          <Center h={100}>
+            <Loader color="blue" />
+          </Center>
+        ) : (
+          <> */}
+            <Textarea
+              mt={10}
+              autosize
+              radius="md"
+              minRows={8}
+              maxRows={8}
+              value={transcript}
+            />
+            <Button
+              mt={10}
+              color="blue"
+              leftSection={<IconCheck />}
+              //onClick={handleSessionSummary}
+            >
+              Validate Summary
+            </Button>
+          {/* </>
+        )} */}
         </Stepper.Step>
-        <Stepper.Step label="Third step" description="Get full access">
-          Step 3 content: Get full access
+        <Stepper.Step label="Third step" description="Doctor Notes">
+        <Space h="lg"/>
+        <Title order={4} >Doctor Consultation Notes</Title>
+        <Textarea
+          mt={10}
+          placeholder="Enter consultation notes"
+          autosize
+          radius="md"
+          minRows={8}
+          maxRows={8}
+          //onChange={handleDoctorNoteChange}
+        />
         </Stepper.Step>
         <Stepper.Step label="Final step" description="Create an account">
           Step 4 content: Create an account
