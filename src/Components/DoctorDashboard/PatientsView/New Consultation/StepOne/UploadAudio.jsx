@@ -16,6 +16,7 @@ function UploadAudio() {
   return (
     <>
       <FileInput
+      w={450}
         placeholder="Input placeholder"
         accept="audio/mp3, audio/wav"
         value={audioUpload}
