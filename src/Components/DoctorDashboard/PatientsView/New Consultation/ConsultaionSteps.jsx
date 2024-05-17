@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Stepper, Button, Group, Grid, Divider, ActionIcon, Title, FileButton, Text, Space, Textarea, Center, Loader } from "@mantine/core";
 import { IconPlayerRecord, IconPlayerPause, IconUpload, IconCheck } from '@tabler/icons-react';
 import ReportsTabs from "../ReportsTabs";
+import DrugsForm from "./DrugsForm";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
@@ -94,14 +95,15 @@ function ConsultaionSteps() {
           //onChange={handleDoctorNoteChange}
         />
         </Stepper.Step>
-        <Stepper.Step label="Final step" description="Create an account">
-          Step 4 content: Create an account
+        <Stepper.Step label="Fourth step" description="Doctor Notes">
+        <Space h="lg"/>
+        <Title order={4} >Doctor Consultation Notes</Title>
+        <DrugsForm/>
         </Stepper.Step>
         <Stepper.Completed>
           Completed, click back button to get to previous step
         </Stepper.Completed>
       </Stepper>
-
       <Group justify="center" mt="xl">
         <Button variant="default" onClick={prevStep}>
           Back
