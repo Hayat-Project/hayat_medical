@@ -2,7 +2,7 @@ import sharp from "sharp";
 
 // const imagePath = "public/images/reconstructedImage.png";
 const imagePath =
-  "/home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png";
+  "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/reconstructedImage.png";
 
 async function extractPixels(imagePath) {
   try {
