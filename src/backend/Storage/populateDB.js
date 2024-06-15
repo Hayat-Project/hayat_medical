@@ -2,14 +2,14 @@ import { populateFirestoreWithDoctors, populateFirestoreWithPatients } from './S
 
 populateFirestoreWithPatients().then(() => {
     console.log('Patients Function executed successfully.');
-    process.exit(0);
+    populateFirestoreWithDoctors().then(() => {
+        console.log('Doctors Function executed successfully.');
+        process.exit(0);
+    }).catch(err => {
+        console.error('Failed to execute doctor function:', err);
+    });
 }).catch(err => {
-    console.error('Failed to execute function:', err);
+    console.error('Failed to execute patient function:', err);
 });
 
-populateFirestoreWithDoctors().then(() => {
-    console.log('Doctors Function executed successfully.');
-    process.exit(0);
-}).catch(err => {
-    console.error('Failed to execute function:', err);
-});
+
