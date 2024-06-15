@@ -1,7 +1,7 @@
 import sharp from "sharp";
 import fs from "fs/promises";
 
-// const imagePath = "public/images/image.jpg";
+// Correctly formatted image path
 const imagePath =
   "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/image.jpg";
 
@@ -14,7 +14,7 @@ async function extractPixels(imagePath) {
       sharp(imagePath).extractChannel("blue").raw().toBuffer(),
     ]);
 
-    //Store each channel in an array
+    // Store each channel in an array
     return {
       redPixels: Array.from(redPixels),
       greenPixels: Array.from(greenPixels),
@@ -24,7 +24,7 @@ async function extractPixels(imagePath) {
     console.error("Error extracting pixel data:", err);
   }
 }
-// Skip
+
 async function writePixelsToFile(filePath, pixels) {
   try {
     await fs.writeFile(filePath, pixels.join(","));
@@ -40,7 +40,7 @@ async function createImageFromPixels(
   bluePixels,
   outputPath
 ) {
-  const width = 617;
+  const width = 617; // Adjust width and height to match your image dimensions
   const height = 617;
 
   const imageData = new Uint8Array(width * height * 4);
@@ -67,14 +67,35 @@ function stringToBinary(str) {
 
 export async function watermarkImageWithData(formData) {
   try {
-    const flag = " ##END##";
-    //Convert Object to JSON
-    // const data = "- Doctor Note:" + JSON.stringify(formData);
-    const data = "- Doctor Note:" + formData.sessionSummary;
+    const consultationSFlag = " ##S_CONSULTATION##";
+    const consultationEFlag = " ##E_CONSULTATION##";
+    const noteSFlag = " ##S_NOTE## ";
+    const noteEFlag = " ##E_NOTE##";
+    const summarySFlag = " ##S_SUMMARY## ";
+    const summaryEFlag = " ##E_SUMMARY##";
+    const drugsSFlag = " ##S_DRUGS## ";
+    const drugsEFlag = " ##E_DRUGS##";
 
-    const myString = data + flag; //- Doctor Note:Ahmad  ##END##
-    console.log(data);
-    const binaryString = stringToBinary(myString); //01001000 01100001 01111001 01100001 01110100
+    // Convert Object to JSON
+    const doctorNote = JSON.stringify(formData.doctorNote);
+    const summary = JSON.stringify(formData.sessionSummary);
+    const drugs = JSON.stringify(formData.prescriptionDrugs);
+
+    const myString =
+      consultationSFlag +
+      noteSFlag +
+      doctorNote +
+      noteEFlag +
+      summarySFlag +
+      summary +
+      summaryEFlag +
+      drugsSFlag +
+      drugs +
+      drugsEFlag +
+      consultationEFlag; // - Doctor Note:{"name":"Ahmad"} ##END##
+    console.log(myString);
+    const binaryString = stringToBinary(myString); // Convert to binary representation
+
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath
     ); // Extract Three Channels
@@ -109,23 +130,19 @@ export async function watermarkImageWithData(formData) {
       greenBinaryPixels[i] = convertToDecimal(newEmbedY);
       blueBinaryPixels[i] = convertToDecimal(newEmbedZ);
     }
-    //home/moutasim/Development/hayat_medical/public/images/redPixels.txt
+
     await writePixelsToFile(
       "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/redPixels.txt",
       redBinaryPixels
     );
-    //home/moutasim/Development/hayat_medical/public/images/greenPixels.txt
     await writePixelsToFile(
       "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/greenPixels.txt",
       greenBinaryPixels
     );
-    //home/moutasim/Development/hayat_medical/public/images/bluePixels.txt
     await writePixelsToFile(
       "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/bluePixels.txt",
       blueBinaryPixels
     );
-
-    ///home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
 
     await createImageFromPixels(
       redBinaryPixels,
