@@ -98,7 +98,7 @@ function Mfa() {
       {otp ? (
         <Grid mt={200}>
           <Grid.Col span={isMobile ? 1 : 4.5}></Grid.Col>
-          <Grid.Col span={isMobile ? 10 : 2.5}>
+          <Grid.Col span={isMobile ? 10 : 3}>
             <Card shadow="sm" withBorder radius="md">
               <Title order={2}>Two-Factor Authentication</Title>
               <Text>Fill in your phone number to receive the code</Text>
