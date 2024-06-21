@@ -1,8 +1,8 @@
-import env from "../../env.js";
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
-import { getFirestore } from "firebase/firestore";
+const env = require("./env.js");
+const { initializeApp } = require("firebase/app");
+const { getAuth } = require("firebase/auth");
+const { getStorage } = require("firebase/storage");
+const { getFirestore } = require("firebase/firestore");
 
 const firebaseConfig = {
   apiKey: env.REACT_APP_FIREBASE_API_KEY,
@@ -16,6 +16,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const storage = getStorage(app);
-export const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+const db = getFirestore(app);
+
+module.exports = { auth, storage, db };

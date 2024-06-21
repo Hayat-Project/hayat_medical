@@ -1,4 +1,4 @@
-import sharp from "sharp";
+const sharp = require("sharp");
 
 // const imagePath = "public/images/reconstructedImage.png";
 const imagePath =
@@ -54,7 +54,7 @@ function binaryToString(binary) {
   return extractedString;
 }
 
-export async function extractWatermarkedData() {
+async function extractWatermarkedData() {
   try {
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
       imagePath
@@ -71,3 +71,5 @@ export async function extractWatermarkedData() {
     console.error("An error occurred:", err);
   }
 }
+
+module.exports = { extractWatermarkedData };

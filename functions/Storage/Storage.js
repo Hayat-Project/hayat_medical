@@ -1,8 +1,8 @@
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../Config/firebase.js";
-import { v4 } from "uuid";
+const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
+const { storage } = require("../firebase.js");
+const { v4 } = require("uuid");
 
-export const uploadAudio = async (audioUpload) => {
+exports.uploadAudio = async (audioUpload) => {
   try {
     if (audioUpload == null) return;
     

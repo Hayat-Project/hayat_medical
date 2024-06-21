@@ -1,5 +1,5 @@
-import sharp from "sharp";
-import fs from "fs/promises";
+const sharp = require("sharp");
+const fs = require("fs/promises");
 
 // const imagePath = "public/images/image.jpg";
 const imagePath =
@@ -65,7 +65,7 @@ function stringToBinary(str) {
     .join("");
 }
 
-export async function watermarkImageWithData(formData) {
+async function watermarkImageWithData(formData) {
   try {
     const flag = " ##END##";
     //Convert Object to JSON
@@ -137,3 +137,5 @@ export async function watermarkImageWithData(formData) {
     console.error("An error occurred:", err);
   }
 }
+
+module.exports = { watermarkImageWithData };

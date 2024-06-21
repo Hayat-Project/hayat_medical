@@ -1,9 +1,9 @@
-import { db } from "../../Config/firebase.js";
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+const { db } = require("../firebase.js");
+const { collection, addDoc, getDoc, doc } = require("firebase/firestore");
 
 const consultationRef = collection(db, "Consultation");
 
-export const setTranscript = async (transcript, summary) => {
+exports.setTranscript = async (transcript, summary) => {
   try {
     const docRef = await addDoc(consultationRef, {
       transcript: transcript,
@@ -16,7 +16,7 @@ export const setTranscript = async (transcript, summary) => {
   }
 };
 
-export const getSummary = async (documentId) => {
+exports.getSummary = async (documentId) => {
   try {
     const docRef = doc(consultationRef, documentId);
     const docSnap = await getDoc(docRef);
