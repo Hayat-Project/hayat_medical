@@ -41,7 +41,7 @@ function NewConsultation() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/watermark-image", {
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/watermark-image", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function NewConsultation() {
       <MainHeader header="New Consultation" badge={false} />
       <form
         onSubmit={handleSubmit}
-        action="http://localhost:3000/watermark-image"
+        action="https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/watermark-image"
         method="post"
       >
         <SimpleGrid mt={15}>

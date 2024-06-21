@@ -18,7 +18,6 @@ function PatientProfile() {
   );
 
   if (!selectedPatient) {
-    // Handle the case where the patient with the specified ID is not found
     return (
       <div>
         <p>No patient found with ID {selectedPatientId}</p>

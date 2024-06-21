@@ -12,7 +12,7 @@ import {
 import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../Config/firebase";
+import { auth } from "../../../functions/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useUserAuth } from "../../Context/UserAuthContext";
 

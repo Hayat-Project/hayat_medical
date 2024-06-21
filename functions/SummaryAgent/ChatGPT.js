@@ -1,12 +1,12 @@
-const OpenAI = require("openai");
-const env = require("../env.js");
+import OpenAI from "openai";
+import env from "../env.js"
 
 const openai = new OpenAI({
     apiKey: env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
 });
 
-async function summarize(transcript) {
+export async function summarize(transcript) {
     const prompt = "Summarize the following consultation between the doctor and patient:\n" + transcript
     const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: prompt }],
@@ -16,5 +16,3 @@ async function summarize(transcript) {
     const summary = completion.choices[0].message.content;
     return summary;
 }
-
-module.exports = { summarize };

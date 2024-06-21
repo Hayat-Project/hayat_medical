@@ -1,4 +1,4 @@
-const functions = require('firebase-functions');
-const app = require('./server.js');
+import app from './server.js';
+import * as functions from 'firebase-functions';
 
-exports.api = functions.https.onRequest(app);
+export const api = functions.https.onRequest(app);

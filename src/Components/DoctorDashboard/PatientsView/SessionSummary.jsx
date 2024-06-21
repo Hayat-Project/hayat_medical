@@ -15,7 +15,7 @@ import {
 } from "@tabler/icons-react";
 
 import { useState, useEffect, useRef } from "react";
-import { uploadAudio } from "../../../backend/Storage/Storage";
+import { uploadAudio } from "../../../../functions/Storage/Storage";
 
 function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const [transcript, setTranscript] = useState("");
@@ -66,7 +66,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
     try {
       const audioUrl = await uploadAudio(blob);
 
-      const response = await fetch("http://localhost:3000/diarization", {
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function SessionSummary({ onDoctorNoteChange, onSessionSummary }) {
   const consultationResult = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/cosultationResult", {
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/cosultationResult", {
         method: "GET",
       });
       if (response.ok) {

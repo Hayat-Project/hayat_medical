@@ -1,15 +1,13 @@
-const express = require("express");
-const { fileURLToPath } = require("url");
-const { dirname } = require("path");
-const path = require("path");
-const cors = require("cors");
-const { watermarkImageWithData } = require("./watermarking.js");
-const { extractWatermarkedData } = require("./extract-data.js");
-const { transcribeUrl } = require("./speechToText.js");
-const { setTranscript, getSummary } = require("./Firestore/Database.js");
-const { summarize } = require("./SummaryAgent/ChatGPT.js");
+import express from "express";
+import { fileURLToPath } from "url";
+import path, { dirname, join } from "path";
+import cors from "cors";
+import { watermarkImageWithData } from "./watermarking.js";
+import { extractWatermarkedData } from "./extract-data.js";
+import { transcribeUrl } from "./speechToText.js";
+import { setTranscript, getSummary } from "./Firestore/Database.js";
+import { summarize } from "./SummaryAgent/ChatGPT.js";
 
-// Boilerplate code start
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -23,6 +21,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // Boilerplate code end
 
 let globalDocID = null;
+
+app.get("/", (req, res) => {
+  res.status(200).send({ message: "Hello World!" });
+});
 
 app.post("/watermark-image", (req, res) => {
   const formData = req.body;
@@ -75,4 +77,4 @@ app.get("/cosultationResult", async (req, res) => {
   }
 });
 
-module.exports = app;
+export default app;
