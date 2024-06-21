@@ -24,6 +24,7 @@ import {
 } from "@tabler/icons-react";
 import ReportsTabs from "../ReportsTabs";
 import DrugsForm from "./DrugsForm";
+import General from "./StepOne/General";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
@@ -39,41 +40,7 @@ function ConsultaionSteps() {
       <Stepper active={active} onStepClick={setActive}>
         <Stepper.Step label="First step" description="General">
           <Space h="lg" />
-          <Grid>
-            <Grid.Col span={6}>
-              <Title size="h3" mb={5}>
-                Radiological Images
-              </Title>
-              <Space h="lg" />
-              <ReportsTabs />
-            </Grid.Col>
-            <Grid.Col span={5}>
-              <form>
-                <Title size="h3" mb={5}>
-                  General
-                </Title>
-                <Space h="lg" />
-                <Select
-                  withAsterisk={true}
-                  label="Radiological Image"
-                  w={350}
-                  placeholder="Pick value"
-                  defaultValue="None"
-                  data={["None", "Pollen", "Dust", "Peanuts", "Penicillin"]}
-                  searchable
-                />
-                <Space h="md" />
-                <Select
-                  label="Allergy"
-                  w={350}
-                  placeholder="Pick value"
-                  defaultValue="None"
-                  data={["None", "Pollen", "Dust", "Peanuts", "Penicillin"]}
-                  searchable
-                />
-              </form>
-            </Grid.Col>
-          </Grid>
+          <General />
         </Stepper.Step>
 
         <Stepper.Step label="Second step" description="Doctor Notes">
