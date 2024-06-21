@@ -1,35 +1,23 @@
 import { useState } from "react";
 import {
   Stepper,
-  SimpleGrid,
-  Select,
   Button,
   Group,
-  Grid,
   Divider,
-  ActionIcon,
   Title,
-  FileButton,
-  Text,
   Space,
-  Textarea,
   Center,
-  Loader,
 } from "@mantine/core";
 import {
-  IconPlayerRecord,
-  IconPlayerPause,
-  IconUpload,
-  IconCheck,
 } from "@tabler/icons-react";
-import ReportsTabs from "../ReportsTabs";
 import DrugsForm from "./DrugsForm";
 import General from "./StepOne/General";
+import DoctorNotes from "./StepTwo/DoctorNotes";
+import ConsultaionSummary from "./StepFour/ConsultationSummary";
+import RecordingSession from "./RecordingSession";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
-  const [file, setFile] = useState();
-  const [transcript, setTranscript] = useState("");
   const nextStep = () =>
     setActive((current) => (current < 4 ? current + 1 : current));
   const prevStep = () =>
@@ -45,47 +33,14 @@ function ConsultaionSteps() {
 
         <Stepper.Step label="Second step" description="Doctor Notes">
           <Space h="lg" />
-          <Title order={4}>Doctor Consultation Notes</Title>
-          <Textarea
-            mt={10}
-            placeholder="Enter consultation notes"
-            autosize
-            radius="md"
-            minRows={8}
-            maxRows={8}
-            //onChange={handleDoctorNoteChange}
-          />
+          <DoctorNotes/>
         </Stepper.Step>
         <Stepper.Step label="Third step" description="Medicine Prescription">
           <DrugsForm />
         </Stepper.Step>
         <Stepper.Step label="Fourth step" description="Consultation Summary">
           <Space h="lg" />
-          <Title order={4}> Consultation Summary </Title>
-          {/* {transcript == "" ? (
-          <Center h={100}>
-            <Loader color="blue" />
-          </Center>
-        ) : (
-          <> */}
-          <Textarea
-            mt={10}
-            autosize
-            radius="md"
-            minRows={8}
-            maxRows={8}
-            value={transcript}
-          />
-          <Button
-            mt={10}
-            color="blue"
-            leftSection={<IconCheck />}
-            //onClick={handleSessionSummary}
-          >
-            Validate Summary
-          </Button>
-          {/* </>
-        )} */}
+          <ConsultaionSummary/>
         </Stepper.Step>
 
         <Stepper.Completed>
@@ -107,61 +62,7 @@ function ConsultaionSteps() {
       <Divider my="md" />
 
       <Space h="lg" />
-      <Grid>
-        <Grid.Col span={3}></Grid.Col>
-        <Grid.Col span={6}>
-          {/* <Title order={2}>Record Session</Title> */}
-          <Group justify="center" gap="xl" mt={30}>
-            <ActionIcon
-              variant="light"
-              color="red"
-              aria-label="Settings"
-              size={50}
-              radius="md"
-            >
-              <IconPlayerRecord
-                style={{ width: "70%", height: "70%" }}
-                stroke={1.5}
-              />
-            </ActionIcon>
-            <ActionIcon
-              variant="light"
-              aria-label="Settings"
-              size={50}
-              radius="md"
-            >
-              <IconPlayerPause
-                style={{ width: "70%", height: "70%" }}
-                stroke={1.5}
-              />
-            </ActionIcon>
-          </Group>
-          <Space h="md" />
-          <Divider
-            my="xs"
-            label="OR"
-            labelPosition="center"
-            orientation="vertical"
-          />
-          <Space h="md" />
-          <Group justify="center">
-            <FileButton onChange={setFile} accept="image/png,image/jpeg">
-              {(props) => (
-                <Button leftSection={<IconUpload />} {...props}>
-                  Upload audio
-                </Button>
-              )}
-            </FileButton>
-          </Group>
-
-          {file && (
-            <Text size="sm" ta="center" mt="sm">
-              Picked file: {file.name}
-            </Text>
-          )}
-        </Grid.Col>
-        <Grid.Col span={3}></Grid.Col>
-      </Grid>
+     <RecordingSession/>
     </>
   );
 }
