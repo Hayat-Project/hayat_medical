@@ -1,4 +1,4 @@
-import { uploadAudio } from "../../../../../backend/Storage/Storage.js";
+import { uploadAudio } from "../../../../backend/Storage/Storage.js";
 import { IconUpload } from "@tabler/icons-react";
 import { useState } from "react";
 import { Button, FileInput } from "@mantine/core";
@@ -16,7 +16,7 @@ function UploadAudio() {
   return (
     <>
       <FileInput
-      w={450}
+        w={450}
         placeholder="Input placeholder"
         accept="audio/mp3, audio/wav"
         value={audioUpload}
