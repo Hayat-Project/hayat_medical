@@ -39,32 +39,6 @@ function DrugsForm() {
       method="post"
     >
       <SimpleGrid mt={15}>
-        <Title size="h3" mb={5}>
-          General
-        </Title>
-        <Group>
-          <Select
-            label="Diagnosis State "
-            w={350}
-            withAsterisk={true}
-            placeholder="Pick value"
-            data={[
-              "ICD-10 Code A",
-              "ICD-10 Code B",
-              "ICD-10 Code C",
-              "ICD-10 Code D",
-            ]}
-            searchable
-          />
-          <Select
-            label="Allergy"
-            w={350}
-            placeholder="Pick value"
-            defaultValue="None"
-            data={["None", "Pollen", "Dust", "Peanuts", "Penicillin"]}
-            searchable
-          />
-        </Group>
         <Title size="h3" mt={30} mb={5}>
           Medicine Prescription
         </Title>
