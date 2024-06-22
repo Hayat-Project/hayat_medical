@@ -48,9 +48,9 @@ export const populateFirestoreWithPatients = async () => {
       const appointmentsCollectionRef = collection(db, `patients/${docRef.id}/appointments`);
 
       await addDoc(appointmentsCollectionRef, {
-        date: new Date().toISOString(),
+        date: new Date().toISOString().slice(0, 10),
         treatmentType: "General Checkup",
-        bookingTime: new Date().toISOString(),
+        bookingTime: new Date().toISOString().slice(0, 10),
         comments: "Initial consultation",
         status: "Scheduled",
         transcript: "Patient discusses symptoms.",
@@ -62,14 +62,14 @@ export const populateFirestoreWithPatients = async () => {
       });
 
       await addDoc(screeningsCollectionRef, {
-        date: new Date().toISOString(),
+        date: new Date().toISOString().slice(0, 10),
         id: generateSixDigitId(),
         imageRef: "path/to/screening/image.jpg"
       });
 
       await addDoc(reportsCollectionRef, {
         id: generateSixDigitId(),
-        date: new Date().toISOString(),
+        date: new Date().toISOString().slice(0, 10),
         documentRef: `path/to/report/${patient.id}.pdf`
       });
     }
@@ -95,18 +95,29 @@ export const populateFirestoreWithDoctors = async () => {
         profilePicture
       });
 
-      const appointmentsCollectionRef = collection(db, `doctors/${docRef.id}/appointments`);
+      const consultationsLogRef = collection(db, `doctors/${docRef.id}/consultations_log`);
       const ratingsCollectionRef = collection(db, `doctors/${docRef.id}/ratings`);
+      const upcomingAppointmentsRef = collection(db, `doctors/${docRef.id}/upcoming_appointments`);
 
-      await addDoc(appointmentsCollectionRef, {
-        date: new Date().toISOString(),
+      await addDoc(consultationsLogRef, {
         patientName: "John Doe",
         treatmentType: "Consultation",
+        date: new Date("2024-12-05").toISOString().slice(0, 10),
+        startingTime: "10:00 AM",
+        endTime: "10:30 AM",
         status: "Completed",
         comments: "Follow-up required",
         prescription: "Antibiotics",
         recordingMp3Reference: "path/to/recording.mp3",
-        imageReference: "path/to/image.jpg"
+        imageReference: "path/to/image.jpg",
+      });
+
+      await addDoc(upcomingAppointmentsRef, {
+        patientName: "Chloe Davis",
+        date: new Date("2024-12-05").toISOString().slice(0, 10), 
+        startingTime: "09:00 AM",
+        endTime: "09:15 AM",
+        status: "Scheduled"
       });
 
       await addDoc(ratingsCollectionRef, {
