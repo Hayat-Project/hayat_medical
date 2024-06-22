@@ -44,7 +44,7 @@ function RecordingSession({ setAudioAvailable }) {
     try {
       const audioUrl = URL.createObjectURL(blob);
 
-      const response = await fetch("http://localhost:3000/diarization", {
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
