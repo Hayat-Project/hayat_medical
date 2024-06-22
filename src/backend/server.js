@@ -52,7 +52,7 @@ app.post("/diarization", async (req, res) => {
   try {
     const formData = req.body;
     console.log("Form data received:", formData);
-    const transcript = await transcribeUrl(formData.transcript);
+    const transcript = await transcribeUrl(formData.url);
     console.log("transcript --> ", transcript);
     const summary = await summarize(transcript);
     console.log("summary --> ", summary);
@@ -67,7 +67,7 @@ app.post("/diarization", async (req, res) => {
 
 app.get("/cosultationResult", async (req, res) => {
   try {
-    console.log("docID --> ", globalDocID);
+    console.log("docID from cosultationResult --> ", globalDocID);
 
     const data = await getSummary(globalDocID);
 
