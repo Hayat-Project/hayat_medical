@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Button,
   Group,
@@ -17,6 +17,65 @@ import {
 
 function RecordingSession() {
     const [file, setFile] = useState();
+    let rec = null;
+  let audioChunks = [];
+
+  let recordedAudio = useRef(null);
+  function recordSession(event) {
+    rec.start();
+  }
+  function stopRecording(event) {
+    rec.stop();
+  }
+
+  function handlerFunction(stream) {
+    rec = new MediaRecorder(stream);
+    rec.ondataavailable = async e => {
+      audioChunks.push(e.data);
+      if (rec.state == "inactive") {
+        let blob = new Blob(audioChunks, { type: 'audio/mpeg-3' });
+        recordedAudio.current.src = URL.createObjectURL(blob);
+        recordedAudio.current.controls = true;
+        await diarization(blob)
+      }
+    }
+  }
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => { handlerFunction(stream) });
+  }, []);
+  const upload = async () => {
+    try {
+      const url = await uploadAudio(audioUpload);
+      diarization(url);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const diarization = async (blob) => {
+    try {
+      const audioUrl = await uploadAudio(blob);
+ 
+      const response = await fetch("http://localhost:3000/diarization", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          url: audioUrl,
+        }),
+      });
+ 
+      if (response.ok) {
+        console.log("OK");
+      } else {
+        console.error("Error submitting form:", response.statusText);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
   return (
     <>
        <Grid>
@@ -30,9 +89,11 @@ function RecordingSession() {
               aria-label="Settings"
               size={50}
               radius="md"
+              onClick={recordSession}
             >
               <IconPlayerRecord
                 style={{ width: "70%", height: "70%" }}
+        
                 stroke={1.5}
               />
             </ActionIcon>
@@ -41,6 +102,7 @@ function RecordingSession() {
               aria-label="Settings"
               size={50}
               radius="md"
+              onClick={stopRecording}
             >
               <IconPlayerPause
                 style={{ width: "70%", height: "70%" }}
@@ -74,6 +136,8 @@ function RecordingSession() {
         </Grid.Col>
         <Grid.Col span={3}></Grid.Col>
       </Grid>
+      <br />
+        <audio ref={recordedAudio} />
     </>
   );
 }

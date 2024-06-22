@@ -15,6 +15,9 @@ import General from "./StepOne/General";
 import DoctorNotes from "./StepTwo/DoctorNotes";
 import ConsultaionSummary from "./StepFour/ConsultationSummary";
 import RecordingSession from "./RecordingSession";
+import { useForm } from "@mantine/form";
+import prescriptionDrugs from "../../../../mockdata/prescriptionDrugs.json";
+import { useNavigate } from "react-router-dom";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
@@ -22,6 +25,45 @@ function ConsultaionSteps() {
     setActive((current) => (current < 4 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+  const data = useForm({
+    initialValues: {
+      doctorNote: "", // Doctor notes TextInput field
+      sessionSummary: "", // Placeholder String
+      prescriptionDrugs: prescriptionDrugs, // Array of JSON objects
+    },
+  });
+ 
+  const handleDoctorNoteChange = (value) => {
+    data.setFieldValue("doctorNote", value);
+  };
+ 
+  const handleSessionSummary = (value) => {
+    data.setFieldValue("sessionSummary", value);
+  };
+ 
+  const navigate = useNavigate();
+ 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+ 
+    try {
+      const response = await fetch("http://localhost:3000/watermark-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data.values), // JSON
+      });
+ 
+      if (response.ok) {
+        navigate(-1);
+      } else {
+        console.error("Error submitting form:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
+  };
 
   return (
     <>
