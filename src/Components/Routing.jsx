@@ -2,7 +2,12 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import Dashboard from "./Dashboard";
 import LandPage from "./LandPage/LandPage";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import Login from "./LandPage/Login";
 import SignUp from "./LandPage/SignUp";
 import ConsultationsLog from "./DoctorDashboard/ConsultationsView/ConsultationsLog";
@@ -13,32 +18,44 @@ import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
 import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
 import ProtectedRoute from "./ProtectedRoute";
+import Consultation from "./DoctorDashboard/PatientsView/New Consultation/Consultation";
 
 function Routing() {
-	const router = createBrowserRouter(
-		createRoutesFromElements(
-			<>
-				<Route path="/" element={<LandPage />}>
-					<Route path="login" element={<Login />} />
-					<Route path="signup" element={<SignUp />} />
-				</Route>
-				
-				<Route path="doctorDashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-						<Route path="overview" element={<Overview />} />
-						<Route path="Appointments" element={<Appointments />} />
-						<Route path="Patients" element={<Patients />} />
-						<Route path="PatientProfile/:selectedPatientId" element={<PatientProfile />} />
-						<Route path="Patient Profile/New Consultation" element={<NewConsultation />} />
-						<Route path="ConsultationsLog" element={<ConsultationsLog />} />
-						<Route path="Setting" element={<DoctorSettings />} />
-					</Route>
-			</>
-		)
-	);
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<LandPage />}>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+        </Route>
 
-	return (
-		<RouterProvider router={router} />
-	);
+        <Route
+          path="doctorDashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="overview" element={<Overview />} />
+          <Route path="Appointments" element={<Appointments />} />
+          <Route path="Patients" element={<Patients />} />
+          <Route
+            path="PatientProfile/:selectedPatientId"
+            element={<PatientProfile />}
+          />
+          <Route
+            path="Patient Profile/New Consultation"
+            element={<Consultation />}
+          />
+          <Route path="ConsultationsLog" element={<ConsultationsLog />} />
+          <Route path="Setting" element={<DoctorSettings />} />
+        </Route>
+      </>
+    )
+  );
+
+  return <RouterProvider router={router} />;
 }
 
 export default Routing;
