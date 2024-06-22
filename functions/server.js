@@ -22,10 +22,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let globalDocID = null;
 
-app.get("/", (req, res) => {
-  res.status(200).send({ message: "Hello World!" });
-});
-
 app.post("/watermark-image", (req, res) => {
   const formData = req.body;
   console.log("Form data received:", formData);

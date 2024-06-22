@@ -24,15 +24,6 @@ async function extractPixels(imagePath) {
     console.error("Error extracting pixel data:", err);
   }
 }
-// Skip
-async function writePixelsToFile(filePath, pixels) {
-  try {
-    await fs.writeFile(filePath, pixels.join(","));
-    console.log("Output written to", filePath);
-  } catch (err) {
-    console.error("Error writing to file:", err);
-  }
-}
 
 async function createImageFromPixels(
   redPixels,
@@ -109,23 +100,6 @@ export async function watermarkImageWithData(formData) {
       greenBinaryPixels[i] = convertToDecimal(newEmbedY);
       blueBinaryPixels[i] = convertToDecimal(newEmbedZ);
     }
-    //home/moutasim/Development/hayat_medical/public/images/redPixels.txt
-    await writePixelsToFile(
-      "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/redPixels.txt",
-      redBinaryPixels
-    );
-    //home/moutasim/Development/hayat_medical/public/images/greenPixels.txt
-    await writePixelsToFile(
-      "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/greenPixels.txt",
-      greenBinaryPixels
-    );
-    //home/moutasim/Development/hayat_medical/public/images/bluePixels.txt
-    await writePixelsToFile(
-      "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/bluePixels.txt",
-      blueBinaryPixels
-    );
-
-    ///home/moutasim/Development/hayat_medical/public/images/reconstructedImage.png"
 
     await createImageFromPixels(
       redBinaryPixels,
