@@ -1,61 +1,49 @@
-import { useState, useRef, useEffect } from "react";
-import {
-  Button,
-  Group,
-  Grid,
-  Divider,
-  ActionIcon,
-  FileButton,
-  Text,
-  Space,
-} from "@mantine/core";
-import {
-  IconPlayerRecord,
-  IconPlayerPause,
-  IconUpload,
-} from "@tabler/icons-react";
+import { useRef, useEffect } from "react";
+import { Group, Grid, Divider, ActionIcon, Space } from "@mantine/core";
+import { IconPlayerRecord, IconPlayerPause } from "@tabler/icons-react";
+import UploadAudio from "./UploadAudio";
 
-function RecordingSession() {
-    const [file, setFile] = useState();
-    let rec = null;
-  let audioChunks = [];
+function RecordingSession({ setAudioAvailable }) {
+  const rec = useRef(null);
+  const audioChunks = useRef([]);
+  const recordedAudio = useRef(null);
 
-  let recordedAudio = useRef(null);
   function recordSession(event) {
-    rec.start();
+    if (rec.current) {
+      rec.current.start();
+    }
   }
+
   function stopRecording(event) {
-    rec.stop();
+    if (rec.current) {
+      rec.current.stop();
+    }
   }
 
   function handlerFunction(stream) {
-    rec = new MediaRecorder(stream);
-    rec.ondataavailable = async e => {
-      audioChunks.push(e.data);
-      if (rec.state == "inactive") {
-        let blob = new Blob(audioChunks, { type: 'audio/mpeg-3' });
+    rec.current = new MediaRecorder(stream);
+    rec.current.ondataavailable = async (e) => {
+      audioChunks.current.push(e.data);
+      if (rec.current.state === "inactive") {
+        let blob = new Blob(audioChunks.current, { type: "audio/mpeg-3" });
         recordedAudio.current.src = URL.createObjectURL(blob);
         recordedAudio.current.controls = true;
-        await diarization(blob)
+        await diarization(blob);
+        setAudioAvailable(true); // Set audio available when recording is done
       }
-    }
+    };
   }
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(stream => { handlerFunction(stream) });
-  }, []);
-  const upload = async () => {
-    try {
-      const url = await uploadAudio(audioUpload);
-      diarization(url);
-    } catch (err) {
-      console.log(err);
+
+  const handleAudioUpload = (audioUploaded) => {
+    if (audioUploaded) {
+      setAudioAvailable(true); // Set audio available when file is uploaded
     }
   };
+
   const diarization = async (blob) => {
     try {
-      const audioUrl = await uploadAudio(blob);
- 
+      const audioUrl = URL.createObjectURL(blob);
+
       const response = await fetch("http://localhost:3000/diarization", {
         method: "POST",
         headers: {
@@ -65,7 +53,7 @@ function RecordingSession() {
           url: audioUrl,
         }),
       });
- 
+
       if (response.ok) {
         console.log("OK");
       } else {
@@ -75,31 +63,35 @@ function RecordingSession() {
       console.log(err);
     }
   };
-  
+
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+      handlerFunction(stream);
+    });
+  }, []);
+
   return (
     <>
-       <Grid>
+      <Grid>
         <Grid.Col span={3}></Grid.Col>
         <Grid.Col span={6}>
-          {/* <Title order={2}>Record Session</Title> */}
           <Group justify="center" gap="xl" mt={30}>
             <ActionIcon
               variant="light"
               color="red"
-              aria-label="Settings"
+              aria-label="Record"
               size={50}
               radius="md"
               onClick={recordSession}
             >
               <IconPlayerRecord
                 style={{ width: "70%", height: "70%" }}
-        
                 stroke={1.5}
               />
             </ActionIcon>
             <ActionIcon
               variant="light"
-              aria-label="Settings"
+              aria-label="Pause"
               size={50}
               radius="md"
               onClick={stopRecording}
@@ -119,25 +111,13 @@ function RecordingSession() {
           />
           <Space h="md" />
           <Group justify="center">
-            <FileButton onChange={setFile} accept="image/png,image/jpeg">
-              {(props) => (
-                <Button leftSection={<IconUpload />} {...props}>
-                  Upload audio
-                </Button>
-              )}
-            </FileButton>
+            <UploadAudio />
           </Group>
-
-          {file && (
-            <Text size="sm" ta="center" mt="sm">
-              Picked file: {file.name}
-            </Text>
-          )}
         </Grid.Col>
         <Grid.Col span={3}></Grid.Col>
       </Grid>
       <br />
-        <audio ref={recordedAudio} />
+      <audio ref={recordedAudio} />
     </>
   );
 }

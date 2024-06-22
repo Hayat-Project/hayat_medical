@@ -23,6 +23,7 @@ export const transcribeUrl = async (audioURL) => {
   // STEP 4: Print the results
   // result.results.channels[0].alternatives[0].transcript --> alternatives - transcript
   // result.results.channels[0].alternatives[0].paragraphs.transcript --> diarize transcript
+  console.log(result.results.channels[0].alternatives[0].transcript);
   if (!error) return result.results.channels[0].alternatives[0].transcript;
   else return { depth: null };
 };

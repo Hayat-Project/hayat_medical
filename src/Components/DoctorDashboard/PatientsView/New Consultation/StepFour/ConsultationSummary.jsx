@@ -1,24 +1,21 @@
-import {
-  Button,
-  Title,
-  Textarea,
-} from "@mantine/core";
-import {
-  IconCheck,
-} from "@tabler/icons-react";
+import { Button, Title, Textarea, Center, Loader } from "@mantine/core";
+import { IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
 
-function ConsultaionSummary() {
-  const [transcript, setTranscript] = useState("");
+function ConsultaionSummary({ onSessionSummary, transcript }) {
+  const handleSessionSummary = () => {
+    onSessionSummary(transcript);
+  };
+  console.log(transcript);
   return (
     <>
-     <Title order={4}> Consultation Summary </Title>
-          {/* {transcript == "" ? (
-          <Center h={100}>
-            <Loader color="blue" />
-          </Center>
-        ) : (
-          <> */}
+      <Title order={4}> Consultation Summary </Title>
+      {transcript == "" ? (
+        <Center h={100}>
+          <Loader color="blue" />
+        </Center>
+      ) : (
+        <>
           <Textarea
             mt={10}
             autosize
@@ -31,12 +28,12 @@ function ConsultaionSummary() {
             mt={10}
             color="blue"
             leftSection={<IconCheck />}
-            //onClick={handleSessionSummary}
+            onClick={handleSessionSummary}
           >
             Validate Summary
           </Button>
-          {/* </>
-        )} */}
+        </>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Stepper,
   Button,
@@ -8,8 +8,7 @@ import {
   Space,
   Center,
 } from "@mantine/core";
-import {
-} from "@tabler/icons-react";
+import { IconCircleCheck } from "@tabler/icons-react";
 import DrugsForm from "./DrugsForm";
 import General from "./StepOne/General";
 import DoctorNotes from "./StepTwo/DoctorNotes";
@@ -21,10 +20,15 @@ import { useNavigate } from "react-router-dom";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
-  const nextStep = () =>
+  const [transcript, setTranscript] = useState("");
+
+  const nextStep = () => {
     setActive((current) => (current < 4 ? current + 1 : current));
+  };
+
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+
   const data = useForm({
     initialValues: {
       doctorNote: "", // Doctor notes TextInput field
@@ -32,20 +36,20 @@ function ConsultaionSteps() {
       prescriptionDrugs: prescriptionDrugs, // Array of JSON objects
     },
   });
- 
+
   const handleDoctorNoteChange = (value) => {
     data.setFieldValue("doctorNote", value);
   };
- 
+
   const handleSessionSummary = (value) => {
     data.setFieldValue("sessionSummary", value);
   };
- 
+
   const navigate = useNavigate();
- 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
- 
+
     try {
       const response = await fetch("http://localhost:3000/watermark-image", {
         method: "POST",
@@ -54,7 +58,7 @@ function ConsultaionSteps() {
         },
         body: JSON.stringify(data.values), // JSON
       });
- 
+
       if (response.ok) {
         navigate(-1);
       } else {
@@ -65,9 +69,30 @@ function ConsultaionSteps() {
     }
   };
 
+  const consultationResult = async () => {
+    console.log("I am here");
+    try {
+      const response = await fetch("http://localhost:3000/cosultationResult", {
+        method: "GET",
+      });
+      if (response.ok) {
+        let responseBody = await response.json();
+        setTranscript(responseBody.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (active === 3) {
+      consultationResult();
+    }
+  }, [active]);
+
   return (
     <>
-      <Stepper active={active} onStepClick={setActive}>
+      <Stepper active={active}>
         <Stepper.Step label="First step" description="General">
           <Space h="lg" />
           <General />
@@ -75,36 +100,55 @@ function ConsultaionSteps() {
 
         <Stepper.Step label="Second step" description="Doctor Notes">
           <Space h="lg" />
-          <DoctorNotes/>
+          <DoctorNotes onDoctorNoteChange={handleDoctorNoteChange} />
         </Stepper.Step>
+
         <Stepper.Step label="Third step" description="Medicine Prescription">
           <DrugsForm />
         </Stepper.Step>
+
         <Stepper.Step label="Fourth step" description="Consultation Summary">
           <Space h="lg" />
-          <ConsultaionSummary/>
+          <ConsultaionSummary
+            transcript={transcript}
+            onSessionSummary={handleSessionSummary}
+          />
         </Stepper.Step>
 
         <Stepper.Completed>
           <Space h="lg" />
           <Center>
-            <Title order={2}>Completed - Consultation Saved Successfly!</Title>
+            <Title order={2}>
+              Completed - Consultation Saved Successfully!
+            </Title>
           </Center>
         </Stepper.Completed>
       </Stepper>
 
       <Group justify="center" mt="xl">
-        <Button variant="default" onClick={prevStep}>
-          Back
-        </Button>
-        <Button onClick={nextStep}>Next step</Button>
+        {active < 4 ? (
+          <>
+            <Button variant="default" onClick={prevStep}>
+              Back
+            </Button>
+            <Button onClick={nextStep}>Next step</Button>
+          </>
+        ) : (
+          <Button
+            onClick={handleSubmit}
+            leftSection={<IconCircleCheck size={20} />}
+            size="md"
+          >
+            Submit
+          </Button>
+        )}
       </Group>
 
       <Space h="lg" />
       <Divider my="md" />
 
       <Space h="lg" />
-     <RecordingSession/>
+      <RecordingSession />
     </>
   );
 }
