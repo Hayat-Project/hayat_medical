@@ -1,0 +1,32 @@
+[
+  {
+    "id": 123456,
+    "name": "Dr. John Smith",
+    "department": "Cardiology",
+    "overallRating": 4.8,
+    "totalPoints": 500,
+    "email": "john.smith@example.com",
+    "password": "password123",
+    "profilePicture": "https://example.com/profiles/john_smith.jpg"
+  },
+  {
+    "id": 234567,
+    "name": "Dr. Emily Johnson",
+    "department": "Pediatrics",
+    "overallRating": 4.5,
+    "totalPoints": 450,
+    "email": "emily.johnson@example.com",
+    "password": "doctor456",
+    "profilePicture": "https://example.com/profiles/emily_johnson.jpg"
+  },
+  {
+    "id": 345678,
+    "name": "Dr. Michael Brown",
+    "department": "Orthopedics",
+    "overallRating": 4.7,
+    "totalPoints": 480,
+    "email": "michael.brown@example.com",
+    "password": "ortho789",
+    "profilePicture": "https://example.com/profiles/michael_brown.jpg"
+  }
+]
