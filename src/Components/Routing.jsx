@@ -15,7 +15,7 @@ import Overview from "./DoctorDashboard/Overview/Overview";
 import Appointments from "./DoctorDashboard/AppointmentsView/Appointments";
 import Patients from "./DoctorDashboard/PatientsView/Patients";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
-import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
+// import NewConsultation from "./DoctorDashboard/PatientsView/NewConsultation";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
 import ProtectedRoute from "./ProtectedRoute";
 import Consultation from "./DoctorDashboard/PatientsView/New Consultation/Consultation";

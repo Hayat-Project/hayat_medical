@@ -9,18 +9,18 @@ import {
   Center,
 } from "@mantine/core";
 import { IconCircleCheck } from "@tabler/icons-react";
-import DrugsForm from "./DrugsForm";
 import General from "./StepOne/General";
 import DoctorNotes from "./StepTwo/DoctorNotes";
 import ConsultaionSummary from "./StepFour/ConsultationSummary";
 import RecordingSession from "./RecordingSession";
 import { useForm } from "@mantine/form";
-import prescriptionDrugs from "../../../../mockdata/prescriptionDrugs.json";
 import { useNavigate } from "react-router-dom";
+import DrugsForm from "./DrugsForm";
 
 function ConsultaionSteps() {
   const [active, setActive] = useState(0);
   const [transcript, setTranscript] = useState("");
+  const [prescriptionDrugs, setPrescriptionDrugs] = useState([]);
 
   const nextStep = () => {
     setActive((current) => (current < 4 ? current + 1 : current));
@@ -33,7 +33,7 @@ function ConsultaionSteps() {
     initialValues: {
       doctorNote: "", // Doctor notes TextInput field
       sessionSummary: "", // Placeholder String
-      prescriptionDrugs: prescriptionDrugs, // Array of JSON objects
+      prescriptionDrugs: [], // Array of JSON objects
     },
   });
 
@@ -90,6 +90,11 @@ function ConsultaionSteps() {
     }
   }, [active]);
 
+  const updatePrescriptionDrugs = (newDrugs) => {
+    setPrescriptionDrugs(newDrugs);
+    data.setFieldValue("prescriptionDrugs", newDrugs);
+  };
+
   return (
     <>
       <Stepper active={active}>
@@ -104,7 +109,10 @@ function ConsultaionSteps() {
         </Stepper.Step>
 
         <Stepper.Step label="Third step" description="Medicine Prescription">
-          <DrugsForm />
+          <DrugsForm
+            prescriptionDrugs={prescriptionDrugs}
+            setPrescriptionDrugs={updatePrescriptionDrugs}
+          />
         </Stepper.Step>
 
         <Stepper.Step label="Fourth step" description="Consultation Summary">
