@@ -1,5 +1,5 @@
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../Config/firebase.js";
+import { storage } from "../firebase.js";
 import { v4 } from "uuid";
 
 export const uploadAudio = async (audioUpload) => {

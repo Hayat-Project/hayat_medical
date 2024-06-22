@@ -1,4 +1,4 @@
-import { db } from "../../Config/firebase.js";
+import { db } from "../firebase.js";
 import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 
 const consultationRef = collection(db, "Consultation");

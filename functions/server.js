@@ -1,7 +1,6 @@
 import express from "express";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
-import path from "path";
+import path, { dirname, join } from "path";
 import cors from "cors";
 import { watermarkImageWithData } from "./watermarking.js";
 import { extractWatermarkedData } from "./extract-data.js";
@@ -9,12 +8,10 @@ import { transcribeUrl } from "./speechToText.js";
 import { setTranscript, getSummary } from "./Firestore/Database.js";
 import { summarize } from "./SummaryAgent/ChatGPT.js";
 
-// Boilerplate code start
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const port = 3000;
 
 //JSON to Object
 app.use(express.json());
@@ -22,10 +19,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 // Boilerplate code end
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
 
 let globalDocID = null;
 
@@ -79,3 +72,5 @@ app.get("/cosultationResult", async (req, res) => {
     console.log(err);
   }
 });
+
+export default app;

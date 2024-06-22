@@ -1,12 +1,12 @@
 import { Table, Button, Checkbox, Modal, Image } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
+import PropTypes from 'prop-types';
 
 function ReportTable(props) {
   const [opened, { open, close }] = useDisclosure(false);
-  const checkbox = props.checkbox;
-  const elements = props.data;
-  const rows = elements.map((element) => (
+  const { checkbox, data, title } = props;
+  const rows = data.map((element) => (
     <Table.Tr key={element.id}>
       {checkbox === "checkbox" ? (
         <Table.Td>
@@ -39,5 +39,11 @@ function ReportTable(props) {
     </>
   );
 }
+
+ReportTable.propTypes = {
+  checkbox: PropTypes.string,
+  data: PropTypes.array,
+  title: PropTypes.string
+};
 
 export default ReportTable;

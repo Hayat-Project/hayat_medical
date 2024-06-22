@@ -29,13 +29,12 @@ function AppointmentHistoryCard(props) {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/extract-image-data", {
-        method: "GET",
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data", {
+        method: "GET"
       });
 
       if (response.ok) {
-        responseBody = await response.json(); // object
-        console.log("AAAA");
+        responseBody = await response.json(); 
         console.log(responseBody);
         setData(responseBody);
       }
@@ -67,7 +66,7 @@ function AppointmentHistoryCard(props) {
       <Table.Td>
         <form
           onSubmit={handleView}
-          action="http://localhost:3000/extract-image-data"
+          action="https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data"
           method="get"
         >
           <Button
