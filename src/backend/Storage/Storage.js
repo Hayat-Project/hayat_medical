@@ -43,9 +43,9 @@ export const populateFirestoreWithPatients = async () => {
         profilePicture
       });
 
+      const appointmentsCollectionRef = collection(db, `patients/${docRef.id}/appointments`);
       const screeningsCollectionRef = collection(db, `patients/${docRef.id}/screenings`);
       const reportsCollectionRef = collection(db, `patients/${docRef.id}/reports`);
-      const appointmentsCollectionRef = collection(db, `patients/${docRef.id}/appointments`);
 
       await addDoc(appointmentsCollectionRef, {
         date: new Date().toISOString().slice(0, 10),
@@ -96,13 +96,13 @@ export const populateFirestoreWithDoctors = async () => {
       });
 
       const consultationsLogRef = collection(db, `doctors/${docRef.id}/consultations_log`);
-      const ratingsCollectionRef = collection(db, `doctors/${docRef.id}/ratings`);
       const upcomingAppointmentsRef = collection(db, `doctors/${docRef.id}/upcoming_appointments`);
+      const ratingsCollectionRef = collection(db, `doctors/${docRef.id}/ratings`);
 
       await addDoc(consultationsLogRef, {
         patientName: "John Doe",
         treatmentType: "Consultation",
-        date: new Date("2024-12-05").toISOString().slice(0, 10),
+        date: new Date().toISOString().slice(0, 10),
         startingTime: "10:00 AM",
         endTime: "10:30 AM",
         status: "Completed",
@@ -114,7 +114,7 @@ export const populateFirestoreWithDoctors = async () => {
 
       await addDoc(upcomingAppointmentsRef, {
         patientName: "Chloe Davis",
-        date: new Date("2024-12-05").toISOString().slice(0, 10), 
+        date: new Date().toISOString().slice(0, 10), 
         startingTime: "09:00 AM",
         endTime: "09:15 AM",
         status: "Scheduled"
