@@ -9,49 +9,5 @@
     "days": 5,
     "quantity": 20,
     "remarks": "Take with food"
-  },
-  {
-    "name": "Claritin",
-    "strength": "10mg",
-    "form": "Tablet",
-    "dosage": "1 tablet",
-    "frequency": "Once daily",
-    "route": "Oral",
-    "days": 7,
-    "quantity": 7,
-    "remarks": "May cause drowsiness"
-  },
-  {
-    "name": "Hydrocortisone Cream",
-    "strength": "1%",
-    "form": "Cream",
-    "dosage": "Thin layer",
-    "frequency": "Twice daily",
-    "route": "Topical",
-    "days": 7,
-    "quantity": 30,
-    "remarks": "Apply to affected area"
-  },
-  {
-    "name": "Ibuprofen (Advil)",
-    "strength": "200mg",
-    "form": "Capsule",
-    "dosage": "1 capsule",
-    "frequency": "3 times daily",
-    "route": "Oral",
-    "days": 5,
-    "quantity": 30,
-    "remarks": "Do not exceed 2 capsules per day."
-  },
-  {
-    "name": "Zyrtec",
-    "strength": "10mg",
-    "form": "Tablet",
-    "dosage": "1 tablet",
-    "frequency": "Once daily",
-    "route": "Oral",
-    "days": 7,
-    "quantity": 7,
-    "remarks": "May cause drowsiness or dry mouth."
   }
 ]

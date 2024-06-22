@@ -1,9 +1,10 @@
 import sharp from "sharp";
 
-// const imagePath = "public/images/reconstructedImage.png";
+// Correctly formatted image path
 const imagePath =
   "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/reconstructedImage.png";
 
+// Function to extract RGB channels from an image
 async function extractPixels(imagePath) {
   try {
     const [redPixels, greenPixels, bluePixels] = await Promise.all([
@@ -12,6 +13,7 @@ async function extractPixels(imagePath) {
       sharp(imagePath).extractChannel("blue").raw().toBuffer(),
     ]);
 
+    // Store each channel in an array
     return {
       redPixels: Array.from(redPixels),
       greenPixels: Array.from(greenPixels),
@@ -22,6 +24,7 @@ async function extractPixels(imagePath) {
   }
 }
 
+// Function to extract binary data from pixel channels
 function extractDataFromPixels(redPixels, greenPixels, bluePixels) {
   let binaryResult = "";
 
@@ -36,6 +39,7 @@ function extractDataFromPixels(redPixels, greenPixels, bluePixels) {
   return binaryResult;
 }
 
+// Function to convert binary data to a string
 function binaryToString(binary) {
   const chunks = binary.match(/.{1,8}/g);
   if (!chunks) {
@@ -46,14 +50,36 @@ function binaryToString(binary) {
     .map((chunk) => String.fromCharCode(parseInt(chunk, 2)))
     .join("");
 
-  const endIndex = extractedString.indexOf("##END##");
-  if (endIndex !== -1) {
-    return extractedString.slice(0, endIndex);
-  }
-
   return extractedString;
 }
 
+// Function to parse the extracted string using the provided flags
+function parseExtractedString(data) {
+  const sections = {
+    // consultation: "",
+    note: "",
+    summary: "",
+    drugs: [],
+  };
+
+  // const consultationMatch = data.match(
+  //   /##S_CONSULTATION##(.*?)##E_CONSULTATION##/s
+  // );
+  // if (consultationMatch) sections.consultation = consultationMatch[1];
+
+  const noteMatch = data.match(/##S_NOTE##(.*?)##E_NOTE##/s);
+  if (noteMatch) sections.note = noteMatch[1];
+
+  const summaryMatch = data.match(/##S_SUMMARY##(.*?)##E_SUMMARY##/s);
+  if (summaryMatch) sections.summary = summaryMatch[1];
+
+  const drugsMatch = data.match(/##S_DRUGS##(.*?)##E_DRUGS##/s);
+  if (drugsMatch) sections.drugs = JSON.parse(drugsMatch[1]);
+
+  return sections;
+}
+
+// Main function to extract and parse the watermarked data
 export async function extractWatermarkedData() {
   try {
     const { redPixels, greenPixels, bluePixels } = await extractPixels(
@@ -65,8 +91,9 @@ export async function extractWatermarkedData() {
       bluePixels
     );
     const extractedString = binaryToString(extractedBinaryString);
-    console.log("Extracted String:", extractedString);
-    return extractedString;
+    const parsedData = parseExtractedString(extractedString);
+    console.log("Parsed Data:", parsedData);
+    return parsedData;
   } catch (err) {
     console.error("An error occurred:", err);
   }

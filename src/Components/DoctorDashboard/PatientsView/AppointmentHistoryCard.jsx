@@ -1,4 +1,12 @@
-import { Badge, Button, Group, Modal, Table, Loader, Text } from "@mantine/core";
+import {
+  Badge,
+  Button,
+  Group,
+  Modal,
+  Table,
+  Loader,
+  Text,
+} from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../../InfoIconWithProps";
 import { useDisclosure } from "@mantine/hooks";
@@ -9,6 +17,12 @@ function AppointmentHistoryCard(props) {
   const [loading, setLoading] = useState(true);
   const elements = props.data;
   const [opened, { open, close }] = useDisclosure(false);
+  const keyToLabelMap = {
+    note: "Doctor Note",
+    summary: "Consultation Summary",
+    drugs: "Prescribed Drugs",
+    // Add other keys and their corresponding labels here
+  };
   let responseBody;
 
   const handleView = async (event) => {
@@ -16,11 +30,12 @@ function AppointmentHistoryCard(props) {
 
     try {
       const response = await fetch("http://localhost:3000/extract-image-data", {
-        method: "GET"
+        method: "GET",
       });
 
       if (response.ok) {
         responseBody = await response.json(); // object
+        console.log("AAAA");
         console.log(responseBody);
         setData(responseBody);
       }
@@ -107,8 +122,16 @@ function AppointmentHistoryCard(props) {
           <Loader color="blue" />
         ) : (
           <>
-            <Text mb={10}>{retrievedData.message}</Text>
-            <Text>{retrievedData.data}</Text>
+            <div>
+              {Object.entries(retrievedData.data).map(([key, value]) => (
+                <div key={key}>
+                  <Text>
+                    <strong>{keyToLabelMap[key]}:</strong>
+                    {typeof value === "object" ? JSON.stringify(value) : value}
+                  </Text>
+                </div>
+              ))}
+            </div>
           </>
         )}
       </Modal>
