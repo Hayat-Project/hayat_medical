@@ -36,7 +36,7 @@ export const getSummary = async (documentId) => {
 };
 
 export const getUpcomingAppointments = async () => {
-  const appointmentsRef = collection(db, "doctors/SbXtZrKByoB4J75ymsvE/upcoming_appointments");
+  const appointmentsRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/upcoming_appointments");
 
   try {
     const querySnapshot = await getDocs(appointmentsRef);
@@ -52,7 +52,7 @@ export const getUpcomingAppointments = async () => {
 }
 
 export const getAllPatients = async () => {
-  const patientsCol = collection(db, "doctors/SbXtZrKByoB4J75ymsvE/patients");
+  const patientsCol = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/patients");
 
   try {
     const querySnapshot = await getDocs(patientsCol);
@@ -69,7 +69,7 @@ export const getAllPatients = async () => {
 
 
 export const getConsultationsLog = async () => {
-  const consultationsLogRef = collection(db, "doctors/SbXtZrKByoB4J75ymsvE/patients");
+  const consultationsLogRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/patients");
 
   try {
     const querySnapshot = await getDocs(consultationsLogRef);

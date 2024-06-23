@@ -13,7 +13,7 @@ function PatientsGallery(props) {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5032/hayat-consultation-syste-dd9b0/us-central1/api/patients');
+        const response = await fetch('https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/patients');
         const data = await response.json();
         setPatients(data.data);
         setLoading(false);
@@ -49,7 +49,7 @@ function PatientsGallery(props) {
           >
             <Group justify="center">
               <Card.Section>
-                <Avatar size={70} src={patient.src} />
+                <Avatar size={70} src={patient.profilePicture} />
               </Card.Section>
             </Group>
             <Group justify="center" mt="md" mb="xs">
