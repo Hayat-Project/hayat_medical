@@ -15,7 +15,7 @@ function PatientsGallery(props) {
       try {
         const response = await fetch('http://127.0.0.1:5032/hayat-consultation-syste-dd9b0/us-central1/api/patients');
         const data = await response.json();
-        setPatients(data);
+        setPatients(data.data);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch patients:', error);
