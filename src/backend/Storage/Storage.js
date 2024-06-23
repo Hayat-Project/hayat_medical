@@ -9,7 +9,7 @@ import doctorsData from "../../mockdata/doctorsData.json" assert { type: "json" 
 export const uploadAudio = async (audioUpload) => {
   try {
     if (audioUpload == null) return;
-    
+
     const audioRef = ref(
       storage,
       `Consultation Audio/${audioUpload.name + v4()}`
@@ -26,7 +26,21 @@ export const populateFirestoreWithPatients = async () => {
   try {
     const patientDocRef = collection(db, "patients");
     for (const patient of patientsData) {
-      const { name, id, dob, age, gender, email, nationality, phone, insurance, lastAppointment, allergies, nationalid, src: profilePicture } = patient;
+      const {
+        name,
+        id,
+        dob,
+        age,
+        gender,
+        email,
+        nationality,
+        phone,
+        insurance,
+        lastAppointment,
+        allergies,
+        nationalid,
+        src: profilePicture,
+      } = patient;
       const docRef = await addDoc(patientDocRef, {
         name,
         id,
@@ -40,12 +54,21 @@ export const populateFirestoreWithPatients = async () => {
         lastAppointment,
         allergies,
         nationalid,
-        profilePicture
+        profilePicture,
       });
 
-      const appointmentsCollectionRef = collection(db, `patients/${docRef.id}/appointments`);
-      const screeningsCollectionRef = collection(db, `patients/${docRef.id}/screenings`);
-      const reportsCollectionRef = collection(db, `patients/${docRef.id}/reports`);
+      const appointmentsCollectionRef = collection(
+        db,
+        `patients/${docRef.id}/appointments`
+      );
+      const screeningsCollectionRef = collection(
+        db,
+        `patients/${docRef.id}/screenings`
+      );
+      const reportsCollectionRef = collection(
+        db,
+        `patients/${docRef.id}/reports`
+      );
 
       await addDoc(appointmentsCollectionRef, {
         date: new Date().toISOString().slice(0, 10),
@@ -58,19 +81,19 @@ export const populateFirestoreWithPatients = async () => {
         doctorNotes: "Recommend blood tests.",
         prescription: "Vitamin D supplements",
         recordingMp3Reference: "path/to/recording.mp3",
-        imageReference: "path/to/image.jpg"
+        imageReference: "path/to/image.jpg",
       });
 
       await addDoc(screeningsCollectionRef, {
         date: new Date().toISOString().slice(0, 10),
         id: generateSixDigitId(),
-        imageRef: "path/to/screening/image.jpg"
+        imageRef: "path/to/screening/image.jpg",
       });
 
       await addDoc(reportsCollectionRef, {
         id: generateSixDigitId(),
         date: new Date().toISOString().slice(0, 10),
-        documentRef: `path/to/report/${patient.id}.pdf`
+        documentRef: `path/to/report/${patient.id}.pdf`,
       });
     }
     console.log("Patients successfully added to Firestore.");
@@ -83,7 +106,16 @@ export const populateFirestoreWithDoctors = async () => {
   try {
     const doctorsCollectionRef = collection(db, "doctors");
     for (const doctor of doctorsData) {
-      const { id, name, department, overallRating, totalPoints, email, password, profilePicture } = doctor;
+      const {
+        id,
+        name,
+        department,
+        overallRating,
+        totalPoints,
+        email,
+        password,
+        profilePicture,
+      } = doctor;
       const docRef = await addDoc(doctorsCollectionRef, {
         id,
         name,
@@ -92,12 +124,21 @@ export const populateFirestoreWithDoctors = async () => {
         totalPoints,
         email,
         password,
-        profilePicture
+        profilePicture,
       });
 
-      const consultationsLogRef = collection(db, `doctors/${docRef.id}/consultations_log`);
-      const upcomingAppointmentsRef = collection(db, `doctors/${docRef.id}/upcoming_appointments`);
-      const ratingsCollectionRef = collection(db, `doctors/${docRef.id}/ratings`);
+      const consultationsLogRef = collection(
+        db,
+        `doctors/${docRef.id}/consultations_log`
+      );
+      const upcomingAppointmentsRef = collection(
+        db,
+        `doctors/${docRef.id}/upcoming_appointments`
+      );
+      const ratingsCollectionRef = collection(
+        db,
+        `doctors/${docRef.id}/ratings`
+      );
 
       await addDoc(consultationsLogRef, {
         patientName: "John Doe",
@@ -114,16 +155,16 @@ export const populateFirestoreWithDoctors = async () => {
 
       await addDoc(upcomingAppointmentsRef, {
         patientName: "Chloe Davis",
-        date: new Date().toISOString().slice(0, 10), 
+        date: new Date().toISOString().slice(0, 10),
         startingTime: "09:00 AM",
         endTime: "09:15 AM",
-        status: "Scheduled"
+        status: "Scheduled",
       });
 
       await addDoc(ratingsCollectionRef, {
         date: new Date().toISOString(),
         rating: 4.5,
-        feedback: "Great doctor, very knowledgeable."
+        feedback: "Great doctor, very knowledgeable.",
       });
     }
     console.log("Doctors successfully added to Firestore.");

@@ -1,7 +1,17 @@
 import { Select, Grid, Title, Space } from "@mantine/core";
 import ReportsTabs from "../../ReportsTabs";
+import { useState } from "react";
 
-function General() {
+function General({ onImageLabelChange }) {
+  const [value, setValue] = useState("");
+
+  const handleImageLabelChange = (value) => {
+    // const selectedValue = event.target.value;
+    console.log(value); // Log the selected value for debugging
+    setValue(value); // Update the local state with the selected value
+    onImageLabelChange(value); // Pass the selected value to the parent component
+  };
+
   return (
     <>
       <Grid>
@@ -24,7 +34,9 @@ function General() {
               w={350}
               placeholder="Pick value"
               defaultValue="None"
-              data={["None", "Pollen", "Dust", "Peanuts", "Penicillin"]}
+              data={["Brain"]} // Only one option "Brain" as per your example
+              value={value}
+              onChange={(value) => handleImageLabelChange(value)}
               searchable
             />
             <Space h="md" />

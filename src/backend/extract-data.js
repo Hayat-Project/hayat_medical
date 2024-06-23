@@ -1,16 +1,32 @@
+import { storage } from "../Config/firebase.js";
+import { ref, getDownloadURL } from "firebase/storage";
 import sharp from "sharp";
+import fetch from "node-fetch";
 
-// Correctly formatted image path
-const imagePath =
-  "C:/Users/ahmad/OneDrive/Documents/Ahmad/hayat_medical/public/images/reconstructedImage.png";
+// Function to download image buffer from Firebase Storage
+async function downloadImageBufferFromFirebase() {
+  try {
+    const imagePath = `Radiological Image/${patientID}/radiological.png`; // Adjust path as needed
+    const imageRef = ref(storage, imagePath);
+    const imageUrl = await getDownloadURL(imageRef);
 
-// Function to extract RGB channels from an image
-async function extractPixels(imagePath) {
+    const response = await fetch(imageUrl);
+    const buffer = await response.buffer();
+
+    console.log("Image downloaded as buffer");
+    return buffer;
+  } catch (err) {
+    console.error("Error downloading image from Firebase:", err);
+  }
+}
+
+// Function to extract RGB channels from an image buffer
+async function extractPixelsFromBuffer(imageBuffer) {
   try {
     const [redPixels, greenPixels, bluePixels] = await Promise.all([
-      sharp(imagePath).extractChannel("red").raw().toBuffer(),
-      sharp(imagePath).extractChannel("green").raw().toBuffer(),
-      sharp(imagePath).extractChannel("blue").raw().toBuffer(),
+      sharp(imageBuffer).extractChannel("red").raw().toBuffer(),
+      sharp(imageBuffer).extractChannel("green").raw().toBuffer(),
+      sharp(imageBuffer).extractChannel("blue").raw().toBuffer(),
     ]);
 
     // Store each channel in an array
@@ -56,16 +72,10 @@ function binaryToString(binary) {
 // Function to parse the extracted string using the provided flags
 function parseExtractedString(data) {
   const sections = {
-    // consultation: "",
     note: "",
     summary: "",
     drugs: [],
   };
-
-  // const consultationMatch = data.match(
-  //   /##S_CONSULTATION##(.*?)##E_CONSULTATION##/s
-  // );
-  // if (consultationMatch) sections.consultation = consultationMatch[1];
 
   const noteMatch = data.match(/##S_NOTE##(.*?)##E_NOTE##/s);
   if (noteMatch) sections.note = noteMatch[1];
@@ -82,9 +92,9 @@ function parseExtractedString(data) {
 // Main function to extract and parse the watermarked data
 export async function extractWatermarkedData() {
   try {
-    const { redPixels, greenPixels, bluePixels } = await extractPixels(
-      imagePath
-    );
+    const imageBuffer = await downloadImageBufferFromFirebase();
+    const { redPixels, greenPixels, bluePixels } =
+      await extractPixelsFromBuffer(imageBuffer);
     const extractedBinaryString = extractDataFromPixels(
       redPixels,
       greenPixels,

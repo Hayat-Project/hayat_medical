@@ -17,7 +17,7 @@ import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import DrugsForm from "./DrugsForm";
 
-function ConsultaionSteps() {
+function ConsultaionSteps(props) {
   const [active, setActive] = useState(0);
   const [transcript, setTranscript] = useState("");
   const [prescriptionDrugs, setPrescriptionDrugs] = useState([]);
@@ -33,12 +33,18 @@ function ConsultaionSteps() {
     initialValues: {
       doctorNote: "", // Doctor notes TextInput field
       sessionSummary: "", // Placeholder String
-      prescriptionDrugs: [], // Array of JSON objects
+      prescriptionDrugs: [],
+      imageLabel: "",
+      patientID: props.patientID, // Array of JSON objects
     },
   });
 
   const handleDoctorNoteChange = (value) => {
     data.setFieldValue("doctorNote", value);
+  };
+
+  const handleImageLabelChange = (value) => {
+    data.setFieldValue("imageLabel", value);
   };
 
   const handleSessionSummary = (value) => {
@@ -49,7 +55,7 @@ function ConsultaionSteps() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(data.values);
     try {
       const response = await fetch("http://localhost:3000/watermark-image", {
         method: "POST",
@@ -100,7 +106,7 @@ function ConsultaionSteps() {
       <Stepper active={active}>
         <Stepper.Step label="First step" description="General">
           <Space h="lg" />
-          <General />
+          <General onImageLabelChange={handleImageLabelChange} />
         </Stepper.Step>
 
         <Stepper.Step label="Second step" description="Doctor Notes">

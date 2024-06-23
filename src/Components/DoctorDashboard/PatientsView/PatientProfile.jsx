@@ -1,4 +1,4 @@
-import MainHeader from '../../MainHeader'
+import MainHeader from "../../MainHeader";
 import patientsData from "../../../mockdata/patientsData.json";
 import { SimpleGrid, Grid } from "@mantine/core";
 import { useParams } from "react-router-dom";
@@ -62,7 +62,7 @@ function PatientProfile() {
         </Grid.Col>
         <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
-            <ReportsTabs height={263} />
+            <ReportsTabs height={263} PatientID={selectedPatientId} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>
