@@ -1,10 +1,12 @@
 import { Card, Tabs, Title, Group, Button } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import AppointmentHistoryCard from "./AppointmentHistoryCard";
-import elements from "../../../mockdata/appointmentsData.json"
+import { useParams } from "react-router-dom";
+import elements from "../../../mockdata/appointmentsData.json";
 import { useNavigate } from "react-router-dom";
 
 function AppointmentHistoryTabs() {
+  const { selectedPatientId } = useParams();
   const completedAppointments = elements.filter(
     (element) => element.status === "Completed"
   );
@@ -20,8 +22,15 @@ function AppointmentHistoryTabs() {
         <Title mt={7} order={3}>
           Appointments
         </Title>
-        <Button variant="subtle" leftSection={<IconPlus size={14} />} 
-            onClick={() => navigate(`/doctorDashboard/Patient Profile/New Consultation`)}>
+        <Button
+          variant="subtle"
+          leftSection={<IconPlus size={14} />}
+          onClick={() =>
+            navigate(
+              `/doctorDashboard/Patient Profile/New Consultation/${selectedPatientId}`
+            )
+          }
+        >
           New Consultation
         </Button>
       </Group>
@@ -35,7 +44,10 @@ function AppointmentHistoryTabs() {
           </Tabs.List>
 
           <Tabs.Panel value="Appointment">
-            <AppointmentHistoryCard data={elements} />
+            <AppointmentHistoryCard
+              data={elements}
+              patientId={selectedPatientId}
+            />
           </Tabs.Panel>
           <Tabs.Panel value="Upcoming">
             <AppointmentHistoryCard data={upcomingAppointments} />

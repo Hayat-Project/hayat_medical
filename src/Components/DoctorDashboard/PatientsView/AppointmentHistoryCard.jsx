@@ -21,27 +21,28 @@ function AppointmentHistoryCard(props) {
     note: "Doctor Note",
     summary: "Consultation Summary",
     drugs: "Prescribed Drugs",
-    // Add other keys and their corresponding labels here
   };
-  let responseBody;
 
-  const handleView = async (event) => {
+  const handleView = async (event, image) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/extract-image-data", {
-        method: "GET",
-      });
+      setLoading(true); 
+      const response = await fetch(
+        `http://localhost:3000/extract-image-data?image=${image}&id=${props.patientId}`,
+        {
+          method: "GET",
+        }
+      );
 
       if (response.ok) {
-        responseBody = await response.json(); // object
-        console.log("AAAA");
+        const responseBody = await response.json(); // object
         console.log(responseBody);
         setData(responseBody);
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error submitting form:", error.message);
-    } finally {
       setLoading(false);
     }
   };
@@ -52,33 +53,28 @@ function AppointmentHistoryCard(props) {
       <Table.Td>{element.treatment}</Table.Td>
       <Table.Td>{element.booking}</Table.Td>
       <Table.Td>{element.comments}</Table.Td>
+      <Table.Td>{element.image}</Table.Td>
       <Table.Td>
-        {
-          <Badge
-            variant="light"
-            color={element.status === "Completed" ? "green" : "orange"}
-            size="sm"
-            radius="lg"
-          >
-            {element.status}
-          </Badge>
-        }
+        <Badge
+          variant="light"
+          color={element.status === "Completed" ? "green" : "orange"}
+          size="sm"
+          radius="lg"
+        >
+          {element.status}
+        </Badge>
       </Table.Td>
       <Table.Td>
-        <form
-          onSubmit={handleView}
-          action="http://localhost:3000/extract-image-data"
-          method="get"
+        <Button
+          onClick={(event) => {
+            open();
+            handleView(event, element.image);
+          }}
+          rightSection={<IconEye size={14} />}
+          size="xs"
         >
-          <Button
-            type="submit"
-            onClick={open}
-            rightSection={<IconEye size={14} />}
-            size="xs"
-          >
-            View
-          </Button>
-        </form>
+          View
+        </Button>
       </Table.Td>
     </Table.Tr>
   ));
@@ -92,6 +88,7 @@ function AppointmentHistoryCard(props) {
             <Table.Th>Treatment Type</Table.Th>
             <Table.Th>Booking Time</Table.Th>
             <Table.Th>Comments</Table.Th>
+            <Table.Th>Radiological Image</Table.Th>
             <Table.Th>
               <Group gap={5}>
                 Status
@@ -121,9 +118,9 @@ function AppointmentHistoryCard(props) {
         {loading ? (
           <Loader color="blue" />
         ) : (
-          <>
-            <div>
-              {Object.entries(retrievedData.data).map(([key, value]) => (
+          <div>
+            {retrievedData &&
+              Object.entries(retrievedData.data).map(([key, value]) => (
                 <div key={key}>
                   <Text>
                     <strong>{keyToLabelMap[key]}:</strong>
@@ -131,8 +128,7 @@ function AppointmentHistoryCard(props) {
                   </Text>
                 </div>
               ))}
-            </div>
-          </>
+          </div>
         )}
       </Modal>
     </>

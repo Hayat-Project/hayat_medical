@@ -37,14 +37,21 @@ app.post("/watermark-image", (req, res) => {
 });
 
 app.get("/extract-image-data", async (req, res) => {
+  const { image, id } = req.query; // Extract image parameter from query string
+
   try {
-    const watermarkedData = await extractWatermarkedData();
+    // Pass the image parameter to extractWatermarkedData function
+    const watermarkedData = await extractWatermarkedData(id, image);
     res.status(200).send({
       message: "Data extracted successfully!",
       data: watermarkedData,
     });
   } catch (err) {
     console.log(err);
+    res.status(500).send({
+      message: "Error extracting data",
+      error: err.message,
+    });
   }
 });
 

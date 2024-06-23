@@ -9,7 +9,7 @@ import doctorsData from "../../mockdata/doctorsData.json" assert { type: "json" 
 export const uploadAudio = async (audioUpload) => {
   try {
     if (audioUpload == null) return;
-    
+
     const audioRef = ref(
       storage,
       `Consultation Audio/${audioUpload.name + v4()}`
@@ -26,7 +26,16 @@ export const populateFirestoreWithDoctors = async () => {
   try {
     const doctorsCollectionRef = collection(db, "doctors");
     for (const doctor of doctorsData) {
-      const { id, name, department, overallRating, totalPoints, email, password, profilePicture } = doctor;
+      const {
+        id,
+        name,
+        department,
+        overallRating,
+        totalPoints,
+        email,
+        password,
+        profilePicture,
+      } = doctor;
       const docRef = await addDoc(doctorsCollectionRef, {
         id,
         name,
@@ -35,7 +44,7 @@ export const populateFirestoreWithDoctors = async () => {
         totalPoints,
         email,
         password,
-        profilePicture
+        profilePicture,
       });
 
       const patientsCollectionRef = collection(db, `doctors/${docRef.id}/patients`);
@@ -107,16 +116,16 @@ export const populateFirestoreWithDoctors = async () => {
 
       await addDoc(upcomingAppointmentsRef, {
         patientName: "Chloe Davis",
-        date: new Date().toISOString().slice(0, 10), 
+        date: new Date().toISOString().slice(0, 10),
         startingTime: "09:00 AM",
         endTime: "09:15 AM",
-        status: "Scheduled"
+        status: "Scheduled",
       });
 
       await addDoc(ratingsCollectionRef, {
         date: new Date().toISOString(),
         rating: 4.5,
-        feedback: "Great doctor, very knowledgeable."
+        feedback: "Great doctor, very knowledgeable.",
       });
     }
     console.log("Doctors successfully added to Firestore.");
