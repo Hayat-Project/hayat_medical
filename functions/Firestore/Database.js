@@ -1,7 +1,8 @@
 import { db } from "../firebase.js";
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc, getDocs } from "firebase/firestore";
 
 const consultationRef = collection(db, "Consultation");
+const doctorsRef = collection(db, "doctors");
 
 export const setTranscript = async (transcript, summary) => {
   try {
@@ -33,3 +34,52 @@ export const getSummary = async (documentId) => {
     console.log(err);
   }
 };
+
+export const getUpcomingAppointments = async () => {
+  const appointmentsRef = collection(db, "doctors/9a6RcpIOr85C5sHangvM/upcoming_appointments");
+
+  try {
+    const querySnapshot = await getDocs(appointmentsRef);
+    let appointments = [];
+    querySnapshot.forEach((doc) => {
+      appointments.push({ id: doc.id, ...doc.data() });
+    });
+    return appointments;
+  } catch (error) {
+    console.error("Error fetching upcoming appointments: ", error);
+    throw new Error('Failed to fetch appointments');
+  }
+}
+
+export const getPatients = async () => {
+  const patientsCol = collection(db, "doctors/9a6RcpIOr85C5sHangvM/patients");
+
+  try {
+    const querySnapshot = await getDocs(patientsCol);
+    let patients = [];
+    querySnapshot.forEach((doc) => {
+      patients.push({ id: doc.id, ...doc.data() });
+    });
+    return patients;
+  } catch (error) {
+    console.error("Error fetching patients: ", error);
+    throw new Error('Failed to fetch patients');
+  }
+}
+
+
+export const getConsultationsLog = async () => {
+  const consultationsLogRef = collection(db, "doctors/9a6RcpIOr85C5sHangvM/consultations_log");
+
+  try {
+    const querySnapshot = await getDocs(consultationsLogRef);
+    let consultations = [];
+    querySnapshot.forEach((doc) => {
+      consultations.push({ id: doc.id, ...doc.data() });
+    });
+    return consultations;
+  } catch (error) {
+    console.error("Error fetching consultations log: ", error);
+    throw new Error('Failed to fetch consultations log');
+  }
+}

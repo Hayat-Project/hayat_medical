@@ -5,7 +5,7 @@ import cors from "cors";
 import { watermarkImageWithData } from "./watermarking.js";
 import { extractWatermarkedData } from "./extract-data.js";
 import { transcribeUrl } from "./speechToText.js";
-import { setTranscript, getSummary } from "./Firestore/Database.js";
+import { setTranscript, getSummary, getUpcomingAppointments, getConsultationsLog } from "./Firestore/Database.js";
 import { summarize } from "./SummaryAgent/ChatGPT.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +35,45 @@ app.get("/extract-image-data", async (req, res) => {
     res.status(200).send({
       message: "Data extracted successfully!",
       data: watermarkedData,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/upcoming-appointments", async (req, res) => {
+  try {
+    const upcomingAppointments = await getUpcomingAppointments();
+    console.log("UpcomingAppointments: " + upcomingAppointments);
+    res.status(200).send({
+      message: "Appointments fetched successfully!",
+      data: upcomingAppointments,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/consultation-logs", async (req, res) => {
+  try {
+    const consultationsLog = await getConsultationsLog();
+    console.log("Consultations Log: " + consultationsLog);
+    res.status(200).send({
+      message: "Appointments fetched successfully!",
+      data: consultationsLog,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/patients", async (req, res) => {
+  try {
+    const patients = await getAllPatients();
+    console.log("Patients: " + patients);
+    res.status(200).send({
+      message: "Patients fetched successfully!",
+      data: patients,
     });
   } catch (err) {
     console.log(err);
