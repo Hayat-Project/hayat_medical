@@ -70,8 +70,10 @@ function PatientsGallery(props) {
               fullWidth
               mt="md"
               radius="md"
-              onClick={() => navigate(`/doctorDashboard/PatientProfile/${patient.id}`)}
-            >
+              onClick={() => navigate(`/doctorDashboard/PatientProfile/${patient.id}`, {
+                state: { patient }
+              })}
+              >
               View Patient
             </Button>
           </Card>

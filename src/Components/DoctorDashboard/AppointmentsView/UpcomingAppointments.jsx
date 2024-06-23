@@ -23,11 +23,9 @@ function UpcomingAppointments(props) {
 
 	useEffect(() => {
         const fetchAppointments = async () => {
-			console.log("fetching appointments client side");
             try {
                 const response = await fetch('https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/upcoming-appointments');
                 const data = await response.json();
-				console.log("Client reached data: " + data);
                 setAppointments(data.data); 
                 setLoading(false);
             } catch (error) {

@@ -14,7 +14,6 @@ function ConsultationsLogView(props) {
       try {
         const response = await fetch('https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/consultation-logs');
         const data = await response.json();
-        console.log("Client reached data: ", data);
         setConsultations(data.data); 
         setLoading(false);
       } catch (error) {

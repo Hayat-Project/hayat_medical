@@ -1,7 +1,6 @@
 import MainHeader from '../../MainHeader'
-import patientsData from "../../../mockdata/patientsData.json";
 import { SimpleGrid, Grid } from "@mantine/core";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import PatientProfileCard from "./PatientProfileCard";
 import { useMediaQuery } from "@mantine/hooks";
 import PatientInfoCard from "./PatientInfoCard";
@@ -13,9 +12,8 @@ function PatientProfile() {
   const { selectedPatientId } = useParams();
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
-  const selectedPatient = patientsData.find(
-    (patient) => patient.id === selectedPatientId
-  );
+  const location = useLocation();
+  const selectedPatient = location.state.patient;
 
   if (!selectedPatient) {
     return (
@@ -39,7 +37,7 @@ function PatientProfile() {
             <PatientProfileCard
               name={selectedPatient.name}
               email={selectedPatient.email}
-              avatar={selectedPatient.src}
+              avatar={selectedPatient.profilePicture}
             />
           </SimpleGrid>
         </Grid.Col>

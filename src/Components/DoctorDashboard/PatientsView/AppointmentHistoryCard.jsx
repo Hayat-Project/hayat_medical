@@ -21,7 +21,6 @@ function AppointmentHistoryCard(props) {
     note: "Doctor Note",
     summary: "Consultation Summary",
     drugs: "Prescribed Drugs",
-    // Add other keys and their corresponding labels here
   };
   let responseBody;
 
