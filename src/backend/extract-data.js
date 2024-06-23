@@ -4,9 +4,10 @@ import sharp from "sharp";
 import fetch from "node-fetch";
 
 // Function to download image buffer from Firebase Storage
-async function downloadImageBufferFromFirebase() {
+async function downloadImageBufferFromFirebase(patientID, image) {
   try {
-    const imagePath = `Radiological Image/${patientID}/radiological.png`; // Adjust path as needed
+    const imagePath = `Radiological Image/${patientID}/${image}.png`; // Adjust path as needed
+    console.log(imagePath);
     const imageRef = ref(storage, imagePath);
     const imageUrl = await getDownloadURL(imageRef);
 
@@ -90,9 +91,9 @@ function parseExtractedString(data) {
 }
 
 // Main function to extract and parse the watermarked data
-export async function extractWatermarkedData() {
+export async function extractWatermarkedData(patientID, image) {
   try {
-    const imageBuffer = await downloadImageBufferFromFirebase();
+    const imageBuffer = await downloadImageBufferFromFirebase(patientID, image);
     const { redPixels, greenPixels, bluePixels } =
       await extractPixelsFromBuffer(imageBuffer);
     const extractedBinaryString = extractDataFromPixels(
@@ -108,3 +109,7 @@ export async function extractWatermarkedData() {
     console.error("An error occurred:", err);
   }
 }
+
+// Radiological Image/253735/Brain.png
+
+// extractWatermarkedData(253735, "Brain");

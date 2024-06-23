@@ -81,9 +81,9 @@ async function readImageAsBuffer(imagePath) {
   }
 }
 
-async function uploadImageToFirebase(imageBuffer, patientID) {
+async function uploadImageToFirebase(imageBuffer, patientID, imageName) {
   try {
-    const imagePath = `Radiological Image/${patientID}/radiological.png`; // Adjust path as needed
+    const imagePath = `Radiological Image/${patientID}/${imageName}.png`; // Adjust path as needed
     const imageRef = ref(storage, imagePath);
     const metadata = { contentType: "image/png" };
     await uploadBytes(imageRef, imageBuffer, metadata);
@@ -93,7 +93,7 @@ async function uploadImageToFirebase(imageBuffer, patientID) {
   }
 }
 
-export async function watermarkImageWithData(formData, patientID) {
+export async function watermarkImageWithData(formData) {
   try {
     const consultationSFlag = " ##S_CONSULTATION##";
     const consultationEFlag = " ##E_CONSULTATION##";
@@ -170,7 +170,12 @@ export async function watermarkImageWithData(formData, patientID) {
       throw new Error("Failed to read reconstructed image as buffer");
     }
 
-    await uploadImageToFirebase(newImageBuffer, patientID);
+    console.log(formData.patientID);
+    await uploadImageToFirebase(
+      newImageBuffer,
+      formData.patientID,
+      formData.imageLabel
+    );
   } catch (err) {
     console.error("An error occurred:", err);
   }

@@ -44,7 +44,10 @@ function AppointmentHistoryTabs() {
           </Tabs.List>
 
           <Tabs.Panel value="Appointment">
-            <AppointmentHistoryCard data={elements} />
+            <AppointmentHistoryCard
+              data={elements}
+              patientId={selectedPatientId}
+            />
           </Tabs.Panel>
           <Tabs.Panel value="Upcoming">
             <AppointmentHistoryCard data={upcomingAppointments} />
