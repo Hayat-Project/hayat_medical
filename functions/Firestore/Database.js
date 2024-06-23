@@ -69,7 +69,7 @@ export const getAllPatients = async () => {
 
 
 export const getConsultationsLog = async () => {
-  const consultationsLogRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/patients");
+  const consultationsLogRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/consultations_log");
 
   try {
     const querySnapshot = await getDocs(consultationsLogRef);
