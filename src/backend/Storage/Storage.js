@@ -22,63 +22,6 @@ export const uploadAudio = async (audioUpload) => {
   }
 };
 
-export const populateFirestoreWithPatients = async () => {
-  try {
-    const patientDocRef = collection(db, "patients");
-    for (const patient of patientsData) {
-      const { name, id, dob, age, gender, email, nationality, phone, insurance, lastAppointment, allergies, nationalid, src: profilePicture } = patient;
-      const docRef = await addDoc(patientDocRef, {
-        name,
-        id,
-        dob,
-        age,
-        gender,
-        email,
-        nationality,
-        phone,
-        insurance,
-        lastAppointment,
-        allergies,
-        nationalid,
-        profilePicture
-      });
-
-      const appointmentsCollectionRef = collection(db, `patients/${docRef.id}/appointments`);
-      const screeningsCollectionRef = collection(db, `patients/${docRef.id}/screenings`);
-      const reportsCollectionRef = collection(db, `patients/${docRef.id}/reports`);
-
-      await addDoc(appointmentsCollectionRef, {
-        date: new Date().toISOString().slice(0, 10),
-        treatmentType: "General Checkup",
-        bookingTime: new Date().toISOString().slice(0, 10),
-        comments: "Initial consultation",
-        status: "Scheduled",
-        transcript: "Patient discusses symptoms.",
-        transcriptSummary: "Discussion about general health.",
-        doctorNotes: "Recommend blood tests.",
-        prescription: "Vitamin D supplements",
-        recordingMp3Reference: "path/to/recording.mp3",
-        imageReference: "path/to/image.jpg"
-      });
-
-      await addDoc(screeningsCollectionRef, {
-        date: new Date().toISOString().slice(0, 10),
-        id: generateSixDigitId(),
-        imageRef: "path/to/screening/image.jpg"
-      });
-
-      await addDoc(reportsCollectionRef, {
-        id: generateSixDigitId(),
-        date: new Date().toISOString().slice(0, 10),
-        documentRef: `path/to/report/${patient.id}.pdf`
-      });
-    }
-    console.log("Patients successfully added to Firestore.");
-  } catch (err) {
-    console.error("Error adding patients to Firestore: ", err);
-  }
-};
-
 export const populateFirestoreWithDoctors = async () => {
   try {
     const doctorsCollectionRef = collection(db, "doctors");
@@ -94,6 +37,55 @@ export const populateFirestoreWithDoctors = async () => {
         password,
         profilePicture
       });
+
+      const patientsCollectionRef = collection(db, `doctors/${docRef.id}/patients`);
+      for (const patient of patientsData) {
+        const { name, dob, age, gender, email, nationality, phone, insurance, lastAppointment, allergies, nationalid, src: profilePicture } = patient;
+        const patientDocRef = await addDoc(patientsCollectionRef, {
+          name,
+          dob,
+          age,
+          gender,
+          email,
+          nationality,
+          phone,
+          insurance,
+          lastAppointment,
+          allergies,
+          nationalid,
+          profilePicture
+        });
+
+        const appointmentsCollectionRef = collection(db, `doctors/${docRef.id}/patients/${patientDocRef.id}/appointments`);
+        const screeningsCollectionRef = collection(db, `doctors/${docRef.id}/patients/${patientDocRef.id}/screenings`);
+        const reportsCollectionRef = collection(db, `doctors/${docRef.id}/patients/${patientDocRef.id}/reports`);
+
+        await addDoc(appointmentsCollectionRef, {
+          date: new Date().toISOString().slice(0, 10),
+          treatmentType: "General Checkup",
+          bookingTime: new Date().toISOString().slice(0, 10),
+          comments: "Initial consultation",
+          status: "Scheduled",
+          transcript: "Patient discusses symptoms.",
+          transcriptSummary: "Discussion about general health.",
+          doctorNotes: "Recommend blood tests.",
+          prescription: "Vitamin D supplements",
+          recordingMp3Reference: "path/to/recording.mp3",
+          imageReference: "path/to/image.jpg"
+        });
+  
+        await addDoc(screeningsCollectionRef, {
+          date: new Date().toISOString().slice(0, 10),
+          id: generateSixDigitId(),
+          imageRef: "path/to/screening/image.jpg"
+        });
+  
+        await addDoc(reportsCollectionRef, {
+          id: generateSixDigitId(),
+          date: new Date().toISOString().slice(0, 10),
+          documentRef: `path/to/report/${patient.id}.pdf`
+        });
+      }
 
       const consultationsLogRef = collection(db, `doctors/${docRef.id}/consultations_log`);
       const upcomingAppointmentsRef = collection(db, `doctors/${docRef.id}/upcoming_appointments`);
