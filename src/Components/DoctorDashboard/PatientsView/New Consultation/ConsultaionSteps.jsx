@@ -106,7 +106,10 @@ function ConsultaionSteps(props) {
       <Stepper active={active}>
         <Stepper.Step label="First step" description="General">
           <Space h="lg" />
-          <General onImageLabelChange={handleImageLabelChange} />
+          <General
+            onImageLabelChange={handleImageLabelChange}
+            patientID={props.patientID}
+          />
         </Stepper.Step>
 
         <Stepper.Step label="Second step" description="Doctor Notes">

@@ -2,7 +2,7 @@ import { Select, Grid, Title, Space } from "@mantine/core";
 import ReportsTabs from "../../ReportsTabs";
 import { useState } from "react";
 
-function General({ onImageLabelChange }) {
+function General({ onImageLabelChange, patientID }) {
   const [value, setValue] = useState("");
 
   const handleImageLabelChange = (value) => {
@@ -20,7 +20,7 @@ function General({ onImageLabelChange }) {
             Radiological Images
           </Title>
           <Space h="lg" />
-          <ReportsTabs />
+          <ReportsTabs PatientID={patientID} />
         </Grid.Col>
         <Grid.Col span={5}>
           <form>
