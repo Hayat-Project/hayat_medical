@@ -1,20 +1,17 @@
 import express from "express";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
-import path from "path";
+import path, { dirname } from "path";
 import cors from "cors";
 import { watermarkImageWithData } from "./watermarking.js";
 import { extractWatermarkedData } from "./extract-data.js";
 import { transcribeUrl } from "./speechToText.js";
-import { setTranscript, getSummary } from "./Firestore/Database.js";
+import { setTranscript, getSummary, getUpcomingAppointments, getConsultationsLog, getAllPatients, getPatientRadiologicalImages } from "./Firestore/Database.js";
 import { summarize } from "./SummaryAgent/ChatGPT.js";
 
-// Boilerplate code start
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const port = 3000;
 
 //JSON to Object
 app.use(express.json());
@@ -22,10 +19,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 // Boilerplate code end
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
 
 let globalDocID = null;
 
@@ -37,11 +30,54 @@ app.post("/watermark-image", (req, res) => {
 });
 
 app.get("/extract-image-data", async (req, res) => {
+  const { image, id } = req.query; // Extract image parameter from query string
+
   try {
-    const watermarkedData = await extractWatermarkedData();
+    // Pass the image parameter to extractWatermarkedData function
+    const watermarkedData = await extractWatermarkedData(id, image);
     res.status(200).send({
       message: "Data extracted successfully!",
       data: watermarkedData,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Error extracting data",
+      error: err.message,
+    });
+  }
+});
+
+app.get("/upcoming-appointments", async (req, res) => {
+  try {
+    const upcomingAppointments = await getUpcomingAppointments();
+    res.status(200).send({
+      message: "Appointments fetched successfully!",
+      data: upcomingAppointments,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/consultation-logs", async (req, res) => {
+  try {
+    const consultationsLog = await getConsultationsLog();
+    res.status(200).send({
+      message: "Appointments fetched successfully!",
+      data: consultationsLog,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/patients", async (req, res) => {
+  try {
+    const patients = await getAllPatients();
+    res.status(200).send({
+      message: "Patients fetched successfully!",
+      data: patients,
     });
   } catch (err) {
     console.log(err);
@@ -65,6 +101,18 @@ app.post("/diarization", async (req, res) => {
   }
 });
 
+app.get('/patients/:patientId/radiological-images', async (req, res) => {
+  const { patientId } = req.params;
+  try {
+    const images = await getPatientRadiologicalImages(patientId);
+    console.log("Images:", images);
+    res.status(200).json(images);
+  } catch (error) {
+    console.error('Failed to fetch radiological images:', error);
+    res.status(500).json({ message: 'Failed to fetch radiological images', error });
+  }
+});
+
 app.get("/cosultationResult", async (req, res) => {
   try {
     console.log("docID from cosultationResult --> ", globalDocID);
@@ -79,3 +127,5 @@ app.get("/cosultationResult", async (req, res) => {
     console.log(err);
   }
 });
+
+export default app;

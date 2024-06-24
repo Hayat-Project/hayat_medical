@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import env from "../../../env.js"
+import env from "../env.js"
 
 const openai = new OpenAI({
     apiKey: env.REACT_APP_OPENAI_API_KEY,
@@ -16,4 +16,3 @@ export async function summarize(transcript) {
     const summary = completion.choices[0].message.content;
     return summary;
 }
-

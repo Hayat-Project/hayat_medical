@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card, Text, AppShell } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { useNavigate, Link } from "react-router-dom";
-import { auth } from "../../Config/firebase";
+import { auth } from "../../../functions/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useUserAuth } from "../../Context/UserAuthContext";
 import HayatLogo from "../HayatLogo";

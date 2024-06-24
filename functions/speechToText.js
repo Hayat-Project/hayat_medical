@@ -1,5 +1,5 @@
 import { createClient } from "@deepgram/sdk";
-import env from "../../env.js";
+import env from "./env.js";
 
 export const transcribeUrl = async (audioURL) => {
   // STEP 1: Create a Deepgram client using the API key

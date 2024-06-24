@@ -1,4 +1,4 @@
-import { uploadAudio } from "../../../../backend/Storage/Storage.js";
+import { uploadAudio } from "../../../../../functions/Storage/Storage.js";
 import { IconUpload } from "@tabler/icons-react";
 import { useState } from "react";
 import { Button, FileInput, Stack } from "@mantine/core";
@@ -17,7 +17,7 @@ function UploadAudio() {
 
   const diarization = async (audioUrl) => {
     try {
-      const response = await fetch("http://localhost:3000/diarization", {
+      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
