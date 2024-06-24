@@ -95,7 +95,7 @@ function Navbar() {
 
   return (
     <AppShell.Navbar p="md">
-      <Group justify="center" mt={15}>
+      <Group justify="center" mt={20}>
         <Button fullWidth h={45} leftSection={<IconPlus size={22} />}>
           New Video Consultation
         </Button>
