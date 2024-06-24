@@ -17,11 +17,11 @@ function ReportsTabs(props) {
         </Tabs.List>
 
         <Tabs.Panel value="Screening">
-          <ReportTable PatientID={props.PatientID} />
+          <ReportTable patientID={props.patientID} />
         </Tabs.Panel>
       </Tabs>
     </Card>
-  );
+  ); 
 }
 
 export default ReportsTabs;

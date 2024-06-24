@@ -1,7 +1,6 @@
-import MainHeader from "../../MainHeader";
-import patientsData from "../../../mockdata/patientsData.json";
+import MainHeader from '../../MainHeader'
 import { SimpleGrid, Grid } from "@mantine/core";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PatientProfileCard from "./PatientProfileCard";
 import { useMediaQuery } from "@mantine/hooks";
 import PatientInfoCard from "./PatientInfoCard";
@@ -10,18 +9,15 @@ import ReportsTabs from "./ReportsTabs";
 import AppointmentHistoryTabs from "./AppointmentHistoryTabs";
 
 function PatientProfile() {
-  const { selectedPatientId } = useParams();
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
-  const selectedPatient = patientsData.find(
-    (patient) => patient.id === selectedPatientId
-  );
+  const location = useLocation();
+  const selectedPatient = location.state.patient;
 
   if (!selectedPatient) {
-    // Handle the case where the patient with the specified ID is not found
     return (
       <div>
-        <p>No patient found with ID {selectedPatientId}</p>
+        <p>No patient found with ID {selectedPatient.id}</p>
       </div>
     );
   }
@@ -40,7 +36,7 @@ function PatientProfile() {
             <PatientProfileCard
               name={selectedPatient.name}
               email={selectedPatient.email}
-              avatar={selectedPatient.src}
+              avatar={selectedPatient.profilePicture}
             />
           </SimpleGrid>
         </Grid.Col>
@@ -62,7 +58,7 @@ function PatientProfile() {
         </Grid.Col>
         <Grid.Col span={isMobile ? 12 : 5}>
           <SimpleGrid>
-            <ReportsTabs height={263} PatientID={selectedPatientId} />
+            <ReportsTabs height={263} patientID={selectedPatient.id} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>
@@ -70,7 +66,7 @@ function PatientProfile() {
       <Grid mt={15}>
         <Grid.Col span={isMobile ? 12 : 12}>
           <SimpleGrid>
-            <AppointmentHistoryTabs />
+            <AppointmentHistoryTabs patientID={selectedPatient.id}/>
           </SimpleGrid>
         </Grid.Col>
       </Grid>

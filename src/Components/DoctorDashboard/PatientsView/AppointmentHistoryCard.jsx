@@ -27,16 +27,12 @@ function AppointmentHistoryCard(props) {
     event.preventDefault();
 
     try {
-      setLoading(true); 
-      const response = await fetch(
-        `http://localhost:3000/extract-image-data?image=${image}&id=${props.patientId}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data?image=${image}&id=${props.patientId}`, {
+        method: "GET"
+      });
 
       if (response.ok) {
-        const responseBody = await response.json(); // object
+        const responseBody = await response.json(); 
         console.log(responseBody);
         setData(responseBody);
         setLoading(false);

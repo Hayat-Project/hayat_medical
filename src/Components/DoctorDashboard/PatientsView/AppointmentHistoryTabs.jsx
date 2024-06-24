@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 import elements from "../../../mockdata/appointmentsData.json";
 import { useNavigate } from "react-router-dom";
 
-function AppointmentHistoryTabs() {
-  const { selectedPatientId } = useParams();
+function AppointmentHistoryTabs(props) {
+  const selectedPatientId  = props.patientID;
+  
   const completedAppointments = elements.filter(
     (element) => element.status === "Completed"
   );

@@ -1,4 +1,4 @@
-import { storage } from "../Config/firebase.js";
+import { storage } from "./firebase.js";
 import { ref, getDownloadURL } from "firebase/storage";
 import sharp from "sharp";
 import fetch from "node-fetch";
@@ -6,7 +6,7 @@ import fetch from "node-fetch";
 // Function to download image buffer from Firebase Storage
 async function downloadImageBufferFromFirebase(patientID, image) {
   try {
-    const imagePath = `Radiological Image/${patientID}/${image}.png`; // Adjust path as needed
+    const imagePath = `Radiological Image/${patientID}/${image}.png`;
     console.log(imagePath);
     const imageRef = ref(storage, imagePath);
     const imageUrl = await getDownloadURL(imageRef);
@@ -109,7 +109,3 @@ export async function extractWatermarkedData(patientID, image) {
     console.error("An error occurred:", err);
   }
 }
-
-// Radiological Image/253735/Brain.png
-
-// extractWatermarkedData(253735, "Brain");

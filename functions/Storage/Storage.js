@@ -1,10 +1,10 @@
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../Config/firebase.js";
+import { storage } from "../firebase.js";
 import { v4 } from "uuid";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../Config/firebase.js";
-import patientsData from "../../mockdata/patientsData.json" assert { type: "json" };
-import doctorsData from "../../mockdata/doctorsData.json" assert { type: "json" };
+import { db } from "../firebase.js";
+import patientsData from "../../src/mockdata/patientsData.json" assert { type: "json" };
+import doctorsData from "../../src/mockdata/doctorsData.json" assert { type: "json" };
 
 export const uploadAudio = async (audioUpload) => {
   try {

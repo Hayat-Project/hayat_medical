@@ -1,6 +1,6 @@
 import sharp from "sharp";
 import fetch from "node-fetch";
-import { storage } from "../Config/firebase.js";
+import { storage } from "./firebase.js";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import fs from "fs/promises";
 
@@ -52,7 +52,6 @@ async function createImageFromPixels(
   redPixels,
   greenPixels,
   bluePixels,
-  outputPath
 ) {
   const width = 617; // Adjust width and height to match your image dimensions
   const height = 617;
@@ -67,9 +66,9 @@ async function createImageFromPixels(
     imageData[index + 3] = 255;
   }
 
-  await sharp(Buffer.from(imageData.buffer), {
+  return await sharp(Buffer.from(imageData.buffer), {
     raw: { width, height, channels: 4 },
-  }).toFile(outputPath);
+  }).png().toBuffer();
 }
 
 async function readImageAsBuffer(imagePath) {
@@ -161,14 +160,16 @@ export async function watermarkImageWithData(formData) {
       );
     }
 
-    const outputPath = "public/images/reconstructedImage.png";
+    // const outputPath = "public/images/reconstructedImage.png";
 
-    await createImageFromPixels(redPixels, greenPixels, bluePixels, outputPath);
-
-    const newImageBuffer = await readImageAsBuffer(outputPath);
+    const newImageBuffer = await createImageFromPixels(redPixels, greenPixels, bluePixels);
     if (!newImageBuffer) {
-      throw new Error("Failed to read reconstructed image as buffer");
+      throw new Error("Failed to create image buffer");
     }
+    // const newImageBuffer = await readImageAsBuffer(outputPath);
+    // if (!newImageBuffer) {
+    //   throw new Error("Failed to read reconstructed image as buffer");
+    // }
 
     console.log(formData.patientID);
     await uploadImageToFirebase(
