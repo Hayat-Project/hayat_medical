@@ -15,6 +15,7 @@ import { auth, db } from "../../Config/firebase"; // Ensure this import is corre
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore"; // Import Firestore functions
+import Cookies from "js-cookie";
 
 function Mfa() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -26,7 +27,8 @@ function Mfa() {
   useEffect(() => {
     const fetchPhoneNumber = async () => {
       try {
-        const docRef = doc(db, "doctors", "09x3bCTkzPNhtfAGnocU");
+        const email = Cookies.get("email");
+        const docRef = doc(db, "doctors", email);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {

@@ -1,10 +1,18 @@
-import { Grid, Card, Group, SimpleGrid, Title } from "@mantine/core";
+import {
+  Grid,
+  Card,
+  Group,
+  SimpleGrid,
+  Title,
+  Loader,
+  Center,
+} from "@mantine/core";
 import { Calendar } from "@mantine/dates";
-import MainHeader from '../../MainHeader';
+import MainHeader from "../../MainHeader";
 import TodoList from "./TodoList";
 import OverviewCards from "./OverviewCards";
 import { useMediaQuery } from "@mantine/hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IconUser,
   IconClock,
@@ -14,10 +22,73 @@ import {
 import DoctorProfileCard from "./DoctorProfileCard";
 import UpcomingAppointments from "../AppointmentsView/UpcomingAppointments";
 import ConsultationsLogView from "../ConsultationsView/ConsultationsLogView";
+import Cookies from "js-cookie";
+import { db } from "../../../Config/firebase";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 function Overview() {
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
   const [search, setSearch] = useState("");
+  const [doctorData, setDoctorData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const email = Cookies.get("email");
+
+  useEffect(() => {
+    const doctor = async () => {
+      try {
+        const email = Cookies.get("email");
+        console.log(email);
+        const docRef = doc(db, "doctors", email);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const name = docSnap.data().name;
+          const department = docSnap.data().department;
+          const overallRating = docSnap.data().overallRating;
+          const totalPoints = docSnap.data().totalPoints;
+          const profilePicture = docSnap.data().profilePicture;
+
+          // Query patients subcollection
+          const patientsRef = collection(docRef, "patients");
+          const querySnapshot = await getDocs(patientsRef);
+
+          const patientCount = querySnapshot.size;
+          setDoctorData([
+            name,
+            department,
+            overallRating,
+            totalPoints,
+            profilePicture,
+            patientCount,
+          ]);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    doctor();
+  }, []);
+
+  if (loading) {
+    return (
+      <Center style={{ height: "100vh" }}>
+        <Loader size="xl" />
+      </Center>
+    );
+  }
+
   return (
     <>
       <MainHeader
@@ -32,7 +103,7 @@ function Overview() {
             <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }}>
               <OverviewCards
                 text="All Patients"
-                subText="5"
+                subText={doctorData[5]}
                 icon={
                   <IconUser
                     color="var(--mantine-color-blue-filled)"
@@ -90,10 +161,11 @@ function Overview() {
           <SimpleGrid cols={1}>
             <Card shadow="sm" padding="23" radius="md">
               <DoctorProfileCard
-                name="Dr. Ahmad Aljaghbeir"
+                name={doctorData[0]}
                 position="Head of general Surgery"
-                rate="4.7"
-                Patients="2,8k"
+                rate={doctorData[2]}
+                Patients={doctorData[3]}
+                image={doctorData[4]}
               />
             </Card>
             <Card shadow="sm" padding="lg" radius="md" withBorder>

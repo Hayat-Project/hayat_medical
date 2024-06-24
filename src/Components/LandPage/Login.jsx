@@ -16,6 +16,7 @@ import { auth } from "../../Config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useUserAuth } from "../../Context/UserAuthContext";
 import Mfa from "./Mfa";
+import Cookies from "js-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,8 @@ function Login() {
   const signIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // navigate("/doctorDashboard/overview");
+      // navigate("/doctorDashboard/overview/");
+      Cookies.set("email", email);
       setMfa(false);
     } catch (err) {
       console.error(err);
