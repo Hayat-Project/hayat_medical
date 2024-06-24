@@ -9,7 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Login from "./LandPage/Login";
-import SignUp from "./LandPage/SignUp";
+
 import ConsultationsLog from "./DoctorDashboard/ConsultationsView/ConsultationsLog";
 import Overview from "./DoctorDashboard/Overview/Overview";
 import Appointments from "./DoctorDashboard/AppointmentsView/Appointments";
@@ -23,10 +23,8 @@ function Routing() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<LandPage />}>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<SignUp />} />
-        </Route>
+        <Route path="/" element={<LandPage />} />
+        <Route path="/login" element={<Login />} />
 
         <Route
           path="doctorDashboard"

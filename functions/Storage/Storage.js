@@ -50,10 +50,9 @@ export const populateFirestoreWithDoctors = async () => {
 
       const patientsCollectionRef = collection(db, `doctors/${docRef.id}/patients`);
       for (const patient of patientsData) {
-        const { name, id, dob, age, gender, email, nationality, phone, insurance, lastAppointment, allergies, nationalid, src: profilePicture } = patient;
+        const { name, dob, age, gender, email, nationality, phone, insurance, lastAppointment, allergies, nationalid, src: profilePicture } = patient;
         const patientDocRef = await addDoc(patientsCollectionRef, {
           name,
-          id,
           dob,
           age,
           gender,

@@ -3,9 +3,7 @@ import { Image } from '@mantine/core';
 function HayatLogo(props) {
     return (
         <Image
-            radius="md"
-            w={130}
-            h={30}
+            h={69}
             src={props.image}
         />
     );

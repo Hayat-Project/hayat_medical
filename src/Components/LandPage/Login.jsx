@@ -1,20 +1,11 @@
-import {
-  Input,
-  Button,
-  Grid,
-  PasswordInput,
-  Title,
-  Space,
-  Group,
-  Card,
-  Text,
-} from "@mantine/core";
+import React, { useState } from 'react';
+import { Input, Button, Grid, PasswordInput, Title, Space, Group, Card, Text, AppShell } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../../../functions/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useUserAuth } from "../../Context/UserAuthContext";
+import HayatLogo from "../HayatLogo";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -30,11 +21,24 @@ function Login() {
       navigate("/doctorDashboard/overview");
     } catch (err) {
       console.error(err);
+      setError(true);
     }
   };
 
   return (
-    <>
+    <AppShell
+      header={{ height: 70 }}
+      padding="md"
+    >
+      <AppShell.Header>
+        <Group h="100%" px="md" justify="space-between">
+          <HayatLogo image="/Logo.png" />
+          <Group gap={isMobile ? 8 : "md"}>
+            <Button variant="light" component={Link} to="/">Home</Button>
+          </Group>
+        </Group>
+      </AppShell.Header>
+
       <Grid mt={200}>
         <Grid.Col span={isMobile ? 1 : 4.5}></Grid.Col>
         <Grid.Col span={isMobile ? 10 : 3}>
@@ -65,7 +69,7 @@ function Login() {
           </Card>
         </Grid.Col>
       </Grid>
-    </>
+    </AppShell>
   );
 }
 
