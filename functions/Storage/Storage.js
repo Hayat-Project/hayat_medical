@@ -1,7 +1,7 @@
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase.js";
 import { v4 } from "uuid";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase.js";
 import patientsData from "../../src/mockdata/patientsData.json" assert { type: "json" };
 import doctorsData from "../../src/mockdata/doctorsData.json" assert { type: "json" };
@@ -33,18 +33,19 @@ export const populateFirestoreWithDoctors = async () => {
         overallRating,
         totalPoints,
         email,
-        password,
         profilePicture,
+        phone
       } = doctor;
-      const docRef = await addDoc(doctorsCollectionRef, {
+      const docRef = doc(doctorsCollectionRef, email);
+      await setDoc(docRef, {
         id,
         name,
         department,
         overallRating,
         totalPoints,
         email,
-        password,
         profilePicture,
+        phone
       });
 
       const patientsCollectionRef = collection(db, `doctors/${docRef.id}/patients`);
