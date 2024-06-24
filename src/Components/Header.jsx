@@ -31,11 +31,11 @@ function Header({ toggle, opened }) {
     };
 
     return (
-        <AppShell.Header h={80}>
+        <AppShell.Header>
             <Flex
                 justify="space-between"
                 align="center"
-                style={{ padding: "0px 20px" }}
+                style={{ padding: "10px 20px" }}
             >
                 <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
                 <HayatLogo image={logoSrc} />
