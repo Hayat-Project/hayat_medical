@@ -7,32 +7,21 @@ import { useEffect, useState } from "react";
 import ProfileAvatar from "./ProfileAvatar.jsx";
 import NotificatiionPopover from "./NotificatiionPopover.jsx";
 import HayatLogo from "./HayatLogo.jsx";
-import { Link } from "react-router-dom";
 
 function Header({ toggle, opened }) {
   const iconsStyle = { width: rem(28.5), height: rem(28.5) };
   const isMobile = useMediaQuery("(max-width: 1200px)");
-  const [logoSrc, setLogoSrc] = useState("/public/images/Logo.png");
+  const [logoSrc, setLogoSrc] = useState("/images/Logo.png");
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    if (storedTheme) {
-      setLogoSrc(
-        storedTheme === "dark"
-          ? "/public/images/Logo-dark.png"
-          : "/public/images/Logo.png"
-      );
-    } else {
       const theme = document.documentElement.getAttribute(
         "data-mantine-color-scheme"
       );
       setLogoSrc(
         theme === "dark"
-          ? "/public/images/Logo-dark.png"
-          : "/public/images/Logo.png"
+          ? "/images/Logo-dark.png"
+          : "/images/Logo.png"
       );
-    }
   }, []);
 
   const handleThemeChange = () => {
@@ -41,8 +30,8 @@ function Header({ toggle, opened }) {
     );
     setLogoSrc(
       theme === "dark"
-        ? "/public/images/Logo-dark.png"
-        : "/public/images/Logo.png"
+        ? "/images/Logo-dark.png"
+        : "/images/Logo.png"
     );
   };
 

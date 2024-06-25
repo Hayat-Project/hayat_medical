@@ -20,7 +20,6 @@ function Overview() {
     const [search, setSearch] = useState("");
     const [doctorData, setDoctorData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const email = Cookies.get("email");
 
     useEffect(() => {
         const fetchDoctorInfo = async () => {

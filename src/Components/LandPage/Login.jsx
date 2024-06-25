@@ -33,7 +33,6 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // navigate("/doctorDashboard/overview/");
       Cookies.set("email", email);
       setMfa(false);
     } catch (err) {
@@ -45,7 +44,7 @@ function Login() {
     <AppShell header={{ height: 70 }} padding="md">
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
-          <HayatLogo image="/public/images/Logo.png" />
+          <HayatLogo image="/images/Logo.png" />
           <Group gap={isMobile ? 8 : "md"}>
             <Button variant="light" component={Link} to="/">
               Home

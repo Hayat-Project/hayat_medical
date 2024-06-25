@@ -26,28 +26,18 @@ import { useMantineTheme } from "@mantine/core";
 function LandPage() {
   const { colorScheme } = useMantineTheme();
   const isMobile = useMediaQuery("(max-width: 1200px)");
-  const [logoSrc, setLogoSrc] = useState("/public/images/Logo.png");
-  const [theme, setTheme] = useState(colorScheme === "dark" ? "dark" : "light"); // State to track theme
+  const [logoSrc, setLogoSrc] = useState("/images/Logo.png");
+  const [theme, setTheme] = useState(colorScheme === "dark" ? "dark" : "light");
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    if (storedTheme) {
-      setLogoSrc(
-        storedTheme === "dark"
-          ? "/public/images/Logo-dark.png"
-          : "/public/images/Logo.png"
-      );
-    } else {
-      const theme = document.documentElement.getAttribute(
-        "data-mantine-color-scheme"
-      );
-      setLogoSrc(
-        theme === "dark"
-          ? "/public/images/Logo-dark.png"
-          : "/public/images/Logo.png"
-      );
-    }
+    const theme = document.documentElement.getAttribute(
+      "data-mantine-color-scheme"
+    );
+    setLogoSrc(
+      theme === "dark"
+        ? "/images/Logo-dark.png"
+        : "/images/Logo.png"
+    );
   }, []);
 
   const handleThemeChange = () => {
@@ -56,9 +46,10 @@ function LandPage() {
     );
     setLogoSrc(
       theme === "dark"
-        ? "/public/images/Logo-dark.png"
-        : "/public/images/Logo.png"
+        ? "/images/Logo-dark.png"
+        : "/images/Logo.png"
     );
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   const settings = {
