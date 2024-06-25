@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import { SimpleGrid, Card, Text, Button, Group, Avatar, Stack, Loader } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function PatientsGallery(props) {
   const searchWord = props.searchWord.toLowerCase();
@@ -13,7 +14,7 @@ function PatientsGallery(props) {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await fetch('https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/patients');
+        const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/patients/${Cookies.get("email")}`);
         const data = await response.json();
         setPatients(data.data);
         console.log("Patients:", patients);

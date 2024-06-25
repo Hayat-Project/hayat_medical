@@ -2,6 +2,7 @@ import { Text, Table, Avatar, Group, Badge, ActionIcon, ScrollArea, Loader } fro
 import { IconArrowsSort } from "@tabler/icons-react";
 import { useState, useEffect } from "react";
 import InfoIconWithProps from "../../InfoIconWithProps";
+import Cookies from "js-cookie";
 
 function UpcomingAppointments(props) {
 	const [sort, setSort] = useState("");
@@ -24,7 +25,7 @@ function UpcomingAppointments(props) {
 	useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await fetch('https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/upcoming-appointments');
+                const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/upcoming-appointments/${Cookies.get("email")}`);
                 const data = await response.json();
                 setAppointments(data.data); 
                 setLoading(false);

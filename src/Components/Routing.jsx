@@ -9,15 +9,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Login from "./LandPage/Login";
-import SignUp from "./LandPage/SignUp";
 import ConsultationsLog from "./DoctorDashboard/ConsultationsView/ConsultationsLog";
 import Overview from "./DoctorDashboard/Overview/Overview";
 import Appointments from "./DoctorDashboard/AppointmentsView/Appointments";
 import Patients from "./DoctorDashboard/PatientsView/Patients";
 import PatientProfile from "./DoctorDashboard/PatientsView/PatientProfile";
+import Consultation from "./DoctorDashboard/PatientsView/New Consultation/Consultation.jsx";
 import DoctorSettings from "./DoctorDashboard/Settings/DoctorSettings";
 import ProtectedRoute from "./ProtectedRoute";
-import Consultation from "./DoctorDashboard/PatientsView/New Consultation/Consultation";
 
 function Routing() {
   const router = createBrowserRouter(
@@ -25,7 +24,6 @@ function Routing() {
       <>
         <Route path="/" element={<LandPage />}>
           <Route path="login" element={<Login />} />
-          <Route path="signup" element={<SignUp />} />
         </Route>
 
         <Route
@@ -44,7 +42,7 @@ function Routing() {
             element={<PatientProfile />}
           />
           <Route
-            path="Patient Profile/New Consultation/:selectedPatientId"
+            path="Patient Profile/New Consultation"
             element={<Consultation />}
           />
           <Route path="ConsultationsLog" element={<ConsultationsLog />} />

@@ -1,6 +1,6 @@
-import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
-import { db, storage } from "../firebase.js";
-import { collection, addDoc, getDoc, doc, getDocs } from "firebase/firestore";
+import {getDownloadURL, getMetadata, listAll, ref} from "firebase/storage";
+import {db, storage} from "../firebase.js";
+import {addDoc, collection, doc, getDoc, getDocs} from "firebase/firestore";
 
 const consultationRef = collection(db, "Consultation");
 
@@ -17,6 +17,52 @@ export const setTranscript = async (transcript, summary) => {
   }
 };
 
+export async function getPhoneNumber(email) {
+  try {
+    const docRef = doc(db, "doctors", email);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      return docSnap.data().phone;
+    } else {
+      console.log("No such document with email:", email);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+    throw error;
+  }
+}
+
+export async function getDoctorInfo(email) {
+  try {
+    const docRef = doc(db, "doctors", email);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const patientsRef = collection(docRef, "patients");
+      const querySnapshot = await getDocs(patientsRef);
+
+      return {
+        name: data.name,
+        department: data.department,
+        overallRating: data.overallRating,
+        totalPoints: data.totalPoints,
+        profilePicture: data.profilePicture,
+        patientCount: querySnapshot.size
+      };
+    } else {
+      console.log("No such document!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting doctor info:", error);
+    throw error;
+  }
+}
+
 export const getSummary = async (documentId) => {
   try {
     const docRef = doc(consultationRef, documentId);
@@ -24,8 +70,7 @@ export const getSummary = async (documentId) => {
 
     if (docSnap.exists()) {
       const summaryData = docSnap.data();
-      const summary = summaryData.summary;
-      return summary;
+      return summaryData.summary;
     } else {
       console.log("No such document!");
       return null;
@@ -35,8 +80,8 @@ export const getSummary = async (documentId) => {
   }
 };
 
-export const getUpcomingAppointments = async () => {
-  const appointmentsRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/upcoming_appointments");
+export const getUpcomingAppointments = async (email) => {
+  const appointmentsRef = collection(db, `doctors/${email}/upcoming_appointments`);
 
   try {
     const querySnapshot = await getDocs(appointmentsRef);
@@ -68,8 +113,8 @@ export const getPatientRadiologicalImages = async (patientId) => {
   return images;
 };
 
-export const getAllPatients = async () => {
-  const patientsCol = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/patients");
+export const getAllPatients = async (email) => {
+  const patientsCol = collection(db, `doctors/${email}/patients`);
 
   try {
     const querySnapshot = await getDocs(patientsCol);
@@ -85,8 +130,8 @@ export const getAllPatients = async () => {
 }
 
 
-export const getConsultationsLog = async () => {
-  const consultationsLogRef = collection(db, "doctors/BM29ZZDvKl2boKplfTCS/consultations_log");
+export const getConsultationsLog = async (email) => {
+  const consultationsLogRef = collection(db, `doctors/${email}/consultations_log`);
 
   try {
     const querySnapshot = await getDocs(consultationsLogRef);
