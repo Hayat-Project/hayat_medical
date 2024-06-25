@@ -1,22 +1,41 @@
-import { useRef, useEffect } from "react";
-import { Group, Grid, Divider, ActionIcon, Space } from "@mantine/core";
-import { IconPlayerRecord, IconPlayerPause } from "@tabler/icons-react";
+import { useRef, useEffect, useState } from "react";
+import {
+  Group,
+  Grid,
+  Divider,
+  ActionIcon,
+  Space,
+  Loader,
+  Text,
+} from "@mantine/core";
+import {
+  IconPlayerRecord,
+  IconPlayerPause,
+  IconCircleCheck,
+  IconExclamationCircle,
+} from "@tabler/icons-react";
 import UploadAudio from "./UploadAudio";
+import { uploadAudio } from "../../../../../functions/Storage/Storage.js";
 
-function RecordingSession({ setAudioAvailable }) {
+function RecordingSession() {
   const rec = useRef(null);
   const audioChunks = useRef([]);
   const recordedAudio = useRef(null);
+  const [recordingFeedback, setRecordingFeedback] = useState("");
+  const [diarizationFeedback, setDiarizationFeedback] = useState("");
+  const [loadingDiarization, setLoadingDiarization] = useState(false);
 
   function recordSession(event) {
     if (rec.current) {
       rec.current.start();
+      setRecordingFeedback("Recording started");
     }
   }
 
   function stopRecording(event) {
     if (rec.current) {
       rec.current.stop();
+      setRecordingFeedback("Recording stopped");
     }
   }
 
@@ -25,21 +44,25 @@ function RecordingSession({ setAudioAvailable }) {
     rec.current.ondataavailable = async (e) => {
       audioChunks.current.push(e.data);
       if (rec.current.state === "inactive") {
-        let blob = new Blob(audioChunks.current, { type: "audio/mpeg-3" });
+        let blob = new Blob(audioChunks.current, { type: "audio/mpeg" });
         recordedAudio.current.src = URL.createObjectURL(blob);
-        console.log();
         recordedAudio.current.controls = true;
-        await diarization(blob);
-        setAudioAvailable(true); // Set audio available when recording is done
+        setLoadingDiarization(true);
+        try {
+          const audioUrl = await uploadAudio(blob);
+          await diarization(audioUrl);
+        } catch (err) {
+          console.error("Error during upload and diarization:", err);
+          setDiarizationFeedback("Error during diarization. Please try again.");
+        } finally {
+          setLoadingDiarization(false);
+        }
       }
     };
   }
 
-  const diarization = async (blob) => {
+  const diarization = async (audioUrl) => {
     try {
-      const audioUrl = URL.createObjectURL(blob);
-      console.log(audioUrl);
-
       const response = await fetch(
         "https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization",
         {
@@ -54,12 +77,15 @@ function RecordingSession({ setAudioAvailable }) {
       );
 
       if (response.ok) {
-        console.log("OK");
+        setDiarizationFeedback("Diarization completed successfully");
+        console.log("Diarization OK");
       } else {
-        console.error("Error submitting form:", response.statusText);
+        setDiarizationFeedback("Error during diarization. Please try again.");
+        console.error("Error during diarization:", response.statusText);
       }
     } catch (err) {
-      console.log(err);
+      setDiarizationFeedback("Error during diarization. Please try again.");
+      console.error("Error during diarization:", err);
     }
   };
 
@@ -101,6 +127,15 @@ function RecordingSession({ setAudioAvailable }) {
               />
             </ActionIcon>
           </Group>
+          {recordingFeedback && (
+            <Text
+              mt={2}
+              size="sm"
+              c={recordingFeedback.includes("stopped") ? "blue" : "red"}
+            >
+              {recordingFeedback}
+            </Text>
+          )}
           <Space h="md" />
           <Divider
             my="xs"
@@ -110,8 +145,45 @@ function RecordingSession({ setAudioAvailable }) {
           />
           <Space h="md" />
           <Group justify="center">
-            <UploadAudio />
+            <UploadAudio
+              setDiarizationFeedback={setDiarizationFeedback}
+              setLoadingDiarization={setLoadingDiarization}
+            />
           </Group>
+          {loadingDiarization && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "10px",
+              }}
+            >
+              <Loader type="dots" />
+            </div>
+          )}
+          {diarizationFeedback && (
+            <Text
+              mt={2}
+              size="sm"
+              c={diarizationFeedback.includes("completed") ? "green" : "red"}
+            >
+              {diarizationFeedback.includes("completed") ? (
+                <Group>
+                  <IconCircleCheck />
+                  <Text size="sm">
+                    Audio diarization completed successfully.
+                  </Text>
+                </Group>
+              ) : (
+                <Group>
+                  <IconExclamationCircle />
+                  <Text size="sm">
+                    Error during diarization. Please try again.
+                  </Text>
+                </Group>
+              )}
+            </Text>
+          )}
         </Grid.Col>
         <Grid.Col span={3}></Grid.Col>
       </Grid>

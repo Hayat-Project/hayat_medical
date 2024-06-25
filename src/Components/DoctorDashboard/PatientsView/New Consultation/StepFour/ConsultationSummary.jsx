@@ -1,16 +1,44 @@
-import { Button, Title, Textarea, Center, Loader } from "@mantine/core";
-import { IconCheck } from "@tabler/icons-react";
-import { useState } from "react";
+import {
+  Button,
+  Title,
+  Textarea,
+  Center,
+  Loader,
+  Text,
+  Group,
+} from "@mantine/core";
+import {
+  IconCheck,
+  IconCircleCheck,
+  IconExclamationCircle,
+} from "@tabler/icons-react";
+import { useState, useEffect } from "react";
 
 function ConsultaionSummary({ onSessionSummary, transcript }) {
+  const [value, setValue] = useState("");
+  const [feedback, setFeedback] = useState({ message: "", type: "" });
+
+  useEffect(() => {
+    setValue(transcript); // Update value when transcript changes
+  }, [transcript]);
+
   const handleSessionSummary = () => {
-    onSessionSummary(transcript);
+    // Simulating validation success for demonstration
+    if (value.trim() !== "") {
+      setFeedback({
+        message: "Summary validated successfully",
+        type: "success",
+      });
+      onSessionSummary(value); // Pass value to parent component
+    } else {
+      setFeedback({ message: "Summary cannot be empty", type: "error" });
+    }
   };
-  console.log(transcript);
+
   return (
     <>
       <Title order={4}> Consultation Summary </Title>
-      {transcript == "" ? (
+      {transcript === "" ? (
         <Center h={100}>
           <Loader color="blue" />
         </Center>
@@ -22,7 +50,8 @@ function ConsultaionSummary({ onSessionSummary, transcript }) {
             radius="md"
             minRows={8}
             maxRows={8}
-            value={transcript}
+            value={value}
+            onChange={(event) => setValue(event.currentTarget.value)}
           />
           <Button
             mt={10}
@@ -32,6 +61,18 @@ function ConsultaionSummary({ onSessionSummary, transcript }) {
           >
             Validate Summary
           </Button>
+          {feedback.message && (
+            <Group align="center" mt={5}>
+              {feedback.type === "success" ? (
+                <IconCircleCheck size={18} color="green" />
+              ) : (
+                <IconExclamationCircle size={18} color="red" />
+              )}
+              <Text size="sm" style={{ marginLeft: "8px" }}>
+                {feedback.message}
+              </Text>
+            </Group>
+          )}
         </>
       )}
     </>

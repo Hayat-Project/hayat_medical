@@ -48,11 +48,7 @@ function stringToBinary(str) {
     .join("");
 }
 
-async function createImageFromPixels(
-  redPixels,
-  greenPixels,
-  bluePixels,
-) {
+async function createImageFromPixels(redPixels, greenPixels, bluePixels) {
   const width = 617; // Adjust width and height to match your image dimensions
   const height = 617;
 
@@ -68,7 +64,9 @@ async function createImageFromPixels(
 
   return await sharp(Buffer.from(imageData.buffer), {
     raw: { width, height, channels: 4 },
-  }).png().toBuffer();
+  })
+    .png()
+    .toBuffer();
 }
 
 async function readImageAsBuffer(imagePath) {
@@ -160,18 +158,15 @@ export async function watermarkImageWithData(formData) {
       );
     }
 
-    // const outputPath = "public/images/reconstructedImage.png";
-
-    const newImageBuffer = await createImageFromPixels(redPixels, greenPixels, bluePixels);
+    const newImageBuffer = await createImageFromPixels(
+      redPixels,
+      greenPixels,
+      bluePixels
+    );
     if (!newImageBuffer) {
       throw new Error("Failed to create image buffer");
     }
-    // const newImageBuffer = await readImageAsBuffer(outputPath);
-    // if (!newImageBuffer) {
-    //   throw new Error("Failed to read reconstructed image as buffer");
-    // }
 
-    console.log(formData.patientID);
     await uploadImageToFirebase(
       newImageBuffer,
       formData.patientID,
