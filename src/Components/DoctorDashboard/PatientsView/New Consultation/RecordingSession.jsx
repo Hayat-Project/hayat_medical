@@ -27,6 +27,7 @@ function RecordingSession({ setAudioAvailable }) {
       if (rec.current.state === "inactive") {
         let blob = new Blob(audioChunks.current, { type: "audio/mpeg-3" });
         recordedAudio.current.src = URL.createObjectURL(blob);
+        console.log();
         recordedAudio.current.controls = true;
         await diarization(blob);
         setAudioAvailable(true); // Set audio available when recording is done
@@ -34,25 +35,23 @@ function RecordingSession({ setAudioAvailable }) {
     };
   }
 
-  const handleAudioUpload = (audioUploaded) => {
-    if (audioUploaded) {
-      setAudioAvailable(true); // Set audio available when file is uploaded
-    }
-  };
-
   const diarization = async (blob) => {
     try {
       const audioUrl = URL.createObjectURL(blob);
+      console.log(audioUrl);
 
-      const response = await fetch("https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url: audioUrl,
-        }),
-      });
+      const response = await fetch(
+        "https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/diarization",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            url: audioUrl,
+          }),
+        }
+      );
 
       if (response.ok) {
         console.log("OK");

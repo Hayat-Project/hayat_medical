@@ -10,53 +10,69 @@ import HayatLogo from "./HayatLogo.jsx";
 import { Link } from "react-router-dom";
 
 function Header({ toggle, opened }) {
-    const iconsStyle = { width: rem(28.5), height: rem(28.5) };
-    const isMobile = useMediaQuery(`(max-width: 1200px)`);
-    const [logoSrc, setLogoSrc] = useState("/Logo.png");
+  const iconsStyle = { width: rem(28.5), height: rem(28.5) };
+  const isMobile = useMediaQuery("(max-width: 1200px)");
+  const [logoSrc, setLogoSrc] = useState("/public/images/Logo.png");
 
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
 
-        if (storedTheme) {
-            setLogoSrc(storedTheme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
-        } else {
-            const theme = document.documentElement.getAttribute('data-mantine-color-scheme');
-            setLogoSrc(theme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
-        }
-    }, []);
+    if (storedTheme) {
+      setLogoSrc(
+        storedTheme === "dark"
+          ? "/public/images/Logo-dark.png"
+          : "/public/images/Logo.png"
+      );
+    } else {
+      const theme = document.documentElement.getAttribute(
+        "data-mantine-color-scheme"
+      );
+      setLogoSrc(
+        theme === "dark"
+          ? "/public/images/Logo-dark.png"
+          : "/public/images/Logo.png"
+      );
+    }
+  }, []);
 
-    const handleThemeChange = () => {
-        const theme = document.documentElement.getAttribute('data-mantine-color-scheme');
-        setLogoSrc(theme === 'dark' ? "/Logo-dark.png" : "/Logo.png");
-    };
-
-    return (
-        <AppShell.Header>
-            <Flex
-                justify="space-between"
-                align="center"
-                style={{ padding: "10px 20px" }}
-            >
-                <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-                <HayatLogo image={logoSrc} />
-                <SearchBarFilter width={500} placeholder="Type to search" visibleFrom="md" />
-                <Group gap={rem(isMobile ? 8 : "md")}>
-                    <ThemeSwitcher onChange={handleThemeChange} />
-                    <Group visibleFrom="xs">
-                        <ActionIcon
-                            variant="default"
-                            size="xl"
-                            radius='md'
-                        >
-                            <IoMailOutline style={iconsStyle} />
-                        </ActionIcon>
-                    </Group>
-                    <NotificatiionPopover />
-                    <ProfileAvatar />
-                </Group>
-            </Flex>
-        </AppShell.Header>
+  const handleThemeChange = () => {
+    const theme = document.documentElement.getAttribute(
+      "data-mantine-color-scheme"
     );
+    setLogoSrc(
+      theme === "dark"
+        ? "/public/images/Logo-dark.png"
+        : "/public/images/Logo.png"
+    );
+  };
+
+  return (
+    <AppShell.Header h={80}>
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ padding: "0px 20px" }}
+      >
+        <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+        <HayatLogo image={logoSrc} />
+        <SearchBarFilter
+          width={500}
+          placeholder="Type to search"
+          visibleFrom="md"
+        />
+        <Group gap={rem(isMobile ? 8 : "md")}>
+          <ThemeSwitcher onChange={handleThemeChange} />
+          <Group visibleFrom="xs">
+            <ActionIcon variant="default" size="xl" radius="md">
+              <IoMailOutline style={iconsStyle} />
+            </ActionIcon>
+          </Group>
+          <NotificatiionPopover />
+          <ProfileAvatar />
+        </Group>
+      </Flex>
+    </AppShell.Header>
+  );
 }
 
 export default Header;

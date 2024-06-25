@@ -97,7 +97,7 @@ function Navbar() {
 
   return (
     <AppShell.Navbar p="md">
-      <Group justify="center" mt={15}>
+      <Group justify="center" mt={20}>
         <Button
           fullWidth
           h={45}
