@@ -42,7 +42,7 @@ function Routing() {
             element={<PatientProfile />}
           />
           <Route
-            path="Patient Profile/New Consultation"
+            path="Patient Profile/New Consultation/:selectedPatientId"
             element={<Consultation />}
           />
           <Route path="ConsultationsLog" element={<ConsultationsLog />} />

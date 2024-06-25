@@ -11,8 +11,10 @@ import {
 import { NavLink, Text, AppShell, Group, Button, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [active, setActive] = useState(
     localStorage.getItem("activeIndex")
       ? parseInt(localStorage.getItem("activeIndex"))
@@ -59,7 +61,7 @@ function Navbar() {
       key: 5,
       label: "Setting",
       leftSection: <IconSettings size="1rem" stroke={1.5} />,
-      mt: isLongDisplay ? '8vh' : '52vh',
+      mt: isLongDisplay ? "8vh" : "52vh",
       color: "blue",
       path: "/doctorDashboard/Setting",
     },
@@ -68,7 +70,7 @@ function Navbar() {
       label: "Logout",
       leftSection: <IconLogout2 size="1rem" stroke={1.5} />,
       color: "red",
-      path: "/"
+      path: "/",
     },
   ];
 
@@ -96,11 +98,18 @@ function Navbar() {
   return (
     <AppShell.Navbar p="md">
       <Group justify="center" mt={15}>
-        <Button fullWidth h={45} leftSection={<IconPlus size={22} />}>
-          New Video Consultation
+        <Button
+          fullWidth
+          h={45}
+          leftSection={<IconPlus size={22} />}
+          onClick={() => navigate(`/doctorDashboard/Patients`)}
+        >
+          New Consultation
         </Button>
       </Group>
-      <Flex justify="space-between" direction="column" w="100%">{items}</Flex>
+      <Flex justify="space-between" direction="column" w="100%">
+        {items}
+      </Flex>
     </AppShell.Navbar>
   );
 }
