@@ -97,7 +97,7 @@ function ConsultationsLogView(props) {
                                         name: 'Canceled',
                                         color: 'red',
                                         description: 'Appointment Canceled'
-                                    }, {name: 'Done', color: 'green', description: 'Appointment Done'},]}
+                                    }, {name: 'Completed', color: 'green', description: 'Appointment Completed'},]}
                                     width={322}
                                 />
                             </Group>
