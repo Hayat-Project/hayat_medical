@@ -13,7 +13,9 @@ import {
   getConsultationsLog,
   getAllPatients,
   getPatientRadiologicalImages,
-  getDoctorInfo
+  getDoctorInfo,
+  getPatientAppointments,
+  addConsultationToDoctorAndPatient
 } from "./Firestore/Database.js";
 import { summarize } from "./SummaryAgent/ChatGPT.js";
 
@@ -61,18 +63,27 @@ app.get('/doctor-info/:email', async (req, res) => {
   }
 });
 
-app.post("/watermark-image", (req, res) => {
+app.post("/watermark-image/:doctorEmail/:patientID", async (req, res) => {
+  const { doctorEmail, patientID } = req.params;
   const formData = req.body;
   console.log("Form data received:", formData);
-  watermarkImageWithData(formData);
-  res.status(200).send({ message: "Form submitted successfully!" });
+
+  try {
+    await watermarkImageWithData(formData);
+
+    await addConsultationToDoctorAndPatient(doctorEmail, patientID, formData);
+
+    res.status(200).send({ message: "Form submitted successfully!" });
+  } catch (error) {
+    console.error("Error processing form:", error);
+    res.status(500).send({ message: "Error processing form", error: error.message });
+  }
 });
 
 app.get("/extract-image-data", async (req, res) => {
   const { image, id } = req.query;
 
   try {
-    // Pass the image parameter to extractWatermarkedData function
     const watermarkedData = await extractWatermarkedData(id, image);
     res.status(200).send({
       message: "Data extracted successfully!",
@@ -140,6 +151,17 @@ app.post("/diarization", async (req, res) => {
     res.status(200).send({ message: "Form submitted successfully!" });
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.get('/appointments/:email/:patientID', async (req, res) => {
+  const { email, patientID } = req.params;
+  try {
+    const appointments = await getPatientAppointments(email, patientID);
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+    res.status(500).json({ message: 'Error fetching appointments', error });
   }
 });
 

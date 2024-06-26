@@ -25,3 +25,4 @@ dist-ssr
 env.js
 .env
 functions/env.js
+.VSCodeCounter

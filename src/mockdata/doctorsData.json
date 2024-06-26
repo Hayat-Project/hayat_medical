@@ -1,32 +1,42 @@
 [
   {
     "id": 123456,
-    "name": "Dr. John Smith",
+    "name": "Moutasim El Ayoubi",
     "department": "Cardiology",
     "overallRating": 4.8,
     "totalPoints": 500,
-    "email": "john.smith@example.com",
-    "password": "password123",
-    "profilePicture": "https://example.com/profiles/john_smith.jpg"
+    "email": "moutasim.elayoubi@gmail.com",
+    "profilePicture": "https://example.com/profiles/moutasim_elayoubi.jpg",
+    "phone": "0556170992"
   },
   {
     "id": 234567,
-    "name": "Dr. Emily Johnson",
+    "name": "Heba El Zaher",
     "department": "Pediatrics",
     "overallRating": 4.5,
     "totalPoints": 450,
-    "email": "emily.johnson@example.com",
-    "password": "doctor456",
-    "profilePicture": "https://example.com/profiles/emily_johnson.jpg"
+    "email": "heba.elzaher@gmail.com",
+    "profilePicture": "https://example.com/profiles/heba_elzaher.jpg",
+    "phone": "0568957261"
   },
   {
     "id": 345678,
-    "name": "Dr. Michael Brown",
+    "name": "Ahmad Aljaghbeir",
     "department": "Orthopedics",
     "overallRating": 4.7,
     "totalPoints": 480,
-    "email": "michael.brown@example.com",
-    "password": "ortho789",
-    "profilePicture": "https://example.com/profiles/michael_brown.jpg"
+    "email": "ahmad.aljaghbeir@gmail.com",
+    "profilePicture": "https://example.com/profiles/ahmad_aljaghbeir.jpg",
+    "phone": "0585654887"
+  },
+  {
+    "id": 456789,
+    "name": "Khaled Albaz",
+    "department": "Neurology",
+    "overallRating": 4.9,
+    "totalPoints": 510,
+    "email": "khaled.albaz@gmail.com",
+    "profilePicture": "https://example.com/profiles/khaled_albaz.jpg",
+    "phone": "0501122861"
   }
 ]

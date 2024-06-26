@@ -19,7 +19,7 @@ function ConsultaionSummary({ onSessionSummary, transcript }) {
   const [feedback, setFeedback] = useState({ message: "", type: "" });
 
   useEffect(() => {
-    setValue(transcript); // Update value when transcript changes
+    setValue(transcript);
   }, [transcript]);
 
   const handleSessionSummary = () => {
@@ -29,7 +29,7 @@ function ConsultaionSummary({ onSessionSummary, transcript }) {
         message: "Summary validated successfully",
         type: "success",
       });
-      onSessionSummary(value); // Pass value to parent component
+      onSessionSummary(value);
     } else {
       setFeedback({ message: "Summary cannot be empty", type: "error" });
     }

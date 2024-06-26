@@ -6,6 +6,9 @@ import {
   Table,
   Loader,
   Text,
+  Center,
+  ScrollArea,
+  Card,
 } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../../InfoIconWithProps";
@@ -25,14 +28,13 @@ function AppointmentHistoryCard(props) {
 
   const handleView = async (event, image) => {
     event.preventDefault();
-
     try {
       const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data?image=${image}&id=${props.patientId}`, {
         method: "GET"
       });
 
       if (response.ok) {
-        const responseBody = await response.json(); 
+        const responseBody = await response.json();
         console.log(responseBody);
         setData(responseBody);
         setLoading(false);
@@ -46,10 +48,10 @@ function AppointmentHistoryCard(props) {
   const rows = elements.map((element) => (
     <Table.Tr key={element.id}>
       <Table.Td>{element.date}</Table.Td>
-      <Table.Td>{element.treatment}</Table.Td>
-      <Table.Td>{element.booking}</Table.Td>
+      <Table.Td>{element.treatmentType}</Table.Td>
+      <Table.Td>{element.bookingTime}</Table.Td>
       <Table.Td>{element.comments}</Table.Td>
-      <Table.Td>{element.image}</Table.Td>
+      <Table.Td>{element.imageFileName}</Table.Td>
       <Table.Td>
         <Badge
           variant="light"
@@ -61,19 +63,36 @@ function AppointmentHistoryCard(props) {
         </Badge>
       </Table.Td>
       <Table.Td>
-        <Button
-          onClick={(event) => {
-            open();
-            handleView(event, element.image);
-          }}
-          rightSection={<IconEye size={14} />}
-          size="xs"
-        >
-          View
-        </Button>
+        {element.status === "Completed" && (
+          <Button
+            onClick={(event) => {
+              open();
+              handleView(event, element.imageFileName);
+            }}
+            rightSection={<IconEye size={14} />}
+            size="xs"
+          >
+            View
+          </Button>
+        )}
       </Table.Td>
     </Table.Tr>
   ));
+
+  const renderContent = (retrievedData) => {
+    return (
+      <Card shadow="sm" padding="lg" withBorder>
+        {Object.entries(retrievedData.data).map(([key, value]) => (
+          <Group key={key} position="apart" grow>
+            <Text weight={500}>{keyToLabelMap[key] || key}:</Text>
+            <Text>
+              {typeof value === "object" ? JSON.stringify(value) : value}
+            </Text>
+          </Group>
+        ))}
+      </Card>
+    );
+  };
 
   return (
     <>
@@ -112,19 +131,13 @@ function AppointmentHistoryCard(props) {
 
       <Modal opened={opened} onClose={close} title="View Previous Consultation">
         {loading ? (
-          <Loader color="blue" />
+          <Center>
+            <Loader color="blue" />
+          </Center>
         ) : (
-          <div>
-            {retrievedData &&
-              Object.entries(retrievedData.data).map(([key, value]) => (
-                <div key={key}>
-                  <Text>
-                    <strong>{keyToLabelMap[key]}:</strong>
-                    {typeof value === "object" ? JSON.stringify(value) : value}
-                  </Text>
-                </div>
-              ))}
-          </div>
+          <ScrollArea style={{ height: 400 }}>
+            {retrievedData ? renderContent(retrievedData) : <Text>No data available</Text>}
+          </ScrollArea>
         )}
       </Modal>
     </>
