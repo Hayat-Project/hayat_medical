@@ -15,7 +15,7 @@ function AppointmentHistoryTabs(props) {
     const fetchAppointments = async () => {
       const email = Cookies.get("email");
       try {
-        const response = await fetch(`http://127.0.0.1:5032/hayat-consultation-syste-dd9b0/us-central1/api/appointments/${email}/${selectedPatientId}`);
+        const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/appointments/${email}/${selectedPatientId}`);
         if (response.ok) {
           const data = await response.json();
           console.log("Fetched Appointments:", data);
@@ -34,13 +34,6 @@ function AppointmentHistoryTabs(props) {
       fetchAppointments();
     }
   }, [selectedPatientId]);
-
-  const completedAppointments = appointments.filter(
-    (element) => element.status === "Completed"
-  );
-  const upcomingAppointments = appointments.filter(
-    (element) => element.status === "Upcoming"
-  );
 
   if (loading) {
     return (
@@ -73,8 +66,6 @@ function AppointmentHistoryTabs(props) {
         <Tabs radius="md" defaultValue="Appointment">
           <Tabs.List>
             <Tabs.Tab value="Appointment">All Appointments</Tabs.Tab>
-            <Tabs.Tab value="Upcoming">Upcoming</Tabs.Tab>
-            <Tabs.Tab value="Completed">Completed</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="Appointment">
@@ -82,12 +73,6 @@ function AppointmentHistoryTabs(props) {
               data={appointments}
               patientId={selectedPatientId}
             />
-          </Tabs.Panel>
-          <Tabs.Panel value="Upcoming">
-            <AppointmentHistoryCard data={upcomingAppointments} />
-          </Tabs.Panel>
-          <Tabs.Panel value="Completed">
-            <AppointmentHistoryCard data={completedAppointments} />
           </Tabs.Panel>
         </Tabs>
       </Card>

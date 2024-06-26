@@ -15,7 +15,8 @@ import {
   getPatientRadiologicalImages,
   getDoctorInfo,
   getPatientAppointments,
-  addConsultationToDoctorAndPatient
+  addConsultationToDoctorAndPatient,
+  getImageUrl
 } from "./Firestore/Database.js";
 import { summarize } from "./SummaryAgent/ChatGPT.js";
 
@@ -32,6 +33,22 @@ app.use(express.static(path.join(__dirname, "public")));
 // Boilerplate code end
 
 let globalDocID = null;
+
+app.get('/get-image-url', async (req, res) => {
+  const { patientId, imageName } = req.query;
+
+  if (!patientId || !imageName) {
+    return res.status(400).send({ error: 'Patient ID and image name are required' });
+  }
+
+  try {
+    const url = await getImageUrl(patientId, imageName);
+    res.status(200).send({ url });
+  } catch (error) {
+    console.error('Error fetching image URL:', error);
+    res.status(500).send({ error: 'Failed to fetch image URL' });
+  }
+});
 
 app.get('/get-phone-number/:email', async (req, res) => {
   const { email } = req.params;

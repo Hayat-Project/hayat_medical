@@ -9,6 +9,10 @@ import {
   Center,
   ScrollArea,
   Card,
+  Title,
+  Divider,
+  Grid,
+  Image,
 } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 import InfoIconWithProps from "../../InfoIconWithProps";
@@ -28,19 +32,33 @@ function AppointmentHistoryCard(props) {
 
   const handleView = async (event, image) => {
     event.preventDefault();
+    setLoading(true);
     try {
-      const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data?image=${image}&id=${props.patientId}`, {
-        method: "GET"
-      });
+      const response = await fetch(
+        `https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/extract-image-data?image=${image}&id=${props.patientId}`,
+        {
+          method: "GET",
+        }
+      );
 
       if (response.ok) {
         const responseBody = await response.json();
-        console.log(responseBody);
-        setData(responseBody);
-        setLoading(false);
+        console.log("Retrieved data:", responseBody);
+        
+        const imageUrlResponse = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/get-image-url?patientId=${props.patientId}&imageName=${image}`);
+        const imageUrlData = await imageUrlResponse.json();
+        
+        setData({
+          doctorNote: responseBody.data.note.replace(/"/g, ''),
+          sessionSummary: responseBody.data.summary.replace(/"/g, ''),
+          prescriptionDrugs: responseBody.data.drugs,
+          imageFileName: image,
+          imageURL: imageUrlData.url
+        });
       }
     } catch (error) {
-      console.error("Error submitting form:", error.message);
+      console.error("Error fetching data:", error.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -79,18 +97,110 @@ function AppointmentHistoryCard(props) {
     </Table.Tr>
   ));
 
-  const renderContent = (retrievedData) => {
+  const renderContent = (retrievedData, element) => {
+    if (!retrievedData || !element) {
+      return <Text>No data available</Text>;
+    }
+
+    const doctorNote = retrievedData.doctorNote || "No notes available";
+    const sessionSummary = retrievedData.sessionSummary || "No summary available";
+    const prescriptionDrugs = retrievedData.prescriptionDrugs || [];
+
     return (
-      <Card shadow="sm" padding="lg" withBorder>
-        {Object.entries(retrievedData.data).map(([key, value]) => (
-          <Group key={key} position="apart" grow>
-            <Text weight={500}>{keyToLabelMap[key] || key}:</Text>
-            <Text>
-              {typeof value === "object" ? JSON.stringify(value) : value}
-            </Text>
-          </Group>
-        ))}
-      </Card>
+      <Grid>
+        <Grid.Col span={6}>
+          <Card shadow="sm" padding="lg" withBorder mb="lg">
+            <Title order={4}>Consultation Details</Title>
+            <Divider my="sm" />
+            <Group position="apart" grow>
+              <Text weight={500}>Date:</Text>
+              <Text>{element.date}</Text>
+            </Group>
+            <Group position="apart" grow>
+              <Text weight={500}>Treatment Type:</Text>
+              <Text>{element.treatmentType}</Text>
+            </Group>
+            <Group position="apart" grow>
+              <Text weight={500}>Booking Time:</Text>
+              <Text>{element.bookingTime}</Text>
+            </Group>
+            <Group position="apart" grow>
+              <Text weight={500}>Comments:</Text>
+              <Text>{element.comments}</Text>
+            </Group>
+            <Group position="apart" grow>
+              <Text weight={500}>Radiological Image:</Text>
+              <Text>{element.imageFileName}</Text>
+            </Group>
+          </Card>
+          <Card shadow="sm" padding="lg" withBorder mb="lg">
+              <Title order={4}>Radiological Image</Title>
+              <Divider my="sm" />
+              <Image
+                src={retrievedData.imageURL}
+                alt="Radiological Image"
+                fit="cover"
+                height="100%"
+              />
+            </Card>
+        </Grid.Col>
+
+        <Grid.Col span={6}>
+          <Card shadow="sm" padding="lg" withBorder mb="lg">
+            <Title order={4}>{keyToLabelMap.note}</Title>
+            <Divider my="sm" />
+            <Text mt="md">{doctorNote}</Text>
+          </Card>
+
+          <Card shadow="sm" padding="lg" withBorder mb="lg">
+            <Title order={4}>{keyToLabelMap.summary}</Title>
+            <Divider my="sm" />
+            <Text mt="md">{sessionSummary}</Text>
+          </Card>
+
+
+          <Card shadow="sm" padding="lg" withBorder style={{ height: '100%' }}>
+            <Title order={4}>{keyToLabelMap.drugs}</Title>
+            <Divider my="sm" />
+            {prescriptionDrugs.length > 0 ? (
+              <ScrollArea scrollbarSize={4}>
+                <Table>
+                  <Table.Thead>
+                    <Table.Tr>
+                      <Table.Th>Name</Table.Th>
+                      <Table.Th>Strength</Table.Th>
+                      <Table.Th>Form</Table.Th>
+                      <Table.Th>Dosage</Table.Th>
+                      <Table.Th>Frequency</Table.Th>
+                      <Table.Th>Route</Table.Th>
+                      <Table.Th>Days</Table.Th>
+                      <Table.Th>Quantity</Table.Th>
+                      <Table.Th>Remarks</Table.Th>
+                    </Table.Tr>
+                  </Table.Thead>
+                  <Table.Tbody>
+                    {prescriptionDrugs.map((drug, index) => (
+                      <Table.Tr key={index}>
+                        <Table.Td>{drug.name}</Table.Td>
+                        <Table.Td>{drug.strength}</Table.Td>
+                        <Table.Td>{drug.form}</Table.Td>
+                        <Table.Td>{drug.dosage}</Table.Td>
+                        <Table.Td>{drug.frequency}</Table.Td>
+                        <Table.Td>{drug.route}</Table.Td>
+                        <Table.Td>{drug.days}</Table.Td>
+                        <Table.Td>{drug.quantity}</Table.Td>
+                        <Table.Td>{drug.remarks}</Table.Td>
+                      </Table.Tr>
+                    ))}
+                  </Table.Tbody>
+                </Table>
+              </ScrollArea>
+            ) : (
+              <Text mt="md">No prescribed drugs available</Text>
+            )}
+          </Card>
+        </Grid.Col>
+      </Grid>
     );
   };
 
@@ -110,14 +220,9 @@ function AppointmentHistoryCard(props) {
                 <InfoIconWithProps
                   badges={[
                     {
-                      name: "Upcoming",
-                      color: "orange",
-                      description: "Upcoming Appointment",
-                    },
-                    {
                       name: "Completed",
                       color: "green",
-                      description: "Appointment Completed",
+                      description: "Consultation Completed",
                     },
                   ]}
                   width={322}
@@ -129,14 +234,15 @@ function AppointmentHistoryCard(props) {
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
 
-      <Modal opened={opened} onClose={close} title="View Previous Consultation">
+
+      <Modal opened={opened} onClose={close} size="70%">
         {loading ? (
           <Center>
             <Loader color="blue" />
           </Center>
         ) : (
-          <ScrollArea style={{ height: 400 }}>
-            {retrievedData ? renderContent(retrievedData) : <Text>No data available</Text>}
+          <ScrollArea style={{ height: '70vh' }}>
+            {retrievedData ? renderContent(retrievedData, elements.find(el => el.imageFileName === retrievedData.imageFileName)) : <Text>No data available</Text>}
           </ScrollArea>
         )}
       </Modal>

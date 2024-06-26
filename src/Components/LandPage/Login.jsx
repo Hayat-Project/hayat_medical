@@ -33,9 +33,9 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/doctorDashboard/overview/");
+      // navigate("/doctorDashboard/overview/");
       Cookies.set("email", email);
-      // setMfa(false);
+      setMfa(false);
     } catch (err) {
       console.error(err);
     }
@@ -54,7 +54,7 @@ function Login() {
         </Group>
       </AppShell.Header>
 
-      {/* {mfa ? ( */}
+      {mfa ? (
         <Grid mt={200}>
           <Grid.Col span={isMobile ? 1 : 4.5}></Grid.Col>
           <Grid.Col span={isMobile ? 10 : 3}>
@@ -85,9 +85,9 @@ function Login() {
             </Card>
           </Grid.Col>
         </Grid>
-      {/* ) : (
+       ) : (
         <Mfa />
-      )} */}
+      )} 
     </AppShell>
   );
 }

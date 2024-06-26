@@ -151,7 +151,7 @@ export async function addConsultationToDoctorAndPatient(doctorEmail, patientID, 
       date: getLocalISOString().slice(0, 10),
       startingTime: getLocalISOString().slice(11, 16),
       endTime: getLocalISOString().slice(11, 16),
-      status: "Upcoming",
+      status: "Completed",
       comments: "Follow-up required",
       imageFileName: formData.imageLabel,
     });
@@ -162,7 +162,7 @@ export async function addConsultationToDoctorAndPatient(doctorEmail, patientID, 
       treatmentType: "General Checkup",
       bookingTime: getLocalISOString().slice(11, 16),
       comments: "Initial consultation",
-      status: "Upcoming",
+      status: "Completed",
       imageFileName: formData.imageLabel,
     });
   } catch (error) {
@@ -170,6 +170,16 @@ export async function addConsultationToDoctorAndPatient(doctorEmail, patientID, 
   }
 }
 
+export async function getImageUrl(patientId, imageName) {
+  try {
+    const imageRef = ref(storage, `Radiological Image/${patientId}/${imageName}.png`);
+    const imageUrl = await getDownloadURL(imageRef);
+    return imageUrl;
+  } catch (error) {
+    console.error("Error getting image URL:", error);
+    throw error; 
+  }
+}
 
 export const getConsultationsLog = async (email) => {
   const consultationsLogRef = collection(db, `doctors/${email}/consultations_log`);
