@@ -22,9 +22,6 @@ function Routing() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        {/* <Route path="/" element={<LandPage />}>
-          <Route path="login" element={<Login />} />
-        </Route> */}
         <Route path="/" element={<LandPage />} />
         <Route path="/login" element={<Login />} />
 

@@ -24,6 +24,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [feedback, setFeedback] = useState("");
   const { login } = useUserAuth();
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
   const navigate = useNavigate();
@@ -33,11 +34,14 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // navigate("/doctorDashboard/overview/");
       Cookies.set("email", email);
       setMfa(false);
+      setFeedback("Login successful!");
+      setError(false);
     } catch (err) {
       console.error(err);
+      setFeedback("Invalid email or password.");
+      setError(true);
     }
   };
 
@@ -61,7 +65,8 @@ function Login() {
             <Card shadow="sm" withBorder radius="md">
               <Title order={2}>Login</Title>
               <Space h="xl" />
-              <Text c="red">{error ? "Invalid email or password" : null}</Text>
+              <Text color={error ? "red" : "green"}>{feedback}</Text>
+              <Space h="md" />
               <Input.Wrapper label="Email" withAsterisk>
                 <Input
                   size="lg"
@@ -85,9 +90,9 @@ function Login() {
             </Card>
           </Grid.Col>
         </Grid>
-       ) : (
+      ) : (
         <Mfa />
-      )} 
+      )}
     </AppShell>
   );
 }
