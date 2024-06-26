@@ -73,7 +73,7 @@ function AppointmentHistoryCard(props) {
       <Table.Td>
         <Badge
           variant="light"
-          color={element.status === "Completed" ? "green" : "orange"}
+          color={"green"}
           size="sm"
           radius="lg"
         >

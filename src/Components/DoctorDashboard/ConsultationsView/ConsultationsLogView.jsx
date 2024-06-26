@@ -54,7 +54,7 @@ function ConsultationsLogView(props) {
                 <Table.Td>
                     <Badge
                         variant="light"
-                        color={row.status === "Done" ? "green" : "red"}
+                        color={row.status === "Completed" ? "green" : "red"}
                         size="sm"
                         radius="lg"
                     >
