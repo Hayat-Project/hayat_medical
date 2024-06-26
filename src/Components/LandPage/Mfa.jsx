@@ -20,6 +20,8 @@ function Mfa() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userOtp, setUserOtp] = useState("");
   const [otp, setOtp] = useState(true);
+  const [feedback, setFeedback] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery(`(max-width: 1200px)`);
 
@@ -40,6 +42,8 @@ function Mfa() {
         }
       } catch (error) {
         console.error("Error fetching phone number: ", error);
+        setFeedback("Error fetching phone number.");
+        setError(true);
       }
     };
 
@@ -72,6 +76,8 @@ function Mfa() {
         })
         .catch((error) => {
           console.error("Error rendering reCAPTCHA:", error);
+          setFeedback("Error initializing reCAPTCHA.");
+          setError(true);
         });
     } else if (phone) {
       onSignup(phone);
@@ -92,9 +98,13 @@ function Mfa() {
         window.confirmationResult = confirmationResult;
         setOtp(false);
         console.log("OTP sent successfully!");
+        setFeedback("OTP sent successfully!");
+        setError(false);
       })
       .catch((error) => {
         console.error("Error during sign-in with phone number:", error);
+        setFeedback("Error sending OTP.");
+        setError(true);
       });
   }
 
@@ -104,10 +114,14 @@ function Mfa() {
       .confirm(userOtp)
       .then((res) => {
         console.log("Confirmed login");
+        setFeedback("OTP verified successfully!");
+        setError(false);
         navigate("/doctorDashboard/overview");
       })
       .catch((err) => {
         console.error("Error verifying OTP:", err);
+        setFeedback("Error verifying OTP.");
+        setError(true);
       });
   }
 
@@ -121,6 +135,8 @@ function Mfa() {
             <Title order={2}>Verify your phone</Title>
             <Text>We sent you an OTP to your phone number</Text>
             <Space h="lg" />
+            <Text c={error ? "red" : "blue"}>{feedback}</Text>
+            <Space h="md" />
             <Center>
               <PinInput
                 length={6}
@@ -131,7 +147,9 @@ function Mfa() {
             </Center>
             <Space h="xl" />
             <Group justify="center">
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" onClick={() => navigate(-1)}>
+                Cancel
+              </Button>
               <Button onClick={onOTPVerify}>Submit</Button>
             </Group>
           </Card>
