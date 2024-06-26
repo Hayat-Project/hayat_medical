@@ -1,6 +1,7 @@
 import {getDownloadURL, getMetadata, listAll, ref} from "firebase/storage";
 import {db, storage} from "../firebase.js";
 import {addDoc, collection, doc, getDoc, getDocs} from "firebase/firestore";
+import { getLocalISOString } from "../utility.js";
 
 const consultationRef = collection(db, "Consultation");
 
@@ -80,6 +81,12 @@ export const getSummary = async (documentId) => {
   }
 };
 
+export const getPatientAppointments = async (email, patientID) => {
+  const appointmentsRef = collection(db, `doctors/${email}/patients/${patientID}/appointments`);
+  const querySnapshot = await getDocs(appointmentsRef);
+  return querySnapshot.docs.map(doc => doc.data());
+};
+
 export const getUpcomingAppointments = async (email) => {
   const appointmentsRef = collection(db, `doctors/${email}/upcoming_appointments`);
 
@@ -129,6 +136,50 @@ export const getAllPatients = async (email) => {
   }
 }
 
+export async function addConsultationToDoctorAndPatient(doctorEmail, patientID, formData) {
+  try {
+    const doctorRef = doc(db, "doctors", doctorEmail);
+    const doctorSnap = await getDoc(doctorRef);
+    if (!doctorSnap.exists()) {
+      throw new Error("Doctor not found");
+    }
+
+    const consultationsLogRef = collection(db, `doctors/${doctorEmail}/consultations_log`);
+    await addDoc(consultationsLogRef, {
+      patientName: formData.patientID,
+      treatmentType: "Consultation",
+      date: getLocalISOString().slice(0, 10),
+      startingTime: getLocalISOString().slice(11, 16),
+      endTime: getLocalISOString().slice(11, 16),
+      status: "Completed",
+      comments: "Follow-up required",
+      imageFileName: formData.imageLabel,
+    });
+
+    const appointmentsCollectionRef = collection(db, `doctors/${doctorEmail}/patients/${patientID}/appointments`);
+    await addDoc(appointmentsCollectionRef, {
+      date: getLocalISOString().slice(0, 10),
+      treatmentType: "General Checkup",
+      bookingTime: getLocalISOString().slice(11, 16),
+      comments: "Initial consultation",
+      status: "Completed",
+      imageFileName: formData.imageLabel,
+    });
+  } catch (error) {
+    throw new Error(`Error adding consultation data: ${error.message}`);
+  }
+}
+
+export async function getImageUrl(patientId, imageName) {
+  try {
+    const imageRef = ref(storage, `Radiological Image/${patientId}/${imageName}.png`);
+    const imageUrl = await getDownloadURL(imageRef);
+    return imageUrl;
+  } catch (error) {
+    console.error("Error getting image URL:", error);
+    throw error; 
+  }
+}
 
 export const getConsultationsLog = async (email) => {
   const consultationsLogRef = collection(db, `doctors/${email}/consultations_log`);

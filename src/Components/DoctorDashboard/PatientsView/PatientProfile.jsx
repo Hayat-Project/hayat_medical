@@ -5,7 +5,6 @@ import PatientProfileCard from "./PatientProfileCard";
 import { useMediaQuery } from "@mantine/hooks";
 import PatientInfoCard from "./PatientInfoCard";
 import ReportsTabs from "./ReportsTabs";
-
 import AppointmentHistoryTabs from "./AppointmentHistoryTabs";
 
 function PatientProfile() {
@@ -66,7 +65,7 @@ function PatientProfile() {
       <Grid mt={15}>
         <Grid.Col span={isMobile ? 12 : 12}>
           <SimpleGrid>
-            <AppointmentHistoryTabs patientID={selectedPatient.id}/>
+            <AppointmentHistoryTabs patientID={selectedPatient.id} />
           </SimpleGrid>
         </Grid.Col>
       </Grid>

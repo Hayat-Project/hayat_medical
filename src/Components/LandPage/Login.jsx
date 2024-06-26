@@ -33,6 +33,7 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      // navigate("/doctorDashboard/overview/");
       Cookies.set("email", email);
       setMfa(false);
     } catch (err) {
@@ -84,9 +85,9 @@ function Login() {
             </Card>
           </Grid.Col>
         </Grid>
-      ) : (
+       ) : (
         <Mfa />
-      )}
+      )} 
     </AppShell>
   );
 }

@@ -1,21 +1,47 @@
-import { Card, Tabs, Title, Group, Button } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { Card, Tabs, Title, Group, Button, Loader, Center } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import AppointmentHistoryCard from "./AppointmentHistoryCard";
-import { useParams } from "react-router-dom";
-import elements from "../../../mockdata/appointmentsData.json";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function AppointmentHistoryTabs(props) {
-  const selectedPatientId  = props.patientID;
-  
-  const completedAppointments = elements.filter(
-    (element) => element.status === "Completed"
-  );
-  const upcomingAppointments = elements.filter(
-    (element) => element.status === "Upcoming"
-  );
-
+  const selectedPatientId = props.patientID;
   const navigate = useNavigate();
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const email = Cookies.get("email");
+      try {
+        const response = await fetch(`https://us-central1-hayat-consultation-syste-dd9b0.cloudfunctions.net/api/appointments/${email}/${selectedPatientId}`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Fetched Appointments:", data);
+          setAppointments(data);
+        } else {
+          console.log("Error fetching appointments");
+        }
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (selectedPatientId) {
+      fetchAppointments();
+    }
+  }, [selectedPatientId]);
+
+  if (loading) {
+    return (
+      <Center style={{ height: "100vh" }}>
+        <Loader size="xl" />
+      </Center>
+    );
+  }
 
   return (
     <>
@@ -40,21 +66,13 @@ function AppointmentHistoryTabs(props) {
         <Tabs radius="md" defaultValue="Appointment">
           <Tabs.List>
             <Tabs.Tab value="Appointment">All Appointments</Tabs.Tab>
-            <Tabs.Tab value="Upcoming">Upcoming</Tabs.Tab>
-            <Tabs.Tab value="Completed">Completed</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="Appointment">
             <AppointmentHistoryCard
-              data={elements}
+              data={appointments}
               patientId={selectedPatientId}
             />
-          </Tabs.Panel>
-          <Tabs.Panel value="Upcoming">
-            <AppointmentHistoryCard data={upcomingAppointments} />
-          </Tabs.Panel>
-          <Tabs.Panel value="Completed">
-            <AppointmentHistoryCard data={completedAppointments} />
           </Tabs.Panel>
         </Tabs>
       </Card>

@@ -7,6 +7,7 @@ import {
   Space,
   Loader,
   Text,
+  Center,
 } from "@mantine/core";
 import {
   IconPlayerRecord,
@@ -168,14 +169,14 @@ function RecordingSession() {
               c={diarizationFeedback.includes("completed") ? "green" : "red"}
             >
               {diarizationFeedback.includes("completed") ? (
-                <Group>
+                <Group justify="center">
                   <IconCircleCheck />
                   <Text size="sm">
                     Audio diarization completed successfully.
                   </Text>
                 </Group>
               ) : (
-                <Group>
+                <Group justify="center">
                   <IconExclamationCircle />
                   <Text size="sm">
                     Error during diarization. Please try again.
@@ -187,8 +188,10 @@ function RecordingSession() {
         </Grid.Col>
         <Grid.Col span={3}></Grid.Col>
       </Grid>
-      <br />
-      <audio ref={recordedAudio} />
+      <br/>
+      <Center>
+        <audio ref={recordedAudio} />
+      </Center>
     </>
   );
 }
